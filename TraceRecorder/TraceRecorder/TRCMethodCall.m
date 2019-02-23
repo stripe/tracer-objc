@@ -15,7 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TRCMethodCall ()
 
 @property (atomic, strong, readonly) NSString *selector;
-@property (atomic, strong, readonly) NSString *klass;
 @property (atomic, strong, readonly) NSArray *arguments;
 @property (atomic, assign, readwrite) NSUInteger millis;
 
@@ -23,13 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation TRCMethodCall
 
-- (instancetype)initWithClass:(Class)kls
-                     selector:(SEL)sel
-                         info:(id<TRCAspectInfo>)info
-                       millis:(NSUInteger)millis {
+- (instancetype)initWithSelector:(SEL)sel
+                            info:(id<TRCAspectInfo>)info
+                          millis:(NSUInteger)millis {
     self = [super init];
     if (self) {
-        _klass = NSStringFromClass(kls);
         _selector = NSStringFromSelector(sel);
         _arguments = info.arguments;
         _millis = millis;
@@ -39,7 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSObject *)jsonObject {
     NSMutableDictionary *json = [NSMutableDictionary new];
-    json[@"class"] = self.klass;
     json[@"selector"] = self.selector;
     json[@"arguments"] = self.arguments;
     json[@"millis"] = @(self.millis);

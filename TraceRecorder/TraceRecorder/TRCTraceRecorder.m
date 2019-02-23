@@ -7,11 +7,13 @@
 //
 
 #import "TRCTraceRecorder.h"
+
+#import <objc/runtime.h>
+
 #import "TRCAspects.h"
 #import "TRCMethodCall.h"
 #import "TRCTraceRecording+Private.h"
 #import "NSDate+TraceRecorder.h"
-#import <objc/runtime.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -57,14 +59,13 @@ NS_ASSUME_NONNULL_BEGIN
         SEL sel = (SEL)value.pointerValue;
         [inClass trc_aspect_hookSelector:sel withOptions:TRCAspectPositionAfter usingBlock:^(id<TRCAspectInfo> info){
             NSUInteger ms = [[NSDate date] trc_millisSinceDate:start];
-            TRCMethodCall *call = [[TRCMethodCall alloc] initWithClass:inClass
-                                                              selector:sel
-                                                                  info:info
-                                                                millis:ms];
+            TRCMethodCall *call = [[TRCMethodCall alloc] initWithSelector:sel
+                                                                     info:info
+                                                                   millis:ms];
             dispatch_async(self.tracesQueue, ^{
                 TRCTraceRecording *trace = self.keyToTrace[key];
                 if (trace == nil) {
-                    trace = [TRCTraceRecording new];
+                    trace = [[TRCTraceRecording alloc] initWithClass:inClass];
                 }
                 [trace addMethodCall:call];
                 self.keyToTrace[key] = trace;

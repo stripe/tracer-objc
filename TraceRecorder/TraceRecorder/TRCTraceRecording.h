@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TRCTraceRecording : NSObject <TRCJsonEncodable>
 
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -8,8 +8,8 @@
 
 #import <XCTest/XCTest.h>
 #import <TraceRecorder/TraceRecorder.h>
-#import "TestSubject.h"
-#import "TestDispatchFunctions.h"
+#import "TRCTestSubject.h"
+#import "TRCDispatchFunctions.h"
 
 @interface TraceRecorderTests : XCTestCase
 
@@ -19,9 +19,10 @@
 
 - (void)testBasic {
     XCTestExpectation *exp = [self expectationWithDescription:@"done"];
-    TestSubject *sbj = [[TestSubject alloc] init];
+    TRCTestSubject *sbj = [[TRCTestSubject alloc] init];
     TRCTraceRecorder *recorder = [TRCTraceRecorder new];
     [recorder startRecording:sbj];
+    __block NSDictionary *trace = nil;
 
     NSArray *blocks = @[
                         (^{
@@ -49,15 +50,22 @@
                             [recorder stopRecording:sbj completion:^(TRCTraceRecording * _Nullable recording, NSError * _Nullable error) {
                                 XCTAssertNotNil(recording);
                                 XCTAssertNil(error);
-                                NSLog(@"%@", [recording jsonObject]);
-                                [exp fulfill];
+                                trace = [recording jsonObject];
+                                NSLog(@"%@", trace);
                             }];
+                        }),
+                        (^{
+                            TRCTracePlayer *player = [TRCTracePlayer new];
+                            [player loadTrace:trace];
+                        }),
+                        (^{
+                            [exp fulfill];
                         }),
                         ];
 
     for (NSUInteger i = 0; i < blocks.count; i++) {
         NSTimeInterval delay = (NSTimeInterval)(0.1*(i+1));
-        testDispatchToMainAfter(delay, blocks[i]);
+        trcDispatchToMainAfter(delay, blocks[i]);
     }
 
     [self waitForExpectationsWithTimeout:10 handler:nil];

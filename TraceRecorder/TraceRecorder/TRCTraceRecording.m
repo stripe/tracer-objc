@@ -13,15 +13,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TRCTraceRecording ()
 
+@property (atomic, strong, readonly) NSString *klass;
 @property (atomic, strong, readwrite) NSMutableArray<TRCMethodCall*>*methodCalls;
 
 @end
 
 @implementation TRCTraceRecording
 
-- (instancetype)init {
+- (instancetype)initWithClass:(Class)kls {
     self = [super init];
     if (self) {
+        _klass = NSStringFromClass(kls);
         _methodCalls = [NSMutableArray new];
     }
     return self;
@@ -32,10 +34,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (NSObject *)jsonObject {
-    NSMutableArray *json = [NSMutableArray new];
+    NSMutableDictionary *json = [NSMutableDictionary new];
+    json[@"class"] = self.klass;
+    NSMutableArray *calls = [NSMutableArray new];
     for (TRCMethodCall *call in self.methodCalls) {
-        [json addObject:[call jsonObject]];
+        [calls addObject:[call jsonObject]];
     }
+    json[@"calls"] = [calls copy];
     return [json copy];
 }
 

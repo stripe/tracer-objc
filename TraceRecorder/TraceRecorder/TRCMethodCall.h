@@ -16,10 +16,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TRCMethodCall : NSObject <TRCJsonEncodable>
 
-- (instancetype)initWithClass:(Class)kls
-                     selector:(SEL)sel
-                         info:(id<TRCAspectInfo>)info
-                       millis:(NSUInteger)millis;
+- (instancetype)initWithSelector:(SEL)sel
+                            info:(id<TRCAspectInfo>)info
+                          millis:(NSUInteger)millis;
+
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
 @end
 

@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
  Converts the receiver into a JSON object (NSDictionary or NSArray), suitable
  for use with `NSJSONSerialization`.
  */
-- (NSObject *)jsonObject;
+- (NSDictionary *)jsonObject;
 
 @end
 

@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TestSubject : NSObject
+@interface TRCTestSubject : NSObject
 
 /**
  Note: steipete/aspects doesn't support hooking class methods.

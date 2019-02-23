@@ -6,24 +6,18 @@
 //  Copyright © 2019 tracer. All rights reserved.
 //
 
-#import "TestSubject.h"
+#import "TRCTestSubject.h"
 
-@implementation TestSubject
+#import "TRCDispatchFunctions.h"
 
-+ (void)clMethodWithZeroParams {
+@implementation TRCTestSubject
 
-}
-
-+ (void)clMethodWithOneParamPrimitive:(NSInteger)primitive {
-
-}
-
-+ (void)clMethodWithOneParamString:(NSString *)string {
-
-}
+#pragma mark - public methods
 
 - (void)mWithZeroParams {
-
+    trcDispatchToMainAfter(0.05, ^{
+        [self pmWithZeroParams];
+    });
 }
 
 - (void)mWithOneParamPrimitive:(NSInteger)primitive {
@@ -47,6 +41,12 @@
 }
 
 - (void)mWithTwoParamsPrimitive:(NSInteger)p1 string:(NSString *)string {
+
+}
+
+#pragma mark - private methods
+
+- (void)pmWithZeroParams {
 
 }
 

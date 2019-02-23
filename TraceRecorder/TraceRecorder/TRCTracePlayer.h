@@ -15,9 +15,15 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TRCTracePlayer : NSObject
 
 /**
- Loads a TraceRecording serialized to a JSON array
+ Loads a TraceRecording serialized to a JSON dictionary.
+ Returns a mock object that can play the trace.
  */
-- (void)loadTrace:(NSArray *)trace;
+- (id)loadTrace:(NSDictionary *)trace;
+
+/**
+ Plays the trace via the object returned by `loadTrace`.
+ */
+- (void)play;
 
 @end
 

@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TRCTraceRecording (Private)
 
+- (instancetype)initWithClass:(Class)kls;
+
 - (void)addMethodCall:(TRCMethodCall *)methodCall;
 
 @end
