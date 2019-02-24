@@ -19,23 +19,23 @@
 
 - (void)testRecordClass {
     XCTestExpectation *exp = [self expectationWithDescription:@"done"];
-    TRCTestTarget *tgt = [[TRCTestTarget alloc] init];
+    TRCTestTarget *t = [[TRCTestTarget alloc] init];
     TRCRecorder *recorder = [TRCRecorder new];
-    [recorder startRecording:tgt protocol:@protocol(TRCTestProtocol)];
+    [recorder startRecording:t protocol:@protocol(TRCTestProtocol)];
 
     NSArray *blocks = @[
                         (^{
-                            [tgt mWithZeroParams];
+                            [t mWithZeroParams];
                         }),
 //                        (^{
 //                            [tgt mWithOneParamString:@"string"];
 //                        }),
                         (^{
-                            [tgt mWithOneParamNumber:@(100)];
+                            [t mWithOneParamNumber:@(100)];
                         }),
                         (^{
                             // broken
-                            [tgt mWithOneParamPrimitive:100];
+                            [t mWithOneParamPrimitive:100];
                         }),
 //                        (^{
 //                            [tgt mWithOneParamDict:@{@"key": @"value"}];
@@ -47,12 +47,12 @@
 //                            [tgt mWithTwoParamsPrimitive:3 string:@"s2"];
 //                        }),
                         (^{
-                            [recorder stopRecording:tgt protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
+                            [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
                                 XCTAssertNotNil(trace);
                                 XCTAssertNil(recError);
                                 NSLog(@"%@", [trace jsonObject]);
 
-                                [TRCPlayer playTrace:trace onTarget:tgt completion:^(NSError * _Nullable playError) {
+                                [TRCPlayer playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
                                     XCTAssertNil(playError);
                                     [exp fulfill];
                                 }];
