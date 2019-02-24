@@ -1,16 +1,16 @@
 //
-//  NSDate+TraceRecorder.m
-//  TraceRecorder
+//  NSDate+Tracer.m
+//  Tracer
 //
 //  Created by Ben Guo on 2/22/19.
 //  Copyright © 2019 tracer. All rights reserved.
 //
 
-#import "NSDate+TraceRecorder.h"
+#import "NSDate+Tracer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation NSDate (TraceRecorder)
+@implementation NSDate (Tracer)
 
 - (NSUInteger)trc_millisSinceDate:(NSDate *)date {
     return (NSUInteger)ABS(ceil([self timeIntervalSinceDate:date]*1000));

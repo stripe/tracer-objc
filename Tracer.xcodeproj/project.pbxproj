@@ -9,27 +9,27 @@
 /* Begin PBXBuildFile section */
 		C106B33D22211F7B00504CF9 /* TRCJsonEncodable.h in Headers */ = {isa = PBXBuildFile; fileRef = C106B33C22211F7A00504CF9 /* TRCJsonEncodable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C106B33F2221207300504CF9 /* TRCBlocks.h in Headers */ = {isa = PBXBuildFile; fileRef = C106B33E2221207300504CF9 /* TRCBlocks.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C106B343222126A100504CF9 /* TRCTracePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = C106B341222126A100504CF9 /* TRCTracePlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C106B344222126A100504CF9 /* TRCTracePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C106B342222126A100504CF9 /* TRCTracePlayer.m */; };
-		C106B3482221445300504CF9 /* TRCTestSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = C106B3472221445300504CF9 /* TRCTestSubject.m */; };
-		C106B3492221446500504CF9 /* TRCTestSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = C106B3472221445300504CF9 /* TRCTestSubject.m */; };
-		C106B34A2221446800504CF9 /* TRCTestSubject.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D7ABE5222104670040808A /* TRCTestSubject.h */; };
+		C106B343222126A100504CF9 /* TRCPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = C106B341222126A100504CF9 /* TRCPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C106B344222126A100504CF9 /* TRCPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C106B342222126A100504CF9 /* TRCPlayer.m */; };
+		C106B3482221445300504CF9 /* TRCTestTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = C106B3472221445300504CF9 /* TRCTestTarget.m */; };
+		C106B3492221446500504CF9 /* TRCTestTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = C106B3472221445300504CF9 /* TRCTestTarget.m */; };
+		C106B34A2221446800504CF9 /* TRCTestTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D7ABE5222104670040808A /* TRCTestTarget.h */; };
 		C106B351222144EC00504CF9 /* TRCDispatchFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = C106B34F222144EC00504CF9 /* TRCDispatchFunctions.h */; };
 		C106B352222144EC00504CF9 /* TRCDispatchFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = C106B350222144EC00504CF9 /* TRCDispatchFunctions.m */; };
 		C106B353222144F800504CF9 /* TRCDispatchFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = C106B350222144EC00504CF9 /* TRCDispatchFunctions.m */; };
-		C1D7ABC9222102E30040808A /* TraceRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D7ABBF222102E30040808A /* TraceRecorder.framework */; };
-		C1D7ABCE222102E30040808A /* TraceRecorderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7ABCD222102E30040808A /* TraceRecorderTests.m */; };
-		C1D7ABD0222102E30040808A /* TraceRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D7ABC2222102E30040808A /* TraceRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1D7ABDB222103050040808A /* TRCTraceRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D7ABD9222103050040808A /* TRCTraceRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1D7ABDC222103050040808A /* TRCTraceRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7ABDA222103050040808A /* TRCTraceRecorder.m */; };
+		C1D7ABC9222102E30040808A /* Tracer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D7ABBF222102E30040808A /* Tracer.framework */; };
+		C1D7ABCE222102E30040808A /* TracerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7ABCD222102E30040808A /* TracerTests.m */; };
+		C1D7ABD0222102E30040808A /* Tracer.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D7ABC2222102E30040808A /* Tracer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C1D7ABDB222103050040808A /* TRCRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D7ABD9222103050040808A /* TRCRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C1D7ABDC222103050040808A /* TRCRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7ABDA222103050040808A /* TRCRecorder.m */; };
 		C1D7ABE3222104080040808A /* TRCAspects.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7ABE1222104080040808A /* TRCAspects.m */; };
 		C1D7ABE4222104080040808A /* TRCAspects.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D7ABE2222104080040808A /* TRCAspects.h */; };
-		C1D7ABED222114300040808A /* NSDate+TraceRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D7ABEB222114300040808A /* NSDate+TraceRecorder.h */; };
-		C1D7ABEE222114300040808A /* NSDate+TraceRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7ABEC222114300040808A /* NSDate+TraceRecorder.m */; };
-		C1D7ABF1222115020040808A /* TRCMethodCall.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D7ABEF222115020040808A /* TRCMethodCall.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1D7ABF2222115020040808A /* TRCMethodCall.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7ABF0222115020040808A /* TRCMethodCall.m */; };
-		C1D7ABF522211CE50040808A /* TRCTraceRecording.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D7ABF322211CE50040808A /* TRCTraceRecording.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1D7ABF622211CE50040808A /* TRCTraceRecording.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7ABF422211CE50040808A /* TRCTraceRecording.m */; };
+		C1D7ABED222114300040808A /* NSDate+Tracer.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D7ABEB222114300040808A /* NSDate+Tracer.h */; };
+		C1D7ABEE222114300040808A /* NSDate+Tracer.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7ABEC222114300040808A /* NSDate+Tracer.m */; };
+		C1D7ABF1222115020040808A /* TRCRecordedInvocation.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D7ABEF222115020040808A /* TRCRecordedInvocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C1D7ABF2222115020040808A /* TRCRecordedInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7ABF0222115020040808A /* TRCRecordedInvocation.m */; };
+		C1D7ABF522211CE50040808A /* TRCTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D7ABF322211CE50040808A /* TRCTrace.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C1D7ABF622211CE50040808A /* TRCTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7ABF422211CE50040808A /* TRCTrace.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,29 +45,29 @@
 /* Begin PBXFileReference section */
 		C106B33C22211F7A00504CF9 /* TRCJsonEncodable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRCJsonEncodable.h; sourceTree = "<group>"; };
 		C106B33E2221207300504CF9 /* TRCBlocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRCBlocks.h; sourceTree = "<group>"; };
-		C106B341222126A100504CF9 /* TRCTracePlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRCTracePlayer.h; sourceTree = "<group>"; };
-		C106B342222126A100504CF9 /* TRCTracePlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TRCTracePlayer.m; sourceTree = "<group>"; };
-		C106B3472221445300504CF9 /* TRCTestSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRCTestSubject.m; sourceTree = "<group>"; };
+		C106B341222126A100504CF9 /* TRCPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRCPlayer.h; sourceTree = "<group>"; };
+		C106B342222126A100504CF9 /* TRCPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TRCPlayer.m; sourceTree = "<group>"; };
+		C106B3472221445300504CF9 /* TRCTestTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRCTestTarget.m; sourceTree = "<group>"; };
 		C106B34F222144EC00504CF9 /* TRCDispatchFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRCDispatchFunctions.h; sourceTree = "<group>"; };
 		C106B350222144EC00504CF9 /* TRCDispatchFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRCDispatchFunctions.m; sourceTree = "<group>"; };
-		C1D7ABBF222102E30040808A /* TraceRecorder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraceRecorder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1D7ABC2222102E30040808A /* TraceRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraceRecorder.h; sourceTree = "<group>"; };
+		C1D7ABBF222102E30040808A /* Tracer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Tracer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1D7ABC2222102E30040808A /* Tracer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tracer.h; sourceTree = "<group>"; };
 		C1D7ABC3222102E30040808A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C1D7ABC8222102E30040808A /* TraceRecorderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraceRecorderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1D7ABCD222102E30040808A /* TraceRecorderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TraceRecorderTests.m; sourceTree = "<group>"; };
+		C1D7ABC8222102E30040808A /* TracerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TracerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1D7ABCD222102E30040808A /* TracerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TracerTests.m; sourceTree = "<group>"; };
 		C1D7ABCF222102E30040808A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C1D7ABD9222103050040808A /* TRCTraceRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRCTraceRecorder.h; sourceTree = "<group>"; };
-		C1D7ABDA222103050040808A /* TRCTraceRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TRCTraceRecorder.m; sourceTree = "<group>"; };
+		C1D7ABD9222103050040808A /* TRCRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRCRecorder.h; sourceTree = "<group>"; };
+		C1D7ABDA222103050040808A /* TRCRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TRCRecorder.m; sourceTree = "<group>"; };
 		C1D7ABE1222104080040808A /* TRCAspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRCAspects.m; sourceTree = "<group>"; };
 		C1D7ABE2222104080040808A /* TRCAspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRCAspects.h; sourceTree = "<group>"; };
-		C1D7ABE5222104670040808A /* TRCTestSubject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRCTestSubject.h; sourceTree = "<group>"; };
-		C1D7ABEB222114300040808A /* NSDate+TraceRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TraceRecorder.h"; sourceTree = "<group>"; };
-		C1D7ABEC222114300040808A /* NSDate+TraceRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TraceRecorder.m"; sourceTree = "<group>"; };
-		C1D7ABEF222115020040808A /* TRCMethodCall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRCMethodCall.h; sourceTree = "<group>"; };
-		C1D7ABF0222115020040808A /* TRCMethodCall.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TRCMethodCall.m; sourceTree = "<group>"; };
-		C1D7ABF322211CE50040808A /* TRCTraceRecording.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRCTraceRecording.h; sourceTree = "<group>"; };
-		C1D7ABF422211CE50040808A /* TRCTraceRecording.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TRCTraceRecording.m; sourceTree = "<group>"; };
-		C1D7ABF722211D1E0040808A /* TRCTraceRecording+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TRCTraceRecording+Private.h"; sourceTree = "<group>"; };
+		C1D7ABE5222104670040808A /* TRCTestTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRCTestTarget.h; sourceTree = "<group>"; };
+		C1D7ABEB222114300040808A /* NSDate+Tracer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Tracer.h"; sourceTree = "<group>"; };
+		C1D7ABEC222114300040808A /* NSDate+Tracer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Tracer.m"; sourceTree = "<group>"; };
+		C1D7ABEF222115020040808A /* TRCRecordedInvocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRCRecordedInvocation.h; sourceTree = "<group>"; };
+		C1D7ABF0222115020040808A /* TRCRecordedInvocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TRCRecordedInvocation.m; sourceTree = "<group>"; };
+		C1D7ABF322211CE50040808A /* TRCTrace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRCTrace.h; sourceTree = "<group>"; };
+		C1D7ABF422211CE50040808A /* TRCTrace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TRCTrace.m; sourceTree = "<group>"; };
+		C1D7ABF722211D1E0040808A /* TRCTrace+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TRCTrace+Private.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1D7ABC9222102E30040808A /* TraceRecorder.framework in Frameworks */,
+				C1D7ABC9222102E30040808A /* Tracer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,11 +92,11 @@
 		C106B3402221223C00504CF9 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				C1D7ABF722211D1E0040808A /* TRCTraceRecording+Private.h */,
+				C1D7ABF722211D1E0040808A /* TRCTrace+Private.h */,
 				C1D7ABE2222104080040808A /* TRCAspects.h */,
 				C1D7ABE1222104080040808A /* TRCAspects.m */,
-				C1D7ABEB222114300040808A /* NSDate+TraceRecorder.h */,
-				C1D7ABEC222114300040808A /* NSDate+TraceRecorder.m */,
+				C1D7ABEB222114300040808A /* NSDate+Tracer.h */,
+				C1D7ABEC222114300040808A /* NSDate+Tracer.m */,
 				C106B34F222144EC00504CF9 /* TRCDispatchFunctions.h */,
 				C106B350222144EC00504CF9 /* TRCDispatchFunctions.m */,
 			);
@@ -106,8 +106,8 @@
 		C1D7ABB5222102E30040808A = {
 			isa = PBXGroup;
 			children = (
-				C1D7ABC1222102E30040808A /* TraceRecorder */,
-				C1D7ABCC222102E30040808A /* TraceRecorderTests */,
+				C1D7ABC1222102E30040808A /* Tracer */,
+				C1D7ABCC222102E30040808A /* TracerTests */,
 				C1D7ABC0222102E30040808A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,41 +115,41 @@
 		C1D7ABC0222102E30040808A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C1D7ABBF222102E30040808A /* TraceRecorder.framework */,
-				C1D7ABC8222102E30040808A /* TraceRecorderTests.xctest */,
+				C1D7ABBF222102E30040808A /* Tracer.framework */,
+				C1D7ABC8222102E30040808A /* TracerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C1D7ABC1222102E30040808A /* TraceRecorder */ = {
+		C1D7ABC1222102E30040808A /* Tracer */ = {
 			isa = PBXGroup;
 			children = (
-				C1D7ABC2222102E30040808A /* TraceRecorder.h */,
+				C1D7ABC2222102E30040808A /* Tracer.h */,
 				C106B33E2221207300504CF9 /* TRCBlocks.h */,
 				C106B33C22211F7A00504CF9 /* TRCJsonEncodable.h */,
-				C1D7ABD9222103050040808A /* TRCTraceRecorder.h */,
-				C1D7ABDA222103050040808A /* TRCTraceRecorder.m */,
-				C106B341222126A100504CF9 /* TRCTracePlayer.h */,
-				C106B342222126A100504CF9 /* TRCTracePlayer.m */,
-				C1D7ABEF222115020040808A /* TRCMethodCall.h */,
-				C1D7ABF0222115020040808A /* TRCMethodCall.m */,
-				C1D7ABF322211CE50040808A /* TRCTraceRecording.h */,
-				C1D7ABF422211CE50040808A /* TRCTraceRecording.m */,
+				C1D7ABD9222103050040808A /* TRCRecorder.h */,
+				C1D7ABDA222103050040808A /* TRCRecorder.m */,
+				C106B341222126A100504CF9 /* TRCPlayer.h */,
+				C106B342222126A100504CF9 /* TRCPlayer.m */,
+				C1D7ABEF222115020040808A /* TRCRecordedInvocation.h */,
+				C1D7ABF0222115020040808A /* TRCRecordedInvocation.m */,
+				C1D7ABF322211CE50040808A /* TRCTrace.h */,
+				C1D7ABF422211CE50040808A /* TRCTrace.m */,
 				C106B3402221223C00504CF9 /* Private */,
 				C1D7ABC3222102E30040808A /* Info.plist */,
 			);
-			path = TraceRecorder;
+			path = Tracer;
 			sourceTree = "<group>";
 		};
-		C1D7ABCC222102E30040808A /* TraceRecorderTests */ = {
+		C1D7ABCC222102E30040808A /* TracerTests */ = {
 			isa = PBXGroup;
 			children = (
-				C1D7ABCD222102E30040808A /* TraceRecorderTests.m */,
-				C1D7ABE5222104670040808A /* TRCTestSubject.h */,
-				C106B3472221445300504CF9 /* TRCTestSubject.m */,
+				C1D7ABCD222102E30040808A /* TracerTests.m */,
+				C1D7ABE5222104670040808A /* TRCTestTarget.h */,
+				C106B3472221445300504CF9 /* TRCTestTarget.m */,
 				C1D7ABCF222102E30040808A /* Info.plist */,
 			);
-			path = TraceRecorderTests;
+			path = TracerTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,25 +160,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				C106B33F2221207300504CF9 /* TRCBlocks.h in Headers */,
-				C1D7ABF522211CE50040808A /* TRCTraceRecording.h in Headers */,
-				C1D7ABDB222103050040808A /* TRCTraceRecorder.h in Headers */,
-				C106B343222126A100504CF9 /* TRCTracePlayer.h in Headers */,
-				C1D7ABF1222115020040808A /* TRCMethodCall.h in Headers */,
+				C1D7ABF522211CE50040808A /* TRCTrace.h in Headers */,
+				C1D7ABDB222103050040808A /* TRCRecorder.h in Headers */,
+				C106B343222126A100504CF9 /* TRCPlayer.h in Headers */,
+				C1D7ABF1222115020040808A /* TRCRecordedInvocation.h in Headers */,
 				C106B351222144EC00504CF9 /* TRCDispatchFunctions.h in Headers */,
 				C1D7ABE4222104080040808A /* TRCAspects.h in Headers */,
-				C1D7ABD0222102E30040808A /* TraceRecorder.h in Headers */,
-				C106B34A2221446800504CF9 /* TRCTestSubject.h in Headers */,
+				C1D7ABD0222102E30040808A /* Tracer.h in Headers */,
+				C106B34A2221446800504CF9 /* TRCTestTarget.h in Headers */,
 				C106B33D22211F7B00504CF9 /* TRCJsonEncodable.h in Headers */,
-				C1D7ABED222114300040808A /* NSDate+TraceRecorder.h in Headers */,
+				C1D7ABED222114300040808A /* NSDate+Tracer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C1D7ABBE222102E30040808A /* TraceRecorder */ = {
+		C1D7ABBE222102E30040808A /* Tracer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C1D7ABD3222102E30040808A /* Build configuration list for PBXNativeTarget "TraceRecorder" */;
+			buildConfigurationList = C1D7ABD3222102E30040808A /* Build configuration list for PBXNativeTarget "Tracer" */;
 			buildPhases = (
 				C1D7ABBA222102E30040808A /* Headers */,
 				C1D7ABBB222102E30040808A /* Sources */,
@@ -189,14 +189,14 @@
 			);
 			dependencies = (
 			);
-			name = TraceRecorder;
+			name = Tracer;
 			productName = TraceRecorder;
-			productReference = C1D7ABBF222102E30040808A /* TraceRecorder.framework */;
+			productReference = C1D7ABBF222102E30040808A /* Tracer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C1D7ABC7222102E30040808A /* TraceRecorderTests */ = {
+		C1D7ABC7222102E30040808A /* TracerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C1D7ABD6222102E30040808A /* Build configuration list for PBXNativeTarget "TraceRecorderTests" */;
+			buildConfigurationList = C1D7ABD6222102E30040808A /* Build configuration list for PBXNativeTarget "TracerTests" */;
 			buildPhases = (
 				C1D7ABC4222102E30040808A /* Sources */,
 				C1D7ABC5222102E30040808A /* Frameworks */,
@@ -207,9 +207,9 @@
 			dependencies = (
 				C1D7ABCB222102E30040808A /* PBXTargetDependency */,
 			);
-			name = TraceRecorderTests;
+			name = TracerTests;
 			productName = TraceRecorderTests;
-			productReference = C1D7ABC8222102E30040808A /* TraceRecorderTests.xctest */;
+			productReference = C1D7ABC8222102E30040808A /* TracerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -229,7 +229,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C1D7ABB9222102E30040808A /* Build configuration list for PBXProject "TraceRecorder" */;
+			buildConfigurationList = C1D7ABB9222102E30040808A /* Build configuration list for PBXProject "Tracer" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -241,8 +241,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C1D7ABBE222102E30040808A /* TraceRecorder */,
-				C1D7ABC7222102E30040808A /* TraceRecorderTests */,
+				C1D7ABBE222102E30040808A /* Tracer */,
+				C1D7ABC7222102E30040808A /* TracerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -269,14 +269,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1D7ABF2222115020040808A /* TRCMethodCall.m in Sources */,
-				C1D7ABF622211CE50040808A /* TRCTraceRecording.m in Sources */,
-				C106B3492221446500504CF9 /* TRCTestSubject.m in Sources */,
+				C1D7ABF2222115020040808A /* TRCRecordedInvocation.m in Sources */,
+				C1D7ABF622211CE50040808A /* TRCTrace.m in Sources */,
+				C106B3492221446500504CF9 /* TRCTestTarget.m in Sources */,
 				C106B352222144EC00504CF9 /* TRCDispatchFunctions.m in Sources */,
-				C1D7ABDC222103050040808A /* TRCTraceRecorder.m in Sources */,
+				C1D7ABDC222103050040808A /* TRCRecorder.m in Sources */,
 				C1D7ABE3222104080040808A /* TRCAspects.m in Sources */,
-				C106B344222126A100504CF9 /* TRCTracePlayer.m in Sources */,
-				C1D7ABEE222114300040808A /* NSDate+TraceRecorder.m in Sources */,
+				C106B344222126A100504CF9 /* TRCPlayer.m in Sources */,
+				C1D7ABEE222114300040808A /* NSDate+Tracer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,8 +284,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C106B3482221445300504CF9 /* TRCTestSubject.m in Sources */,
-				C1D7ABCE222102E30040808A /* TraceRecorderTests.m in Sources */,
+				C106B3482221445300504CF9 /* TRCTestTarget.m in Sources */,
+				C1D7ABCE222102E30040808A /* TracerTests.m in Sources */,
 				C106B353222144F800504CF9 /* TRCDispatchFunctions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,7 +295,7 @@
 /* Begin PBXTargetDependency section */
 		C1D7ABCB222102E30040808A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C1D7ABBE222102E30040808A /* TraceRecorder */;
+			target = C1D7ABBE222102E30040808A /* Tracer */;
 			targetProxy = C1D7ABCA222102E30040808A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -429,7 +429,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = TraceRecorder/Info.plist;
+				INFOPLIST_FILE = Tracer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -437,7 +437,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tracer.TraceRecorder;
+				PRODUCT_BUNDLE_IDENTIFIER = tracer.Tracer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -454,7 +454,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = TraceRecorder/Info.plist;
+				INFOPLIST_FILE = Tracer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -462,7 +462,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tracer.TraceRecorder;
+				PRODUCT_BUNDLE_IDENTIFIER = tracer.Tracer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -474,13 +474,13 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M6UK8SVLX3;
-				INFOPLIST_FILE = TraceRecorderTests/Info.plist;
+				INFOPLIST_FILE = TracerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tracer.TraceRecorderTests;
+				PRODUCT_BUNDLE_IDENTIFIER = tracer.TracerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -491,13 +491,13 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M6UK8SVLX3;
-				INFOPLIST_FILE = TraceRecorderTests/Info.plist;
+				INFOPLIST_FILE = TracerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tracer.TraceRecorderTests;
+				PRODUCT_BUNDLE_IDENTIFIER = tracer.TracerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -506,7 +506,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C1D7ABB9222102E30040808A /* Build configuration list for PBXProject "TraceRecorder" */ = {
+		C1D7ABB9222102E30040808A /* Build configuration list for PBXProject "Tracer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1D7ABD1222102E30040808A /* Debug */,
@@ -515,7 +515,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1D7ABD3222102E30040808A /* Build configuration list for PBXNativeTarget "TraceRecorder" */ = {
+		C1D7ABD3222102E30040808A /* Build configuration list for PBXNativeTarget "Tracer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1D7ABD4222102E30040808A /* Debug */,
@@ -524,7 +524,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1D7ABD6222102E30040808A /* Build configuration list for PBXNativeTarget "TraceRecorderTests" */ = {
+		C1D7ABD6222102E30040808A /* Build configuration list for PBXNativeTarget "TracerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1D7ABD7222102E30040808A /* Debug */,

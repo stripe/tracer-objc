@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:TraceRecorder.xcodeproj">
+      location = "self:/Users/bg/stripe/tracer-objc/Tracer.xcodeproj">
    </FileRef>
 </Workspace>

@@ -1,34 +1,34 @@
 //
 //  TRCMethodCall.m
-//  TraceRecorder
+//  Tracer
 //
 //  Created by Ben Guo on 2/22/19.
 //  Copyright © 2019 tracer. All rights reserved.
 //
 
-#import "TRCMethodCall.h"
+#import "TRCRecordedInvocation.h"
 
 #import "TRCAspects.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TRCMethodCall ()
+@interface TRCRecordedInvocation ()
 
-@property (atomic, strong, readonly) NSString *selector;
-@property (atomic, strong, readonly) NSArray *arguments;
+@property (atomic, strong, readwrite) NSString *selector;
+@property (atomic, strong, readwrite) NSArray *arguments;
 @property (atomic, assign, readwrite) NSUInteger millis;
 
 @end
 
-@implementation TRCMethodCall
+@implementation TRCRecordedInvocation
 
-- (instancetype)initWithSelector:(SEL)sel
-                            info:(id<TRCAspectInfo>)info
+- (instancetype)initWithSelector:(SEL)selector
+                       arguments:(NSArray *)arguments
                           millis:(NSUInteger)millis {
     self = [super init];
     if (self) {
-        _selector = NSStringFromSelector(sel);
-        _arguments = info.arguments;
+        _selector = NSStringFromSelector(selector);
+        _arguments = arguments;
         _millis = millis;
     }
     return self;
