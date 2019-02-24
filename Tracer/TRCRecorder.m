@@ -54,21 +54,40 @@ NS_ASSUME_NONNULL_BEGIN
     struct objc_method_description *methodList = protocol_copyMethodDescriptionList(protocol, showRequiredMethods, showInstanceMethods, &methodCount);
 
     // get selectors
-    NSMutableArray *methodSelectors = [NSMutableArray new];
-    for (unsigned int i = 0; i < methodCount; i++) {
+    NSMutableArray<NSValue*>*methodSelectors = [NSMutableArray new];
+    NSMutableArray<NSMethodSignature*>*methodSigs = [NSMutableArray new];
+    for (NSUInteger i = 0; i < methodCount; i++) {
         struct objc_method_description methodDescription = methodList[i];
         NSValue *sel = [NSValue valueWithPointer:methodDescription.name];
         [methodSelectors addObject:sel];
+        NSMethodSignature *sig = [NSMethodSignature signatureWithObjCTypes:methodDescription.types];
+        [methodSigs addObject:sig];
     }
 
     // hook selectors to record calls
-    for (NSValue *value in methodSelectors) {
-        SEL sel = (SEL)value.pointerValue;
+    for (NSUInteger i = 0; i < [methodSelectors count]; i++) {
+        NSValue *selValue = methodSelectors[i];
+        NSMethodSignature *sig = methodSigs[i];
+
+        // get types
+        NSMutableArray *typeEncodings = [NSMutableArray new];
+        for (NSUInteger j = 0; j < sig.numberOfArguments; j++) {
+            NSString *ts = [NSString stringWithUTF8String:[sig getArgumentTypeAtIndex:j]];
+            [typeEncodings addObject:ts];
+        }
+        // indices 0 and 1 indicate the hidden arguments self and _cmd
+        if ([typeEncodings count] >= 2) {
+            [typeEncodings removeObjectAtIndex:0];
+            [typeEncodings removeObjectAtIndex:0];
+        }
+
+        SEL sel = (SEL)selValue.pointerValue;
         Class klass = [source class];
         [klass trc_aspect_hookSelector:sel withOptions:TRCAspectPositionAfter usingBlock:^(id<TRCAspectInfo> info){
             NSUInteger ms = [[NSDate date] trc_millisSinceDate:start];
             TRCRecordedInvocation *call = [[TRCRecordedInvocation alloc] initWithSelector:sel
                                                                                 arguments:info.arguments
+                                                                                    types:typeEncodings
                                                                                    millis:ms];
             dispatch_async(self.tracesQueue, ^{
                 TRCTrace *trace = self.keyToTrace[key];

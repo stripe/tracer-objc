@@ -16,10 +16,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (atomic, readonly) NSString *selector;
 @property (atomic, readonly) NSArray *arguments;
+/**
+ https://nshipster.com/type-encodings/
+ */
+@property (atomic, readonly) NSArray<NSString *>*types;
 @property (atomic, readonly) NSUInteger millis;
 
 - (instancetype)initWithSelector:(SEL)selector
                        arguments:(NSArray *)arguments
+                           types:(NSArray<NSString *>*)types
                           millis:(NSUInteger)millis;
 
 - (instancetype)init NS_UNAVAILABLE;

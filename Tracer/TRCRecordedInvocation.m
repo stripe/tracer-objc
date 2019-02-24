@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (atomic, strong, readwrite) NSString *selector;
 @property (atomic, strong, readwrite) NSArray *arguments;
 @property (atomic, assign, readwrite) NSUInteger millis;
+@property (atomic, assign, readwrite) NSArray<NSString *>*types;
 
 @end
 
@@ -24,11 +25,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithSelector:(SEL)selector
                        arguments:(NSArray *)arguments
+                           types:(NSArray<NSString *>*)types
                           millis:(NSUInteger)millis {
     self = [super init];
     if (self) {
         _selector = NSStringFromSelector(selector);
         _arguments = arguments;
+        _types = types;
         _millis = millis;
     }
     return self;
@@ -38,6 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSMutableDictionary *json = [NSMutableDictionary new];
     json[@"selector"] = self.selector;
     json[@"arguments"] = self.arguments;
+    json[@"types"] = self.types;
     json[@"millis"] = @(self.millis);
     return [json copy];
 }

@@ -22,6 +22,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation TRCTrace
 
++ (nullable instancetype)loadFromJSONFile:(NSString *)filename {
+    NSData *data = [self dataFromJSONFile:filename];
+    if (data != nil) {
+        return [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingOptions)kNilOptions error:nil];
+    }
+    return nil;
+}
+
 - (instancetype)initWithProtocol:(Protocol *)protocol {
     self = [super init];
     if (self) {
@@ -46,6 +54,21 @@ NS_ASSUME_NONNULL_BEGIN
     }
     json[@"invocation"] = [calls copy];
     return [json copy];
+}
+
++ (NSData *)dataFromJSONFile:(NSString *)name {
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *path = [bundle pathForResource:name ofType:@"json"];
+    if (!path) {
+        return nil;
+    }
+
+    NSError *error = nil;
+    NSString *jsonString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+    if (!jsonString) {
+        return nil;
+    }
+    return [jsonString dataUsingEncoding:NSUTF8StringEncoding];
 }
 
 @end

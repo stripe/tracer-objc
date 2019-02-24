@@ -27,19 +27,18 @@
                         (^{
                             [tgt mWithZeroParams];
                         }),
-                        (^{
-                            [tgt mWithOneParamString:@"s1"];
-                        }),
+//                        (^{
+//                            [tgt mWithOneParamString:@"string"];
+//                        }),
                         (^{
                             [tgt mWithOneParamNumber:@(100)];
                         }),
+                        (^{
+                            // broken
+                            [tgt mWithOneParamPrimitive:100];
+                        }),
 //                        (^{
-//                            // broken
-//                            [tgt mWithOneParamPrimitive:1];
-//                        }),
-
-//                        (^{
-//                            [tgt mWithOneParamDict:@{@"k1": @"v1"}];
+//                            [tgt mWithOneParamDict:@{@"key": @"value"}];
 //                        }),
 //                        (^{
 //                            [tgt mWithTwoParamsPrimitive:2 primitive:3];

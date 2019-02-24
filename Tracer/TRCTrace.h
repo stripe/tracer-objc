@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (atomic, readonly) NSMutableArray<TRCRecordedInvocation*>*invocations;
 @property (atomic, readonly) NSString *protocol;
 
++ (nullable instancetype)loadFromJSONFile:(NSString *)filename;
+
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 

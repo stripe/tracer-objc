@@ -20,34 +20,22 @@
 
 - (void)mWithOneParamPrimitive:(NSInteger)primitive {
     NSLog(@"%@", NSStringFromSelector(_cmd));
-
-    NSParameterAssert(primitive == 1);
-//    trcDispatchToMainAfter(0.05, ^{
-//        // call private method
-//        [self pmWithOneParamPrimitive:primitive];
-//    });
+    NSParameterAssert(primitive == 100);
 }
 
 - (void)mWithOneParamString:(NSString *)string {
     NSLog(@"%@", NSStringFromSelector(_cmd));
-
-    NSParameterAssert([string isEqualToString:@"s1"]);
-
-//    trcDispatchToMainAfter(0.05, ^{
-//        // call private method
-//        [self pmWithOneParamString:string];
-//    });
+    NSParameterAssert([string isEqualToString:@"string"]);
 }
 
 - (void)mWithOneParamNumber:(NSNumber *)number {
     NSLog(@"%@", NSStringFromSelector(_cmd));
-
-    NSParameterAssert([number isEqualToNumber:@100]);
-    
+    NSParameterAssert([number isEqualToNumber:@(100)]);
 }
 
 - (void)mWithOneParamDict:(NSDictionary *)dict {
     NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSParameterAssert([dict isEqualToDictionary:@{@"key": @"value"}]);
 }
 
 - (void)mWithTwoParamsPrimitive:(NSInteger)p1 primitive:(float)p2 {
