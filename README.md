@@ -1,5 +1,7 @@
 # tracer-objc
 
+[Example](https://github.com/bg-stripe/tracer-objc/blob/master/TracerTests/TracerTests.m)
+
 ## v0.1
 protocols, primitives + json types only
 
