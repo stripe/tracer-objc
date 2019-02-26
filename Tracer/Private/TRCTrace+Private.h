@@ -7,7 +7,7 @@
 //
 
 #import "TRCTrace.h"
-#import "TRCRecordedInvocation.h"
+#import "TRCCall.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithProtocol:(Protocol *)protocol;
 
-- (void)addInvocation:(TRCRecordedInvocation *)invocation;
+- (void)addCall:(TRCCall *)call;
 
 @end
 

@@ -6,32 +6,30 @@
 //  Copyright © 2019 tracer. All rights reserved.
 //
 
-#import "TRCRecordedInvocation.h"
+#import "TRCCall.h"
 
 #import "TRCAspects.h"
+#import "TRCArgument.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TRCRecordedInvocation ()
+@interface TRCCall ()
 
-@property (atomic, strong, readwrite) NSString *selector;
-@property (atomic, strong, readwrite) NSArray *arguments;
+@property (atomic, strong, readwrite) NSString *method;
+@property (atomic, strong, readwrite) NSArray<TRCArgument*>*arguments;
 @property (atomic, assign, readwrite) NSUInteger millis;
-@property (atomic, assign, readwrite) NSArray<NSString *>*types;
 
 @end
 
-@implementation TRCRecordedInvocation
+@implementation TRCCall
 
 - (instancetype)initWithSelector:(SEL)selector
-                       arguments:(NSArray *)arguments
-                           types:(NSArray<NSString *>*)types
+                       arguments:(NSArray<TRCArgument*>*)arguments
                           millis:(NSUInteger)millis {
     self = [super init];
     if (self) {
-        _selector = NSStringFromSelector(selector);
+        _method = NSStringFromSelector(selector);
         _arguments = arguments;
-        _types = types;
         _millis = millis;
     }
     return self;
@@ -39,9 +37,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSObject *)jsonObject {
     NSMutableDictionary *json = [NSMutableDictionary new];
-    json[@"selector"] = self.selector;
-    json[@"arguments"] = self.arguments;
-    json[@"types"] = self.types;
+    json[@"method"] = self.method;
+    NSMutableArray *args = [NSMutableArray new];
+    for (TRCArgument *arg in self.arguments) {
+        [args addObject:[arg jsonObject]];
+    }
+    json[@"arguments"] = [args copy];
     json[@"millis"] = @(self.millis);
     return [json copy];
 }

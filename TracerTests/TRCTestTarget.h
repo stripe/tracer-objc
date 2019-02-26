@@ -26,7 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)mWithOneParamPrimitive:(NSInteger)primitive;
 - (void)mWithOneParamString:(NSString *)string;
 - (void)mWithOneParamNumber:(NSNumber *)number;
-- (void)mWithOneParamDict:(NSDictionary *)dict;
+- (void)mWithOneParamDictSingleEntry:(NSDictionary *)dict;
+- (void)mWithOneParamDictMultiEntry:(NSDictionary *)dict;
 - (void)mWithTwoParamsPrimitive:(NSInteger)p1 primitive:(float)p2;
 - (void)mWithTwoParamsPrimitive:(NSInteger)p1 string:(NSString *)string;
 @end

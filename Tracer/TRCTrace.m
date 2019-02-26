@@ -7,7 +7,7 @@
 //
 
 #import "TRCTrace+Private.h"
-#import "TRCRecordedInvocation.h"
+#import "TRCCall.h"
 #import "NSDate+Tracer.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (atomic, strong, readwrite) NSDate *start;
 @property (atomic, strong, readwrite) NSString *protocol;
-@property (atomic, strong, readwrite) NSMutableArray<TRCRecordedInvocation*>*invocations;
+@property (atomic, strong, readwrite) NSMutableArray<TRCCall*>*calls;
 
 @end
 
@@ -35,13 +35,13 @@ NS_ASSUME_NONNULL_BEGIN
     if (self) {
         _start = [NSDate date];
         _protocol = NSStringFromProtocol(protocol);
-        _invocations = [NSMutableArray new];
+        _calls = [NSMutableArray new];
     }
     return self;
 }
 
-- (void)addInvocation:(TRCRecordedInvocation *)invocation {
-    [self.invocations addObject:invocation];
+- (void)addCall:(TRCCall *)call {
+    [self.calls addObject:call];
 }
 
 - (NSObject *)jsonObject {
@@ -49,10 +49,10 @@ NS_ASSUME_NONNULL_BEGIN
     json[@"protocol"] = self.protocol;
     json[@"start_millis"] = @([self.start trc_millisSince1970]);
     NSMutableArray *calls = [NSMutableArray new];
-    for (TRCRecordedInvocation *call in self.invocations) {
+    for (TRCCall *call in self.calls) {
         [calls addObject:[call jsonObject]];
     }
-    json[@"invocation"] = [calls copy];
+    json[@"calls"] = [calls copy];
     return [json copy];
 }
 

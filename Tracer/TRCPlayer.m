@@ -9,9 +9,12 @@
 #import <objc/runtime.h>
 
 #import "TRCPlayer.h"
+
+#import "TRCArgument.h"
 #import "TRCTrace.h"
-#import "TRCRecordedInvocation.h"
+#import "TRCCall.h"
 #import "TRCDispatchFunctions.h"
+#import "TRCNotNil.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,32 +37,32 @@ NS_ASSUME_NONNULL_BEGIN
     // TODO: validate target against trace
 
     NSTimeInterval longestDelay = 0;
-    for (TRCRecordedInvocation *recInv in trace.invocations) {
+    for (TRCCall *call in trace.calls) {
 
-        SEL aSelector = NSSelectorFromString(recInv.selector);
+        SEL aSelector = NSSelectorFromString(call.method);
         NSMethodSignature *signature = [target methodSignatureForSelector:aSelector];
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
         [invocation setTarget:target];
         [invocation setSelector:aSelector];
-        for (NSUInteger i = 0; i < [recInv.arguments count]; i++) {
-            id arg = recInv.arguments[i];
+        for (NSUInteger i = 0; i < [call.arguments count]; i++) {
+            TRCArgument *arg = call.arguments[i];
             // indices 0 and 1 indicate the hidden arguments self and _cmd
             NSUInteger index = i + 2;
-            // NSNumber is an NSValue subclass
-            if ([arg isKindOfClass:[NSValue class]] &&
-                !([arg isKindOfClass:[NSNumber class]])) {
-                NSValue *value = (NSValue *)arg;
-                // Note: all primitive types are played back as type double
+            if (arg.type == TRCArgumentTypePrimitive) {
+
+                NSValue *value = (NSValue *)TRCNotNil(arg.objectValue);
+                // Note: primitive types are played back as type double
                 double primitive;
                 [value getValue:&primitive];
                 [invocation setArgument:&primitive atIndex:index];
             }
             else {
-                [invocation setArgument:&arg atIndex:index];
+                id boxedValue = TRCNotNil(arg.objectValue);
+                [invocation setArgument:&boxedValue atIndex:index];
             }
         }
 
-        NSTimeInterval delay = ((double)recInv.millis)/1000.0;
+        NSTimeInterval delay = ((double)call.millis)/1000.0;
         longestDelay = MAX(longestDelay, delay);
 
         trcDispatchToMainAfter(delay, ^{

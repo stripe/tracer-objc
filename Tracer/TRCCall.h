@@ -12,19 +12,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TRCRecordedInvocation : NSObject <TRCJsonEncodable>
+@class TRCArgument;
 
-@property (atomic, readonly) NSString *selector;
-@property (atomic, readonly) NSArray *arguments;
+@interface TRCCall : NSObject <TRCJsonEncodable>
+
+@property (atomic, readonly) NSString *method;
+@property (atomic, readonly) NSArray<TRCArgument*>*arguments;
 /**
  https://nshipster.com/type-encodings/
  */
-@property (atomic, readonly) NSArray<NSString *>*types;
 @property (atomic, readonly) NSUInteger millis;
 
 - (instancetype)initWithSelector:(SEL)selector
-                       arguments:(NSArray *)arguments
-                           types:(NSArray<NSString *>*)types
+                       arguments:(NSArray<TRCArgument*>*)arguments
                           millis:(NSUInteger)millis;
 
 - (instancetype)init NS_UNAVAILABLE;

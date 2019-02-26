@@ -8,7 +8,7 @@
 
 #import "TRCRecorder.h"
 #import "TRCPlayer.h"
-#import "TRCRecordedInvocation.h"
+#import "TRCCall.h"
 #import "TRCBlocks.h"
 #import "TRCJsonEncodable.h"
 #import "TRCTrace.h"

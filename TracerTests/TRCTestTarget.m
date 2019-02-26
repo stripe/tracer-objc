@@ -33,17 +33,31 @@
     NSParameterAssert([number isEqualToNumber:@(100)]);
 }
 
-- (void)mWithOneParamDict:(NSDictionary *)dict {
+- (void)mWithOneParamDictSingleEntry:(NSDictionary *)dict {
     NSLog(@"%@", NSStringFromSelector(_cmd));
-    NSParameterAssert([dict isEqualToDictionary:@{@"key": @"value"}]);
+    NSDictionary *expected = @{@"key1": @"value1"};
+    NSParameterAssert([dict isEqualToDictionary:expected]);
+}
+
+- (void)mWithOneParamDictMultiEntry:(NSDictionary *)dict {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSDictionary *expected = @{
+                               @"key1": @"value1",
+                               @"key2": @"value2"
+                               };
+    NSParameterAssert([dict isEqualToDictionary:expected]);
 }
 
 - (void)mWithTwoParamsPrimitive:(NSInteger)p1 primitive:(float)p2 {
     NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSParameterAssert(p1 == 100);
+    NSParameterAssert(p2 == 200);
 }
 
 - (void)mWithTwoParamsPrimitive:(NSInteger)p1 string:(NSString *)string {
     NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSParameterAssert(p1 == 100);
+    NSParameterAssert([string isEqualToString:@"string"]);
 }
 
 #pragma mark - private methods

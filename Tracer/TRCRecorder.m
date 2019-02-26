@@ -10,8 +10,9 @@
 
 #import <objc/runtime.h>
 
+#import "TRCArgument+Private.h"
 #import "TRCAspects.h"
-#import "TRCRecordedInvocation.h"
+#import "TRCCall.h"
 #import "TRCTrace+Private.h"
 #import "NSDate+Tracer.h"
 
@@ -85,16 +86,26 @@ NS_ASSUME_NONNULL_BEGIN
         Class klass = [source class];
         [klass trc_aspect_hookSelector:sel withOptions:TRCAspectPositionAfter usingBlock:^(id<TRCAspectInfo> info){
             NSUInteger ms = [[NSDate date] trc_millisSinceDate:start];
-            TRCRecordedInvocation *call = [[TRCRecordedInvocation alloc] initWithSelector:sel
-                                                                                arguments:info.arguments
-                                                                                    types:typeEncodings
-                                                                                   millis:ms];
+
+            // zip info.arguments & typeEncodings -> Argument
+            NSMutableArray<TRCArgument*>*args = [NSMutableArray new];
+            for (NSUInteger j = 0; j < [typeEncodings count]; j++) {
+                NSString *encoding = typeEncodings[j];
+                id boxedArg = info.arguments[j];
+                TRCArgument *argument = [[TRCArgument alloc] initWithTypeEncoding:encoding
+                                                                    boxedArgument:boxedArg];
+                [args addObject:argument];
+            }
+
+            TRCCall *call = [[TRCCall alloc] initWithSelector:sel
+                                                    arguments:[args copy]
+                                                       millis:ms];
             dispatch_async(self.tracesQueue, ^{
                 TRCTrace *trace = self.keyToTrace[key];
                 if (trace == nil) {
                     trace = [[TRCTrace alloc] initWithProtocol:protocol];
                 }
-                [trace addInvocation:call];
+                [trace addCall:call];
                 self.keyToTrace[key] = trace;
             });
         } error:nil];

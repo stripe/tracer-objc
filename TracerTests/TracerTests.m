@@ -27,25 +27,32 @@
                         (^{
                             [t mWithZeroParams];
                         }),
-//                        (^{
-//                            [tgt mWithOneParamString:@"string"];
-//                        }),
+                        (^{
+                            [t mWithOneParamString:@"string"];
+                        }),
                         (^{
                             [t mWithOneParamNumber:@(100)];
                         }),
                         (^{
-                            // broken
                             [t mWithOneParamPrimitive:100];
                         }),
 //                        (^{
-//                            [tgt mWithOneParamDict:@{@"key": @"value"}];
+//                            [t mWithOneParamDictSingleEntry:@{
+//                                                              @"key1": @"value1",
+//                                                              }];
 //                        }),
 //                        (^{
-//                            [tgt mWithTwoParamsPrimitive:2 primitive:3];
+//                            [t mWithOneParamDictMultiEntry:@{
+//                                                             @"key1": @"value1",
+//                                                             @"key2": @"value2"
+//                                                             }];
 //                        }),
-//                        (^{
-//                            [tgt mWithTwoParamsPrimitive:3 string:@"s2"];
-//                        }),
+                        (^{
+                            [t mWithTwoParamsPrimitive:100 primitive:200];
+                        }),
+                        (^{
+                            [t mWithTwoParamsPrimitive:100 string:@"string"];
+                        }),
                         (^{
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
                                 XCTAssertNotNil(trace);

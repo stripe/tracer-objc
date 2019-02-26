@@ -10,13 +10,13 @@
 
 #import "TRCJsonEncodable.h"
 
-@class TRCRecordedInvocation;
+@class TRCCall;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TRCTrace : NSObject <TRCJsonEncodable>
 
-@property (atomic, readonly) NSMutableArray<TRCRecordedInvocation*>*invocations;
+@property (atomic, readonly) NSMutableArray<TRCCall*>*calls;
 @property (atomic, readonly) NSString *protocol;
 
 + (nullable instancetype)loadFromJSONFile:(NSString *)filename;
