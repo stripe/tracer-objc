@@ -10,7 +10,7 @@
 
 #import "TRCPlayer.h"
 
-#import "TRCArgument.h"
+#import "TRCArgument+Private.h"
 #import "TRCTrace.h"
 #import "TRCCall.h"
 #import "TRCDispatchFunctions.h"
@@ -44,12 +44,15 @@ NS_ASSUME_NONNULL_BEGIN
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
         [invocation setTarget:target];
         [invocation setSelector:aSelector];
+
+        NSTimeInterval delay = ((double)call.millis)/1000.0;
+        longestDelay = MAX(longestDelay, delay);
+
         for (NSUInteger i = 0; i < [call.arguments count]; i++) {
             TRCArgument *arg = call.arguments[i];
             // indices 0 and 1 indicate the hidden arguments self and _cmd
             NSUInteger index = i + 2;
             if (arg.type == TRCArgumentTypePrimitive) {
-
                 NSValue *value = (NSValue *)TRCNotNil(arg.objectValue);
                 // Note: primitive types are played back as type double
                 double primitive;
@@ -57,13 +60,14 @@ NS_ASSUME_NONNULL_BEGIN
                 [invocation setArgument:&primitive atIndex:index];
             }
             else {
-                id boxedValue = TRCNotNil(arg.objectValue);
-                [invocation setArgument:&boxedValue atIndex:index];
+                __block id boxedValue = TRCNotNil(arg.objectValue);
+                // delay fixes playback of Dict
+//                trcDispatchToMainAfter(0.1, ^{
+                    [invocation setArgument:&boxedValue atIndex:index];
+//                });
+                arg.objectValue = boxedValue;
             }
         }
-
-        NSTimeInterval delay = ((double)call.millis)/1000.0;
-        longestDelay = MAX(longestDelay, delay);
 
         trcDispatchToMainAfter(delay, ^{
             [invocation invoke];

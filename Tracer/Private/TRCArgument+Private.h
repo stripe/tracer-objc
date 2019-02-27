@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TRCArgument (Private)
 
+@property (atomic, strong, nullable, readwrite) id objectValue;
+
 /**
  https://nshipster.com/type-encodings/
  */

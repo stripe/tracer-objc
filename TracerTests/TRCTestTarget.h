@@ -22,14 +22,19 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol TRCTestProtocol <NSObject>
-- (void)mWithZeroParams;
-- (void)mWithOneParamPrimitive:(NSInteger)primitive;
-- (void)mWithOneParamString:(NSString *)string;
-- (void)mWithOneParamNumber:(NSNumber *)number;
-- (void)mWithOneParamDictSingleEntry:(NSDictionary *)dict;
-- (void)mWithOneParamDictMultiEntry:(NSDictionary *)dict;
-- (void)mWithTwoParamsPrimitive:(NSInteger)p1 primitive:(float)p2;
-- (void)mWithTwoParamsPrimitive:(NSInteger)p1 string:(NSString *)string;
+- (void)protocol_method;
+- (void)protocol_method_int:(NSInteger)p;
+- (void)protocol_method_uint:(NSUInteger)i;
+- (void)protocol_method_float:(float)f;
+- (void)protocol_method_bool:(BOOL)b;
+- (void)protocol_method_string:(NSString *)s;
+- (void)protocol_method_boxed_int:(NSNumber *)n;
+- (void)protocol_method_boxed_uint:(NSNumber *)n;
+- (void)protocol_method_boxed_bool:(NSNumber *)n;
+- (void)protocol_method_boxed_float:(NSNumber *)n;
+- (void)protocol_method_dictSingleEntry:(NSDictionary *)d;
+- (void)protocol_method_dictMultiEntry:(NSDictionary *)d;
+- (void)protocol_method_int:(NSInteger)p1 string:(NSString *)string;
 @end
 
 @interface TRCTestTarget : NSObject <TRCTestProtocol>

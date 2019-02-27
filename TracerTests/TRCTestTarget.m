@@ -14,63 +14,87 @@
 
 #pragma mark - public methods
 
-- (void)mWithZeroParams {
+- (void)protocol_method {
     NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
-- (void)mWithOneParamPrimitive:(NSInteger)primitive {
+- (void)protocol_method_int:(NSInteger)i {
     NSLog(@"%@", NSStringFromSelector(_cmd));
-    NSParameterAssert(primitive == 100);
+    NSParameterAssert(i == -100);
 }
 
-- (void)mWithOneParamString:(NSString *)string {
+- (void)protocol_method_uint:(NSUInteger)i {
     NSLog(@"%@", NSStringFromSelector(_cmd));
-    NSParameterAssert([string isEqualToString:@"string"]);
+    NSParameterAssert(i == 100);
 }
 
-- (void)mWithOneParamNumber:(NSNumber *)number {
+- (void)protocol_method_float:(float)f {
     NSLog(@"%@", NSStringFromSelector(_cmd));
-    NSParameterAssert([number isEqualToNumber:@(100)]);
+    NSParameterAssert(f == -123.5);
 }
 
-- (void)mWithOneParamDictSingleEntry:(NSDictionary *)dict {
+- (void)protocol_method_bool:(BOOL)b {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSParameterAssert(b == YES);
+}
+
+- (void)protocol_method_string:(NSString *)s {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSParameterAssert([s isEqualToString:@"string"]);
+}
+
+- (void)protocol_method_boxed_int:(NSNumber *)n {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSParameterAssert([n integerValue] == -100);
+}
+
+- (void)protocol_method_boxed_uint:(NSNumber *)n {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSParameterAssert([n unsignedIntegerValue] == 100);
+}
+
+- (void)protocol_method_boxed_float:(NSNumber *)n {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSParameterAssert([n floatValue] == -123.5);
+}
+
+- (void)protocol_method_boxed_bool:(NSNumber *)n {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSParameterAssert([n boolValue] == YES);
+}
+
+- (void)protocol_method_dictSingleEntry:(NSDictionary *)d {
     NSLog(@"%@", NSStringFromSelector(_cmd));
     NSDictionary *expected = @{@"key1": @"value1"};
-    NSParameterAssert([dict isEqualToDictionary:expected]);
+    NSParameterAssert([d isEqualToDictionary:expected]);
 }
 
-- (void)mWithOneParamDictMultiEntry:(NSDictionary *)dict {
+- (void)protocol_method_dictMultiEntry:(NSDictionary *)d {
     NSLog(@"%@", NSStringFromSelector(_cmd));
     NSDictionary *expected = @{
                                @"key1": @"value1",
                                @"key2": @"value2"
                                };
-    NSParameterAssert([dict isEqualToDictionary:expected]);
+    NSParameterAssert([d isEqualToDictionary:expected]);
 }
 
-- (void)mWithTwoParamsPrimitive:(NSInteger)p1 primitive:(float)p2 {
+- (void)protocol_method_int:(NSInteger)p string:(NSString *)s {
     NSLog(@"%@", NSStringFromSelector(_cmd));
-    NSParameterAssert(p1 == 100);
-    NSParameterAssert(p2 == 200);
-}
-
-- (void)mWithTwoParamsPrimitive:(NSInteger)p1 string:(NSString *)string {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
-    NSParameterAssert(p1 == 100);
-    NSParameterAssert([string isEqualToString:@"string"]);
+    NSParameterAssert(p == 100);
+    NSParameterAssert([s isEqualToString:@"string"]);
 }
 
 #pragma mark - private methods
 
-- (void)pmWithZeroParams {
+- (void)private_method {
     NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
-- (void)pmWithOneParamPrimitive:(NSInteger)primitive {
+- (void)private_method_primitive:(NSInteger)p {
     NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
-- (void)pmWithOneParamString:(NSString *)string {
+- (void)private_method_string:(NSString *)s {
     NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 

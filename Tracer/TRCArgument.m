@@ -40,6 +40,11 @@ NS_ASSUME_NONNULL_BEGIN
                 _type = TRCArgumentTypeJsonObject;
                 _objectValue = boxedArgument;
             }
+            else if ([classString containsString:@"NSCFBoolean"]) {
+                classString = @"NSNumber";
+                _type = TRCArgumentTypeJsonObject;
+                _objectValue = boxedArgument;
+            }
             else if ([classString containsString:@"NSSingleEntryDictionary"] ||
                      [classString containsString:@"NSDictionary"]) {
                 classString = @"NSDictionary";

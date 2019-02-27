@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 __BEGIN_DECLS
 
 typedef void (^TestVoidBlock)(void);
+void trcDispatchToMainThreadIfNecessary(dispatch_block_t block);
 void trcDispatchToMainAfter(NSTimeInterval timeInterval, TestVoidBlock block);
 
 __END_DECLS

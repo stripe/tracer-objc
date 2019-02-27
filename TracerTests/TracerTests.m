@@ -25,34 +25,51 @@
 
     NSArray *blocks = @[
                         (^{
-                            [t mWithZeroParams];
+                            [t protocol_method];
                         }),
                         (^{
-                            [t mWithOneParamString:@"string"];
+                            [t protocol_method_string:@"string"];
                         }),
                         (^{
-                            [t mWithOneParamNumber:@(100)];
+                            [t protocol_method_int:-100];
                         }),
                         (^{
-                            [t mWithOneParamPrimitive:100];
+                            [t protocol_method_uint:100];
+                        }),
+                        (^{
+                            [t protocol_method_float:-123.5];
+                        }),
+                        (^{
+                            [t protocol_method_bool:YES];
+                        }),
+                        (^{
+                            [t protocol_method_boxed_int:@(-100)];
+                        }),
+                        (^{
+                            [t protocol_method_boxed_uint:@(100)];
+                        }),
+                        (^{
+                            [t protocol_method_boxed_bool:@(YES)];
                         }),
 //                        (^{
-//                            [t mWithOneParamDictSingleEntry:@{
+//                            // broken
+//                            [t protocol_method_boxed_float:@(-123.5)];
+//                        }),
+//                        (^{
+//                            // broken
+//                            [t protocol_method_dictSingleEntry:@{
 //                                                              @"key1": @"value1",
 //                                                              }];
 //                        }),
 //                        (^{
-//                            [t mWithOneParamDictMultiEntry:@{
+//                            [t protocol_method_dictMultiEntry:@{
 //                                                             @"key1": @"value1",
 //                                                             @"key2": @"value2"
 //                                                             }];
 //                        }),
-                        (^{
-                            [t mWithTwoParamsPrimitive:100 primitive:200];
-                        }),
-                        (^{
-                            [t mWithTwoParamsPrimitive:100 string:@"string"];
-                        }),
+//                        (^{
+//                            [t protocol_method_int:100 string:@"string"];
+//                        }),
                         (^{
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
                                 XCTAssertNotNil(trace);
