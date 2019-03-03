@@ -45,7 +45,7 @@
 
 - (void)protocol_method_boxed_int:(NSNumber *)n {
     NSLog(@"%@", NSStringFromSelector(_cmd));
-    NSParameterAssert([n integerValue] == -100);
+    NSParameterAssert([n isEqual:@(-100)]);
 }
 
 - (void)protocol_method_boxed_uint:(NSNumber *)n {
@@ -54,7 +54,9 @@
 }
 
 - (void)protocol_method_boxed_float:(NSNumber *)n {
+    NSParameterAssert(n != nil);
     NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSLog(@"class: %@", [n class]);
     NSParameterAssert([n floatValue] == -123.5);
 }
 
@@ -74,6 +76,20 @@
     NSDictionary *expected = @{
                                @"key1": @"value1",
                                @"key2": @"value2"
+                               };
+    NSParameterAssert([d isEqualToDictionary:expected]);
+}
+
+- (void)protocol_method_dictNested:(NSDictionary *)d {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSDictionary *expected = @{
+                               @"key1": @"value1",
+                               @"key2": @{
+                                       @"key3": @[@"value2", @"value3"],
+                                       @"key4": @{
+                                               @"key5": @(-123.5),
+                                               },
+                                       },
                                };
     NSParameterAssert([d isEqualToDictionary:expected]);
 }

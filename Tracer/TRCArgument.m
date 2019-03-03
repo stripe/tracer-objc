@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TRCArgument ()
 
+/// consider using deeper type
+/// https://github.com/cyanzhong/RuntimeInvoker/blob/master/RuntimeInvoker/RuntimeInvoker.m
 @property (atomic, assign, readwrite) TRCArgumentType type;
 @property (atomic, strong, nullable, readwrite) NSString *objectClass;
 @property (atomic, strong, nullable, readwrite) id objectValue;

@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)protocol_method_boxed_float:(NSNumber *)n;
 - (void)protocol_method_dictSingleEntry:(NSDictionary *)d;
 - (void)protocol_method_dictMultiEntry:(NSDictionary *)d;
+- (void)protocol_method_dictNested:(NSDictionary *)d;
 - (void)protocol_method_int:(NSInteger)p1 string:(NSString *)string;
 @end
 

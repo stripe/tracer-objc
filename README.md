@@ -3,14 +3,13 @@
 [Example](https://github.com/bg-stripe/tracer-objc/blob/master/TracerTests/TracerTests.m)
 
 ## v0.1
-protocols, primitives + json types only
+- Player only supports protocols, primitives, and json types
+- [TODO] Player plays back unknown object type
+- Recorder supports other object types, but only records class
 
-- [ ] serialize types – `RecordedArgument`, type = primitive or object
-- [ ] use recorded type in playback
+- [ ] add method to print trace as json
 - [ ] throw exception on playback if recorded type is object
-- [ ] method to print json string
-- [ ] basic readme
-- [ ] example app
+- [ ] add example app
 
 ## v0.2
 object types

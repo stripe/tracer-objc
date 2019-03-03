@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation TRCPlayer
 
+/// TODO: move to instance prop, store with trace id
+static NSObject *_objectValue;
+
 // example: creating a mock subclass
 //    NSString *className = trace[@"class"];
 //    Class mockClass = objc_allocateClassPair(NSClassFromString(className), "TraceClassMock", 0);
@@ -60,12 +63,8 @@ NS_ASSUME_NONNULL_BEGIN
                 [invocation setArgument:&primitive atIndex:index];
             }
             else {
-                __block id boxedValue = TRCNotNil(arg.objectValue);
-                // delay fixes playback of Dict
-//                trcDispatchToMainAfter(0.1, ^{
-                    [invocation setArgument:&boxedValue atIndex:index];
-//                });
-                arg.objectValue = boxedValue;
+                _objectValue = TRCNotNil(arg.objectValue);
+                [invocation setArgument:&_objectValue atIndex:index];
             }
         }
 
