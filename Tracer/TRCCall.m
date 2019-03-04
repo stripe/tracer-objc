@@ -35,6 +35,10 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
+- (NSString *)internalId {
+    return [NSString stringWithFormat:@"%@_%lu", self.method, self.millis];
+}
+
 - (NSObject *)jsonObject {
     NSMutableDictionary *json = [NSMutableDictionary new];
     json[@"method"] = self.method;

@@ -44,10 +44,18 @@ NS_ASSUME_NONNULL_BEGIN
     [self.calls addObject:call];
 }
 
+- (NSUInteger)startMillis {
+    return [self.start trc_millisSince1970];
+}
+
+- (NSString *)internalId {
+    return [NSString stringWithFormat:@"%@_%lu", self.protocol, [self startMillis]];
+}
+
 - (NSObject *)jsonObject {
     NSMutableDictionary *json = [NSMutableDictionary new];
     json[@"protocol"] = self.protocol;
-    json[@"start_millis"] = @([self.start trc_millisSince1970]);
+    json[@"start_millis"] = @([self startMillis]);
     NSMutableArray *calls = [NSMutableArray new];
     for (TRCCall *call in self.calls) {
         [calls addObject:[call jsonObject]];

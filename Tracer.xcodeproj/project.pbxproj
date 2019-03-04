@@ -17,6 +17,7 @@
 		C106B351222144EC00504CF9 /* TRCDispatchFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = C106B34F222144EC00504CF9 /* TRCDispatchFunctions.h */; };
 		C106B352222144EC00504CF9 /* TRCDispatchFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = C106B350222144EC00504CF9 /* TRCDispatchFunctions.m */; };
 		C106B353222144F800504CF9 /* TRCDispatchFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = C106B350222144EC00504CF9 /* TRCDispatchFunctions.m */; };
+		C184DC3C222CA06A005F7C5D /* TRCCall+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = C184DC3B222CA06A005F7C5D /* TRCCall+Private.h */; };
 		C1B89DE922251D3A00A9A73D /* TRCArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = C1B89DE722251D3A00A9A73D /* TRCArgument.h */; };
 		C1B89DEA22251D3A00A9A73D /* TRCArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B89DE822251D3A00A9A73D /* TRCArgument.m */; };
 		C1D7ABC9222102E30040808A /* Tracer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D7ABBF222102E30040808A /* Tracer.framework */; };
@@ -52,6 +53,7 @@
 		C106B3472221445300504CF9 /* TRCTestTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRCTestTarget.m; sourceTree = "<group>"; };
 		C106B34F222144EC00504CF9 /* TRCDispatchFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRCDispatchFunctions.h; sourceTree = "<group>"; };
 		C106B350222144EC00504CF9 /* TRCDispatchFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRCDispatchFunctions.m; sourceTree = "<group>"; };
+		C184DC3B222CA06A005F7C5D /* TRCCall+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TRCCall+Private.h"; sourceTree = "<group>"; };
 		C1B89DE722251D3A00A9A73D /* TRCArgument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRCArgument.h; sourceTree = "<group>"; };
 		C1B89DE822251D3A00A9A73D /* TRCArgument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TRCArgument.m; sourceTree = "<group>"; };
 		C1B89DEB22251FDB00A9A73D /* TRCArgument+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TRCArgument+Private.h"; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			children = (
 				C1B89DEB22251FDB00A9A73D /* TRCArgument+Private.h */,
 				C1D7ABF722211D1E0040808A /* TRCTrace+Private.h */,
+				C184DC3B222CA06A005F7C5D /* TRCCall+Private.h */,
 				C1FED1B922252C80008FAE27 /* TRCNotNil.h */,
 				C1D7ABE2222104080040808A /* TRCAspects.h */,
 				C1D7ABE1222104080040808A /* TRCAspects.m */,
@@ -172,6 +175,7 @@
 				C106B33F2221207300504CF9 /* TRCBlocks.h in Headers */,
 				C1D7ABF522211CE50040808A /* TRCTrace.h in Headers */,
 				C1D7ABDB222103050040808A /* TRCRecorder.h in Headers */,
+				C184DC3C222CA06A005F7C5D /* TRCCall+Private.h in Headers */,
 				C106B343222126A100504CF9 /* TRCPlayer.h in Headers */,
 				C1D7ABF1222115020040808A /* TRCCall.h in Headers */,
 				C106B351222144EC00504CF9 /* TRCDispatchFunctions.h in Headers */,

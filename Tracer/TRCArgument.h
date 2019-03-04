@@ -12,15 +12,43 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, TRCArgumentType) {
-    TRCArgumentTypePrimitive,
-    TRCArgumentTypeJsonObject,
-    TRCArgumentTypeUnknownObject,
+typedef NS_ENUM(NSUInteger, TRCObjectType) {
+    TRCObjectTypeNotAnObject,
+    TRCObjectTypeJsonObject,
+    TRCObjectTypeUnknownObject,
+};
+
+typedef NS_ENUM(NSInteger, TRCArgumentType) {
+    TRCArgumentTypeUnknown,
+    TRCArgumentTypeChar,
+    TRCArgumentTypeInt,
+    TRCArgumentTypeShort,
+    TRCArgumentTypeLong,
+    TRCArgumentTypeLongLong,
+    TRCArgumentTypeUnsignedChar,
+    TRCArgumentTypeUnsignedInt,
+    TRCArgumentTypeUnsignedShort,
+    TRCArgumentTypeUnsignedLong,
+    TRCArgumentTypeUnsignedLongLong,
+    TRCArgumentTypeFloat,
+    TRCArgumentTypeDouble,
+    TRCArgumentTypeBool,
+    TRCArgumentTypeVoid,
+    TRCArgumentTypeCharacterString,
+    TRCArgumentTypeCGPoint,
+    TRCArgumentTypeCGSize,
+    TRCArgumentTypeCGRect,
+    TRCArgumentTypeUIEdgeInsets,
+    TRCArgumentTypeObject,
+    TRCArgumentTypeClass,
+    TRCArgumentTypeSEL,
+    TRCArgumentTypeIMP,
 };
 
 @interface TRCArgument : NSObject <TRCJsonEncodable>
 
 @property (atomic, readonly) TRCArgumentType type;
+@property (atomic, readonly) TRCObjectType objectType;
 
 /**
  The argument's class. Nil if the argument is a primitive.

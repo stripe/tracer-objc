@@ -58,8 +58,6 @@
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
                                 XCTAssertNotNil(trace);
                                 XCTAssertNil(recError);
-                                NSLog(@"%@", [trace jsonObject]);
-
                                 [TRCPlayer playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
                                     XCTAssertNil(playError);
                                     [exp fulfill];
@@ -96,11 +94,12 @@
                             [t protocol_method_string:@"string"];
                         }),
                         (^{
+//                            XCTFail(@"TODO: ARRAY");
+                        }),
+                        (^{
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
                                 XCTAssertNotNil(trace);
                                 XCTAssertNil(recError);
-                                NSLog(@"%@", [trace jsonObject]);
-
                                 [TRCPlayer playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
                                     XCTAssertNil(playError);
                                     [exp fulfill];
@@ -151,11 +150,12 @@
                             [t protocol_method_dictSingleEntry:d];
                         }),
                         (^{
+//                            XCTFail(@"TODO: ARRAY");
+                        }),
+                        (^{
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
                                 XCTAssertNotNil(trace);
                                 XCTAssertNil(recError);
-                                NSLog(@"%@", [trace jsonObject]);
-
                                 [TRCPlayer playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
                                     XCTAssertNil(playError);
                                     [exp fulfill];
@@ -186,8 +186,6 @@
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
                                 XCTAssertNotNil(trace);
                                 XCTAssertNil(recError);
-                                NSLog(@"%@", [trace jsonObject]);
-
                                 [TRCPlayer playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
                                     XCTAssertNil(playError);
                                     [exp fulfill];
@@ -207,7 +205,7 @@
 #pragma mark - Regression tests
 
 /**
- Boxed float playback was failing until Player started retaining objectValue
+ Boxed float playback failed until Player retained object args
  */
 - (void)testBoxedFloatLiteral {
     XCTestExpectation *exp = [self expectationWithDescription:@"done"];
@@ -223,8 +221,6 @@
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
                                 XCTAssertNotNil(trace);
                                 XCTAssertNil(recError);
-                                NSLog(@"%@", [trace jsonObject]);
-
                                 [TRCPlayer playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
                                     XCTAssertNil(playError);
                                     [exp fulfill];
@@ -243,7 +239,7 @@
 
 
 /**
- Dictionary playback was failing until Player started retaining objectValue
+ Dictionary playback failed until Player retained object args
  */
 - (void)testDictionary {
     XCTestExpectation *exp = [self expectationWithDescription:@"done"];
@@ -290,8 +286,6 @@
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
                                 XCTAssertNotNil(trace);
                                 XCTAssertNil(recError);
-                                NSLog(@"%@", [trace jsonObject]);
-
                                 [TRCPlayer playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
                                     XCTAssertNil(playError);
                                     [exp fulfill];

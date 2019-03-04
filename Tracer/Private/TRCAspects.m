@@ -89,7 +89,7 @@ if (error) { *error = [NSError errorWithDomain:TRCAspectErrorDomain code:errorCo
 
 NSString *const TRCAspectErrorDomain = @"TRCAspectErrorDomain";
 static NSString *const TRCAspectsSubclassSuffix = @"_TRCAspects_";
-static NSString *const TRCAspectsMessagePrefix = @"stpaspects_";
+static NSString *const TRCAspectsMessagePrefix = @"tracer_";
 
 @implementation NSObject (Aspects)
 

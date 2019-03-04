@@ -18,12 +18,12 @@
     NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
-- (void)protocol_method_int:(NSInteger)i {
+- (void)protocol_method_int:(int)i {
     NSLog(@"%@", NSStringFromSelector(_cmd));
     NSParameterAssert(i == -100);
 }
 
-- (void)protocol_method_uint:(NSUInteger)i {
+- (void)protocol_method_uint:(uint)i {
     NSLog(@"%@", NSStringFromSelector(_cmd));
     NSParameterAssert(i == 100);
 }
@@ -94,9 +94,9 @@
     NSParameterAssert([d isEqualToDictionary:expected]);
 }
 
-- (void)protocol_method_int:(NSInteger)p string:(NSString *)s {
+- (void)protocol_method_int:(int)i string:(NSString *)s {
     NSLog(@"%@", NSStringFromSelector(_cmd));
-    NSParameterAssert(p == 100);
+    NSParameterAssert(i == 100);
     NSParameterAssert([s isEqualToString:@"string"]);
 }
 

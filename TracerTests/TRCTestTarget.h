@@ -23,8 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol TRCTestProtocol <NSObject>
 - (void)protocol_method;
-- (void)protocol_method_int:(NSInteger)p;
-- (void)protocol_method_uint:(NSUInteger)i;
+- (void)protocol_method_int:(int)p;
+- (void)protocol_method_uint:(uint)i;
 - (void)protocol_method_float:(float)f;
 - (void)protocol_method_bool:(BOOL)b;
 - (void)protocol_method_string:(NSString *)s;
@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)protocol_method_dictSingleEntry:(NSDictionary *)d;
 - (void)protocol_method_dictMultiEntry:(NSDictionary *)d;
 - (void)protocol_method_dictNested:(NSDictionary *)d;
-- (void)protocol_method_int:(NSInteger)p1 string:(NSString *)string;
+- (void)protocol_method_int:(int)i string:(NSString *)s;
 @end
 
 @interface TRCTestTarget : NSObject <TRCTestProtocol>

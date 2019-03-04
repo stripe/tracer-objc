@@ -1,5 +1,5 @@
 //
-//  TRCTrace+Private.h
+//  TRCCall+Private.h
 //  Tracer
 //
 //  Created by Ben Guo on 2/22/19.
@@ -11,16 +11,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TRCTrace (Private)
+@interface TRCCall (Private)
 
 /**
- Internal id used to reference the trace
+ Internal id used to reference the call
  */
 - (NSString *)internalId;
-
-- (instancetype)initWithProtocol:(Protocol *)protocol;
-
-- (void)addCall:(TRCCall *)call;
 
 @end
 

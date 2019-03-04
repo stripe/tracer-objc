@@ -121,6 +121,34 @@ NS_ASSUME_NONNULL_BEGIN
     dispatch_async(self.tracesQueue, ^{
         TRCTrace *trace = self.keyToTrace[key];
         if (trace != nil) {
+            NSError *jsonWritingError;
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:trace.jsonObject
+                                                           options:(NSJSONWritingOptions)NSJSONWritingPrettyPrinted
+                                                             error:&jsonWritingError];
+            if (jsonWritingError != nil) {
+                NSLog(@"Failed to write trace json: %@", jsonWritingError);
+            }
+            else {
+                NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                if (jsonString == nil) {
+                    NSLog(@"Failed to decode trace json data");
+                }
+                else {
+                    NSString *header = @"-----BEGIN TRACE JSON-----";
+                    NSString *footer = @"-----END TRACE JSON-----";
+                    NSArray *lines = @[
+                                         @"\n",
+                                         header,
+                                         @"\n",
+                                         jsonString,
+                                         @"\n",
+                                         footer,
+                                         @"\n",
+                                         ];
+                    NSString *message = [lines componentsJoinedByString:@""];
+                    NSLog(@"%@", message);
+                }
+            }
             completion(trace, nil);
         }
         else {

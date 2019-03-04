@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithTypeEncoding:(NSString *)encoding
                        boxedArgument:(id)boxedArgument;
 
++ (nullable NSString *)stringFromArgumentType:(TRCArgumentType)type;
+
 @end
 
 NS_ASSUME_NONNULL_END
