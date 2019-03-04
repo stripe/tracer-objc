@@ -25,7 +25,7 @@ NSString *result = [thing someMethod:-100];
 }];
 ```
 
-```objective-c
+```json
 {
   "start_ms" : 1551678464427,
   "id" : "trace",
