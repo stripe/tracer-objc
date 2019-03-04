@@ -64,8 +64,8 @@ NSString *result = [thing someMethod:-100];
 
 
 ## TODO
-- [ ] support non-json objects
+- [ ] automatically detect and trace completion blocks
+- [ ] detect when json encoding method is available for non-json object
+- [ ] add interface for injecting fixtures for non-json objects
+- [ ] how often does this work with swift
 - [ ] more exhaustive tests
-- [ ] test swift
-- [ ] add example app
-- [ ] add to cocoapods
