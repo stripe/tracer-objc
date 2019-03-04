@@ -22,20 +22,23 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol TRCTestProtocol <NSObject>
-- (void)protocol_method;
-- (void)protocol_method_int:(int)p;
-- (void)protocol_method_uint:(uint)i;
-- (void)protocol_method_float:(float)f;
-- (void)protocol_method_bool:(BOOL)b;
-- (void)protocol_method_string:(NSString *)s;
-- (void)protocol_method_boxed_int:(NSNumber *)n;
-- (void)protocol_method_boxed_uint:(NSNumber *)n;
-- (void)protocol_method_boxed_bool:(NSNumber *)n;
-- (void)protocol_method_boxed_float:(NSNumber *)n;
-- (void)protocol_method_dictSingleEntry:(NSDictionary *)d;
-- (void)protocol_method_dictMultiEntry:(NSDictionary *)d;
-- (void)protocol_method_dictNested:(NSDictionary *)d;
-- (void)protocol_method_int:(int)i string:(NSString *)s;
+- (void)ret_void__args_none;
+- (void)ret_void__args_int:(int);
+- (void)ret_void__args_uint:(uint)i;
+- (void)ret_void__args_float:(float)f;
+- (void)ret_void__args_bool:(BOOL)b;
+- (void)ret_void__args_string:(NSString *)s;
+- (void)ret_void__args_boxed_int:(NSNumber *)n;
+- (void)ret_void__args_boxed_uint:(NSNumber *)n;
+- (void)ret_void__args_boxed_bool:(NSNumber *)n;
+- (void)ret_void__args_boxed_float:(NSNumber *)n;
+- (void)ret_void__args_array_single:(NSArray *)a;
+- (void)ret_void__args_array_multi:(NSArray *)a;
+- (void)ret_void__args_dict_single:(NSDictionary *)d;
+- (void)ret_void__args_dict_multi:(NSDictionary *)d;
+- (void)ret_void__args_int:(int)i string:(NSString *)s;
+- (NSString *)ret_string__args_none;
+- (NSString *)ret_string__args_int:(int)i;
 @end
 
 @interface TRCTestTarget : NSObject <TRCTestProtocol>

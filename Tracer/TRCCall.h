@@ -12,20 +12,27 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class TRCArgument;
+@class TRCValue;
 
 @interface TRCCall : NSObject <TRCJsonEncodable>
 
 @property (atomic, readonly) NSString *method;
-@property (atomic, readonly) NSArray<TRCArgument*>*arguments;
-/**
- https://nshipster.com/type-encodings/
- */
+@property (atomic, readonly) NSArray<TRCValue*>*arguments;
 @property (atomic, readonly) NSUInteger millis;
+@property (atomic, readonly) TRCValue *returnValue;
 
+/**
+ might be able to consolidate some of these arguments
+
+ @param selector     selector reference, before hooking
+ @param invocation   invocation, from TRCAspects
+ @param arguments    arguments, built from method sig and invocation
+ @param millis       timestamp for method call
+ */
 - (instancetype)initWithSelector:(SEL)selector
-                       arguments:(NSArray<TRCArgument*>*)arguments
-                          millis:(NSUInteger)millis;
+                      invocation:(NSInvocation *)invocation
+                         arguments:(NSArray<TRCValue*>*)arguments
+                            millis:(NSUInteger)millis;
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;

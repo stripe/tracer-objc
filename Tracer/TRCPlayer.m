@@ -10,7 +10,7 @@
 
 #import "TRCPlayer.h"
 
-#import "TRCArgument+Private.h"
+#import "TRCValue+Private.h"
 #import "TRCTrace+Private.h"
 #import "TRCCall+Private.h"
 #import "TRCDispatchFunctions.h"
@@ -70,13 +70,25 @@ static TRCPlayer *_shared = nil;
         longestDelay = MAX(longestDelay, delay);
 
         for (NSUInteger i = 0; i < [call.arguments count]; i++) {
-            TRCArgument *arg = call.arguments[i];
+            TRCValue *arg = call.arguments[i];
             // indices 0 and 1 indicate the hidden arguments self and _cmd
             NSUInteger index = i + 2;
             NSValue *objectValue = (NSValue *)TRCNotNil(arg.objectValue);
-            TRCArgumentType type = arg.type;
+            TRCObjectType objectType = arg.objectType;
+            TRCType type = arg.type;
             switch (type) {
-                case TRCArgumentTypeObject: {
+                case TRCTypeObject: {
+                    switch (objectType) {
+                        case TRCObjectTypeNotAnObject: {
+                            NSString *message = [NSString stringWithFormat:@"Invalid argument in trace: %@", arg.jsonObject];
+                            NSAssert(NO, message);
+                        } break;
+                        case TRCObjectTypeUnknownObject: {
+                            NSString *message = [NSString stringWithFormat:@"Can't play argument containing unknown object: %@", arg.objectClass];
+                            NSAssert(NO, message);
+                        } break;
+                        case TRCObjectTypeJsonObject: break;
+                    }
                     // retain object arguments
                     NSString *argId = [NSString stringWithFormat:@"%@_%lu", [call internalId], i];
                     NSMutableDictionary *argIdToArg = self.traceIdToObjectArgs[traceId];
@@ -88,98 +100,98 @@ static TRCPlayer *_shared = nil;
                     self.traceIdToObjectArgs[traceId] = argIdToArg;
                     [invocation setArgument:&object atIndex:index];
                 } break;
-                case TRCArgumentTypeInt: {
+                case TRCTypeInt: {
                     int value;
                     [objectValue getValue:&value];
                     [invocation setArgument:&value atIndex:index];
                 } break;
-                case TRCArgumentTypeUnsignedInt: {
+                case TRCTypeUnsignedInt: {
                     unsigned int value;
                     [objectValue getValue:&value];
                     [invocation setArgument:&value atIndex:index];
                 } break;
-                case TRCArgumentTypeFloat: {
+                case TRCTypeFloat: {
                     float value;
                     [objectValue getValue:&value];
                     [invocation setArgument:&value atIndex:index];
                 } break;
-                case TRCArgumentTypeBool: {
+                case TRCTypeBool: {
                     BOOL value;
                     [objectValue getValue:&value];
                     [invocation setArgument:&value atIndex:index];
                 } break;
-                case TRCArgumentTypeDouble: {
+                case TRCTypeDouble: {
                     double value;
                     [objectValue getValue:&value];
                     [invocation setArgument:&value atIndex:index];
                 } break;
                     // TODO: test playback of more primitive types
-                case TRCArgumentTypeCharacterString: {
+                case TRCTypeCharacterString: {
                     const char *value;
                     [objectValue getValue:&value];
                     [invocation setArgument:&value atIndex:index];
                 } break;
-                case TRCArgumentTypeClass: {
+                case TRCTypeClass: {
                     Class value;
                     [objectValue getValue:&value];
                     [invocation setArgument:&value atIndex:index];
                 } break;
-                case TRCArgumentTypeShort: {
+                case TRCTypeShort: {
                     short value;
                     [objectValue getValue:&value];
                     [invocation setArgument:&value atIndex:index];
                 } break;
-                case TRCArgumentTypeUnsignedShort: {
+                case TRCTypeUnsignedShort: {
                     unsigned short value;
                     [objectValue getValue:&value];
                     [invocation setArgument:&value atIndex:index];
                 } break;
-                case TRCArgumentTypeLong: {
+                case TRCTypeLong: {
                     long value;
                     [objectValue getValue:&value];
                     [invocation setArgument:&value atIndex:index];
                 } break;
-                case TRCArgumentTypeUnsignedLong: {
+                case TRCTypeUnsignedLong: {
                     unsigned long value;
                     [objectValue getValue:&value];
                     [invocation setArgument:&value atIndex:index];
                 } break;
-                case TRCArgumentTypeLongLong: {
+                case TRCTypeLongLong: {
                     long long value;
                     [objectValue getValue:&value];
                     [invocation setArgument:&value atIndex:index];
                 } break;
-                case TRCArgumentTypeUnsignedLongLong: {
+                case TRCTypeUnsignedLongLong: {
                     unsigned long long value;
                     [objectValue getValue:&value];
                     [invocation setArgument:&value atIndex:index];
                 } break;
-                case TRCArgumentTypeChar: {
+                case TRCTypeChar: {
                     char value;
                     [objectValue getValue:&value];
                     [invocation setArgument:&value atIndex:index];
                 } break;
-                case TRCArgumentTypeUnsignedChar: {
+                case TRCTypeUnsignedChar: {
                     unsigned char value;
                     [objectValue getValue:&value];
                     [invocation setArgument:&value atIndex:index];
                 } break;
-                case TRCArgumentTypeSEL: {
+                case TRCTypeSEL: {
                     SEL value;
                     [objectValue getValue:&value];
                     [invocation setArgument:&value atIndex:index];
                 } break;
-                case TRCArgumentTypeVoid: {
+                case TRCTypeVoid: {
 
                 } break;
-                case TRCArgumentTypeIMP:
-                case TRCArgumentTypeCGRect:
-                case TRCArgumentTypeCGSize:
-                case TRCArgumentTypeCGPoint:
-                case TRCArgumentTypeUIEdgeInsets:
-                case TRCArgumentTypeUnknown: {
-                    NSString *typeString = [TRCArgument stringFromArgumentType:type];
-                    NSString *message = [NSString stringWithFormat:@"Playback is unsupported for this argument type: %@", typeString];
+                case TRCTypeIMP:
+                case TRCTypeCGRect:
+                case TRCTypeCGSize:
+                case TRCTypeCGPoint:
+                case TRCTypeUIEdgeInsets:
+                case TRCTypeUnknown: {
+                    NSString *typeString = [TRCValue stringFromType:type];
+                    NSString *message = [NSString stringWithFormat:@"Can't play argument containing unsupported type: %@", typeString];
                     NSAssert(NO, message);
                 }
             }

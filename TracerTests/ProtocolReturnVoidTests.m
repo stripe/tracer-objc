@@ -11,11 +11,11 @@
 #import "TRCTestTarget.h"
 #import "TRCDispatchFunctions.h"
 
-@interface TracerTests : XCTestCase
+@interface ProtocolReturnVoidTests : XCTestCase
 
 @end
 
-@implementation TracerTests
+@implementation ProtocolReturnVoidTests
 
 - (void)testPrimitives {
     XCTestExpectation *exp = [self expectationWithDescription:@"done"];
@@ -25,34 +25,34 @@
 
     NSArray *blocks = @[
                         (^{
-                            [t protocol_method];
+                            [t ret_void__args_none];
                         }),
                         (^{
-                            [t protocol_method_int:-100];
+                            [t ret_void__args_int:-100];
                         }),
                         (^{
-                            [t protocol_method_uint:100];
+                            [t ret_void__args_uint:100];
                         }),
                         (^{
-                            [t protocol_method_float:-123.5];
+                            [t ret_void__args_float:-123.5];
                         }),
                         (^{
-                            [t protocol_method_bool:YES];
+                            [t ret_void__args_bool:YES];
                         }),
                         (^{
-                            [t protocol_method_boxed_int:@(-100)];
+                            [t ret_void__args_boxed_int:@(-100)];
                         }),
                         (^{
-                            [t protocol_method_boxed_uint:@(100)];
+                            [t ret_void__args_boxed_uint:@(100)];
                         }),
                         (^{
-                            [t protocol_method_boxed_bool:@(YES)];
+                            [t ret_void__args_boxed_bool:@(YES)];
                         }),
                         (^{
-                            [t protocol_method_string:@"string"];
+                            [t ret_void__args_string:@"string"];
                         }),
                         (^{
-                            [t protocol_method_int:100 string:@"string"];
+                            [t ret_void__args_int:100 string:@"string"];
                         }),
                         (^{
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
@@ -82,19 +82,27 @@
 
     NSArray *blocks = @[
                         (^{
-                            [t protocol_method_boxed_int:@(-100)];
+                            [t ret_void__args_boxed_int:@(-100)];
                         }),
                         (^{
-                            [t protocol_method_boxed_uint:@(100)];
+                            [t ret_void__args_boxed_uint:@(100)];
                         }),
                         (^{
-                            [t protocol_method_boxed_bool:@(YES)];
+                            [t ret_void__args_boxed_bool:@(YES)];
                         }),
                         (^{
-                            [t protocol_method_string:@"string"];
+                            [t ret_void__args_string:@"string"];
                         }),
                         (^{
-//                            XCTFail(@"TODO: ARRAY");
+                            [t ret_void__args_array_single:@[@"value1"]];
+                        }),
+                        (^{
+                            [t ret_void__args_array_multi:@[
+                                                            @"value1",
+                                                            @(100),
+                                                            @(-123.5),
+                                                            @[@"value2", @"value3"]
+                                                            ]];
                         }),
                         (^{
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
@@ -125,32 +133,44 @@
     NSArray *blocks = @[
                         (^{
                             NSNumber *n = [NSNumber numberWithInt:-100];
-                            [t protocol_method_boxed_int:n];
+                            [t ret_void__args_boxed_int:n];
                         }),
                         (^{
                             NSNumber *n = [NSNumber numberWithUnsignedInt:100];
-                            [t protocol_method_boxed_uint:n];
+                            [t ret_void__args_boxed_uint:n];
                         }),
                         (^{
                             NSNumber *n = [NSNumber numberWithFloat:-123.5];
-                            [t protocol_method_boxed_float:n];
+                            [t ret_void__args_boxed_float:n];
                         }),
                         (^{
                             NSNumber *n = [NSNumber numberWithBool:YES];
-                            [t protocol_method_boxed_bool:n];
+                            [t ret_void__args_boxed_bool:n];
                         }),
                         (^{
                             NSString *s = @"string";
-                            [t protocol_method_string:s];
+                            [t ret_void__args_string:s];
                         }),
                         (^{
                             NSDictionary *d = @{
                                                 @"key1": @"value1",
                                                 };
-                            [t protocol_method_dictSingleEntry:d];
+                            [t ret_void__args_dict_single:d];
                         }),
                         (^{
-//                            XCTFail(@"TODO: ARRAY");
+                            NSArray *a = @[
+                                           @"value1",
+                                           ];
+                            [t ret_void__args_array_single:a];
+                        }),
+                        (^{
+                            NSArray *a = @[
+                                           @"value1",
+                                           @(100),
+                                           @(-123.5),
+                                           @[@"value2", @"value3"]
+                                           ];
+                            [t ret_void__args_array_multi:a];
                         }),
                         (^{
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
@@ -180,7 +200,7 @@
 
     NSArray *blocks = @[
                         (^{
-                            [t protocol_method_int:100 string:@"string"];
+                            [t ret_void__args_int:100 string:@"string"];
                         }),
                         (^{
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
@@ -215,7 +235,7 @@
 
     NSArray *blocks = @[
                         (^{
-                            [t protocol_method_boxed_float:@(-123.5)];
+                            [t ret_void__args_boxed_float:@(-123.5)];
                         }),
                         (^{
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
@@ -249,7 +269,7 @@
 
     NSArray *blocks = @[
                         (^{
-                            [t protocol_method_dictSingleEntry:@{
+                            [t ret_void__args_dict_single:@{
                                                                  @"key1": @"value1",
                                                                  }];
                         }),
@@ -257,22 +277,16 @@
                             NSDictionary *d = @{
                                                 @"key1": @"value1",
                                                 };
-                            [t protocol_method_dictSingleEntry:d];
+                            [t ret_void__args_dict_single:d];
                         }),
                         (^{
                             NSMutableDictionary *d = [@{
                                                        @"key1": @"value1",
                                                        } mutableCopy];
-                            [t protocol_method_dictSingleEntry:d];
+                            [t ret_void__args_dict_single:d];
                         }),
                         (^{
-                            [t protocol_method_dictMultiEntry:@{
-                                                                @"key1": @"value1",
-                                                                @"key2": @"value2"
-                                                                }];
-                        }),
-                        (^{
-                            [t protocol_method_dictNested:@{
+                            [t ret_void__args_dict_multi:@{
                                                             @"key1": @"value1",
                                                             @"key2": @{
                                                                     @"key3": @[@"value2", @"value3"],

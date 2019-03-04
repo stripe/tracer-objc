@@ -1,60 +1,70 @@
 //
-//  TRCArgument.m
+//  TRCValue.m
 //  Tracer
 //
 //  Created by Ben Guo on 2/25/19.
 //  Copyright © 2019 tracer. All rights reserved.
 //
 
-#import "TRCArgument.h"
+#import "TRCValue.h"
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TRCArgument ()
+@interface TRCValue ()
 
-@property (atomic, assign, readwrite) TRCArgumentType type;
+@property (atomic, assign, readwrite) TRCType type;
 @property (atomic, assign, readwrite) TRCObjectType objectType;
 @property (atomic, strong, nullable, readwrite) NSString *objectClass;
 @property (atomic, strong, nullable, readwrite) id objectValue;
 
 @end
 
-@implementation TRCArgument
+@implementation TRCValue
 
-static NSDictionary<NSNumber *, NSString *> *_argumentTypeToString;
+static NSDictionary<NSNumber *, NSString *> *_typeToString;
 
 - (instancetype)initWithTypeEncoding:(NSString *)encoding
                        boxedArgument:(id)boxedArgument {
     self = [super init];
     if (self) {
-        TRCArgumentType type = [[self class] argumentTypeWithEncoding:encoding];
+        TRCType type = [[self class] typeWithEncoding:encoding];
         _type = type;
-        BOOL isObject = (type == TRCArgumentTypeObject);
+        BOOL isObject = (type == TRCTypeObject);
         if (isObject) {
             NSString *classString = NSStringFromClass([boxedArgument class]);
-            // string comparison here is brittle, but seems to work
-            // TODO: test array
+            // clean up internal types for json objects
+            // NSString
             if ([classString containsString:@"NSCFConstantString"] ||
                 [classString containsString:@"NSCFString"]) {
                 classString = @"NSString";
                 _objectType = TRCObjectTypeJsonObject;
                 _objectValue = boxedArgument;
             }
+            // NSNumber
             else if ([classString containsString:@"NSCFNumber"]) {
                 classString = @"NSNumber";
                 _objectType = TRCObjectTypeJsonObject;
                 _objectValue = boxedArgument;
             }
+            // Boxed Bool
             else if ([classString containsString:@"NSCFBoolean"]) {
                 classString = @"NSNumber";
                 _objectType = TRCObjectTypeJsonObject;
                 _objectValue = boxedArgument;
             }
+            // NSDictionary
             else if ([classString containsString:@"NSSingleEntryDictionary"] ||
                      [classString containsString:@"NSDictionary"]) {
                 classString = @"NSDictionary";
+                _objectType = TRCObjectTypeJsonObject;
+                _objectValue = boxedArgument;
+            }
+            // NSArray
+            else if ([classString containsString:@"NSSingleObjectArray"] ||
+                     [classString containsString:@"NSArray"]) {
+                classString = @"NSArray";
                 _objectType = TRCObjectTypeJsonObject;
                 _objectValue = boxedArgument;
             }
@@ -77,7 +87,8 @@ static NSDictionary<NSNumber *, NSString *> *_argumentTypeToString;
 
 - (NSObject *)jsonObject {
     NSMutableDictionary *json = [NSMutableDictionary new];
-    json[@"type"] = [[self class] stringFromArgumentType:self.type];
+    json[@"id"] = @"value";
+    json[@"type"] = [[self class] stringFromType:self.type];
     json[@"object_type"] = [[self class] stringFromObjectType:self.objectType];
     json[@"object_class"] = self.objectClass;
     json[@"object_value"] = self.objectValue;
@@ -98,99 +109,99 @@ static NSDictionary<NSNumber *, NSString *> *_argumentTypeToString;
 /**
  https://nshipster.com/type-encodings/
  */
-+ (TRCArgumentType)argumentTypeWithEncoding:(NSString *)encodingString {
++ (TRCType)typeWithEncoding:(NSString *)encodingString {
     const char *typeEncoding = [encodingString UTF8String];
     if (strcmp(typeEncoding, @encode(char)) == 0) {
-        return TRCArgumentTypeChar;
+        return TRCTypeChar;
     } else if (strcmp(typeEncoding, @encode(int)) == 0) {
-        return TRCArgumentTypeInt;
+        return TRCTypeInt;
     } else if (strcmp(typeEncoding, @encode(short)) == 0) {
-        return TRCArgumentTypeShort;
+        return TRCTypeShort;
     } else if (strcmp(typeEncoding, @encode(long)) == 0) {
-        return TRCArgumentTypeLong;
+        return TRCTypeLong;
     } else if (strcmp(typeEncoding, @encode(long long)) == 0) {
-        return TRCArgumentTypeLongLong;
+        return TRCTypeLongLong;
     } else if (strcmp(typeEncoding, @encode(unsigned char)) == 0) {
-        return TRCArgumentTypeUnsignedChar;
+        return TRCTypeUnsignedChar;
     } else if (strcmp(typeEncoding, @encode(unsigned int)) == 0) {
-        return TRCArgumentTypeUnsignedInt;
+        return TRCTypeUnsignedInt;
     } else if (strcmp(typeEncoding, @encode(unsigned short)) == 0) {
-        return TRCArgumentTypeUnsignedShort;
+        return TRCTypeUnsignedShort;
     } else if (strcmp(typeEncoding, @encode(unsigned long)) == 0) {
-        return TRCArgumentTypeUnsignedLong;
+        return TRCTypeUnsignedLong;
     } else if (strcmp(typeEncoding, @encode(unsigned long long)) == 0) {
-        return TRCArgumentTypeUnsignedLongLong;
+        return TRCTypeUnsignedLongLong;
     } else if (strcmp(typeEncoding, @encode(float)) == 0) {
-        return TRCArgumentTypeFloat;
+        return TRCTypeFloat;
     } else if (strcmp(typeEncoding, @encode(double)) == 0) {
-        return TRCArgumentTypeDouble;
+        return TRCTypeDouble;
     } else if (strcmp(typeEncoding, @encode(BOOL)) == 0) {
-        return TRCArgumentTypeBool;
+        return TRCTypeBool;
     } else if (strcmp(typeEncoding, @encode(void)) == 0) {
-        return TRCArgumentTypeVoid;
+        return TRCTypeVoid;
     } else if (strcmp(typeEncoding, @encode(char *)) == 0) {
-        return TRCArgumentTypeCharacterString;
+        return TRCTypeCharacterString;
     } else if (strcmp(typeEncoding, @encode(id)) == 0) {
-        return TRCArgumentTypeObject;
+        return TRCTypeObject;
     } else if (strcmp(typeEncoding, @encode(Class)) == 0) {
-        return TRCArgumentTypeClass;
+        return TRCTypeClass;
     } else if (strcmp(typeEncoding, @encode(CGPoint)) == 0) {
-        return TRCArgumentTypeCGPoint;
+        return TRCTypeCGPoint;
     } else if (strcmp(typeEncoding, @encode(CGSize)) == 0) {
-        return TRCArgumentTypeCGSize;
+        return TRCTypeCGSize;
     } else if (strcmp(typeEncoding, @encode(CGRect)) == 0) {
-        return TRCArgumentTypeCGRect;
+        return TRCTypeCGRect;
     } else if (strcmp(typeEncoding, @encode(UIEdgeInsets)) == 0) {
-        return TRCArgumentTypeUIEdgeInsets;
+        return TRCTypeUIEdgeInsets;
     } else if (strcmp(typeEncoding, @encode(SEL)) == 0) {
-        return TRCArgumentTypeSEL;
+        return TRCTypeSEL;
     }  else if (strcmp(typeEncoding, @encode(IMP))) {
-        return TRCArgumentTypeIMP;
+        return TRCTypeIMP;
     } else {
-        return TRCArgumentTypeUnknown;
+        return TRCTypeUnknown;
     }
 }
 
-+ (NSDictionary<NSNumber *, NSString *>*)argumentTypeToString {
++ (NSDictionary<NSNumber *, NSString *>*)typeToString {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _argumentTypeToString = @{
-                             @(TRCArgumentTypeUnknown): @"unknown",
-                             @(TRCArgumentTypeChar): @"char",
-                             @(TRCArgumentTypeInt): @"int",
-                             @(TRCArgumentTypeShort): @"short",
-                             @(TRCArgumentTypeLong): @"long",
-                             @(TRCArgumentTypeLongLong): @"long_long",
-                             @(TRCArgumentTypeUnsignedChar): @"unsigned_char",
-                             @(TRCArgumentTypeUnsignedInt): @"unsigned_int",
-                             @(TRCArgumentTypeUnsignedShort): @"unsigned_short",
-                             @(TRCArgumentTypeUnsignedLong): @"unsigned_long",
-                             @(TRCArgumentTypeUnsignedLongLong): @"unsigned_long_long",
-                             @(TRCArgumentTypeFloat): @"float",
-                             @(TRCArgumentTypeDouble): @"double",
-                             @(TRCArgumentTypeBool): @"bool",
-                             @(TRCArgumentTypeVoid): @"void",
-                             @(TRCArgumentTypeCharacterString): @"character_string",
-                             @(TRCArgumentTypeCGPoint): @"cgpoint",
-                             @(TRCArgumentTypeCGSize): @"cgsize",
-                             @(TRCArgumentTypeCGRect): @"cgrect",
-                             @(TRCArgumentTypeUIEdgeInsets): @"uiedgeInsets",
-                             @(TRCArgumentTypeObject): @"object",
-                             @(TRCArgumentTypeClass): @"class",
-                             @(TRCArgumentTypeSEL): @"sel",
-                             @(TRCArgumentTypeIMP): @"imp",
+        _typeToString = @{
+                             @(TRCTypeUnknown): @"unknown",
+                             @(TRCTypeChar): @"char",
+                             @(TRCTypeInt): @"int",
+                             @(TRCTypeShort): @"short",
+                             @(TRCTypeLong): @"long",
+                             @(TRCTypeLongLong): @"long_long",
+                             @(TRCTypeUnsignedChar): @"unsigned_char",
+                             @(TRCTypeUnsignedInt): @"unsigned_int",
+                             @(TRCTypeUnsignedShort): @"unsigned_short",
+                             @(TRCTypeUnsignedLong): @"unsigned_long",
+                             @(TRCTypeUnsignedLongLong): @"unsigned_long_long",
+                             @(TRCTypeFloat): @"float",
+                             @(TRCTypeDouble): @"double",
+                             @(TRCTypeBool): @"bool",
+                             @(TRCTypeVoid): @"void",
+                             @(TRCTypeCharacterString): @"character_string",
+                             @(TRCTypeCGPoint): @"cgpoint",
+                             @(TRCTypeCGSize): @"cgsize",
+                             @(TRCTypeCGRect): @"cgrect",
+                             @(TRCTypeUIEdgeInsets): @"uiedgeInsets",
+                             @(TRCTypeObject): @"object",
+                             @(TRCTypeClass): @"class",
+                             @(TRCTypeSEL): @"sel",
+                             @(TRCTypeIMP): @"imp",
                              };
     });
-    return _argumentTypeToString;
+    return _typeToString;
 }
 
-+ (nullable NSString *)stringFromArgumentType:(TRCArgumentType)type {
-    NSDictionary<NSNumber *, NSString *>*mapping = [self argumentTypeToString];
++ (nullable NSString *)stringFromType:(TRCType)type {
+    NSDictionary<NSNumber *, NSString *>*mapping = [self typeToString];
     return mapping[@(type)];
 }
 
-+ (nullable NSNumber *)argumentTypeFromString:(NSString *)string {
-    NSDictionary<NSNumber *, NSString *>*mapping = [self argumentTypeToString];
++ (nullable NSNumber *)typeFromString:(NSString *)string {
+    NSDictionary<NSNumber *, NSString *>*mapping = [self typeToString];
     return [[mapping allKeysForObject:string] firstObject];
 }
 

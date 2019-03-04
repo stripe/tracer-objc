@@ -10,7 +10,7 @@
 
 #import <objc/runtime.h>
 
-#import "TRCArgument+Private.h"
+#import "TRCValue+Private.h"
 #import "TRCAspects.h"
 #import "TRCCall.h"
 #import "TRCTrace+Private.h"
@@ -71,6 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
         NSMethodSignature *sig = methodSigs[i];
 
         // get types
+        // TODO: refactor to build types inside TRCCall from the NSInvocation
         NSMutableArray *typeEncodings = [NSMutableArray new];
         for (NSUInteger j = 0; j < sig.numberOfArguments; j++) {
             NSString *ts = [NSString stringWithUTF8String:[sig getArgumentTypeAtIndex:j]];
@@ -87,19 +88,19 @@ NS_ASSUME_NONNULL_BEGIN
         [klass trc_aspect_hookSelector:sel withOptions:TRCAspectPositionAfter usingBlock:^(id<TRCAspectInfo> info){
             NSUInteger ms = [[NSDate date] trc_millisSinceDate:start];
 
-            // zip info.arguments & typeEncodings -> Argument
-            NSMutableArray<TRCArgument*>*args = [NSMutableArray new];
+            NSMutableArray<TRCValue*>*args = [NSMutableArray new];
             for (NSUInteger j = 0; j < [typeEncodings count]; j++) {
                 NSString *encoding = typeEncodings[j];
                 id boxedArg = info.arguments[j];
-                TRCArgument *argument = [[TRCArgument alloc] initWithTypeEncoding:encoding
-                                                                    boxedArgument:boxedArg];
+                TRCValue *argument = [[TRCValue alloc] initWithTypeEncoding:encoding
+                                                              boxedArgument:boxedArg];
                 [args addObject:argument];
             }
 
             TRCCall *call = [[TRCCall alloc] initWithSelector:sel
-                                                    arguments:[args copy]
-                                                       millis:ms];
+                                                   invocation:info.originalInvocation
+                                                      arguments:[args copy]
+                                                         millis:ms];
             dispatch_async(self.tracesQueue, ^{
                 TRCTrace *trace = self.keyToTrace[key];
                 if (trace == nil) {

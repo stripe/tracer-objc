@@ -54,8 +54,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSObject *)jsonObject {
     NSMutableDictionary *json = [NSMutableDictionary new];
+    json[@"id"] = @"trace";
     json[@"protocol"] = self.protocol;
-    json[@"start_millis"] = @([self startMillis]);
+    json[@"start_ms"] = @([self startMillis]);
     NSMutableArray *calls = [NSMutableArray new];
     for (TRCCall *call in self.calls) {
         [calls addObject:[call jsonObject]];

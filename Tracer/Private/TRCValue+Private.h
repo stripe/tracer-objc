@@ -6,11 +6,11 @@
 //  Copyright © 2019 tracer. All rights reserved.
 //
 
-#import "TRCArgument.h"
+#import "TRCValue.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TRCArgument (Private)
+@interface TRCValue (Private)
 
 @property (atomic, strong, nullable, readwrite) id objectValue;
 
@@ -20,7 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithTypeEncoding:(NSString *)encoding
                        boxedArgument:(id)boxedArgument;
 
-+ (nullable NSString *)stringFromArgumentType:(TRCArgumentType)type;
++ (nullable NSString *)stringFromType:(TRCType)type;
++ (TRCType)typeWithEncoding:(NSString *)encodingString;
 
 @end
 
