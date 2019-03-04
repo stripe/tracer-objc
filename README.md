@@ -2,9 +2,9 @@
 
 Tracer lets you record the behavior of arbitrary objects and play it back.
 
-Let's say you have a legacy library that calls your code. The interface is well-defined, but fairly complex (e.g. behavior varies depending on external input). You've developed a mental model for this complex behavior, and your code handles different behaviors well, but you have a hard time sharing your intuitive understanding of the system with the team, and your test coverage is low. 
+Let's say you have a legacy dependency that calls your code. The interface is well-defined, but fairly complex (e.g. behavior varies depending on external input). You've developed a mental model for this complex behavior, and your code handles different behaviors well, but you have a hard time sharing your intuitive understanding of the system with collaborators, and your test coverage is low. 
 
-UI automation and and HTTP-focused record & playback systems can help in a situation like this, but it felt like there was a missing tool.
+Logging, UI automation, black-box testing, and HTTP-focused record & playback systems can all help in a situation like this, but it felt like there was a missing tool.
 
 ```objective-c
 @protocol SomeProtocol <NSObject>
