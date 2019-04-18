@@ -1,8 +1,8 @@
 //
-//  RecordPlayProtocolReturnValueTests.m
+//  UnsupportedTests.m
 //  TracerTests
 //
-//  Created by Ben Guo on 3/3/19.
+//  Created by Ben Guo on 3/16/19.
 //  Copyright © 2019 tracer. All rights reserved.
 //
 
@@ -11,13 +11,13 @@
 #import "TRCTestTarget.h"
 #import "TRCDispatchFunctions.h"
 
-@interface ProtocolReturnValueTests : XCTestCase
+@interface UnsupportedTests : XCTestCase
 
 @end
 
-@implementation ProtocolReturnValueTests
+@implementation UnsupportedTests
 
-- (void)testReturnObject {
+- (void)testMultipleArguments {
     XCTestExpectation *exp = [self expectationWithDescription:@"done"];
     TRCTestTarget *t = [[TRCTestTarget alloc] init];
     TRCRecorder *recorder = [TRCRecorder new];
@@ -25,17 +25,18 @@
 
     NSArray *blocks = @[
                         (^{
-                            [t ret_string__args_none];
+                            [t ret_void__args_object:[NSObject new]];
                         }),
                         (^{
-                            [t ret_string__args_int:-100];
+                            [t ret_void__args_int:-100];
                         }),
                         (^{
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
                                 XCTAssertNotNil(trace);
                                 XCTAssertNil(recError);
                                 [TRCPlayer playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
-                                    XCTAssertNil(playError);
+                                    XCTAssertNotNil(playError);
+                                    NSLog(@"%@", playError);
                                     [exp fulfill];
                                 }];
                             }];

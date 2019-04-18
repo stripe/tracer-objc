@@ -145,4 +145,10 @@
     NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
+#pragma mark - unsupported methods
+
+- (void)ret_void__args_object:(NSObject *)o {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+}
+
 @end

@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol TRCTestProtocol <NSObject>
 - (void)ret_void__args_none;
-- (void)ret_void__args_int:(int);
+- (void)ret_void__args_int:(int)i;
 - (void)ret_void__args_uint:(uint)i;
 - (void)ret_void__args_float:(float)f;
 - (void)ret_void__args_bool:(BOOL)b;
@@ -39,6 +39,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)ret_void__args_int:(int)i string:(NSString *)s;
 - (NSString *)ret_string__args_none;
 - (NSString *)ret_string__args_int:(int)i;
+
+// unsupported
+- (void)ret_void__args_object:(NSObject *)o;
+
 @end
 
 @interface TRCTestTarget : NSObject <TRCTestProtocol>
