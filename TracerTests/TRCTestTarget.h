@@ -21,6 +21,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface TRCCustomObject : NSObject
+@property (nonatomic, strong) NSString *value;
+@end
+
 @protocol TRCTestProtocol <NSObject>
 - (void)ret_void__args_none;
 - (void)ret_void__args_int:(int)i;
@@ -43,6 +47,10 @@ NS_ASSUME_NONNULL_BEGIN
 // unsupported
 - (void)ret_void__args_object:(NSObject *)o;
 - (void)ret_void__args_cgsize:(CGSize)s;
+
+// fixture provider
+- (void)ret_void__args_custom_object:(TRCCustomObject *)o;
+- (void)ret_void__args_custom_object_array:(NSArray<TRCCustomObject *>*)a;
 
 @end
 

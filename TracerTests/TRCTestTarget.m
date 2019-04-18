@@ -155,4 +155,25 @@
     NSLog(@"%@", NSStringFromCGSize(s));
 }
 
+#pragma mark - fixture provider
+
+- (void)ret_void__args_custom_object:(TRCCustomObject *)o {
+    NSLog(@"%@", o);
+    NSParameterAssert([o.value isEqualToString:@"one"]);
+}
+
+- (void)ret_void__args_custom_object_array:(NSArray<TRCCustomObject *>*)a {
+    NSLog(@"%@", a);
+    NSParameterAssert(a.count == 3);
+    TRCCustomObject *one = a[0];
+    TRCCustomObject *two = a[1];
+    TRCCustomObject *three = a[2];
+    NSParameterAssert([one.value isEqualToString:@"one"]);
+    NSParameterAssert([two.value isEqualToString:@"two"]);
+    NSParameterAssert([three.value isEqualToString:@"three"]);
+}
+
+@end
+
+@implementation TRCCustomObject : NSObject
 @end

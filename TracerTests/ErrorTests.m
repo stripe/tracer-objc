@@ -1,5 +1,5 @@
 //
-//  UnsupportedTests.m
+//  ErrorTests.m
 //  TracerTests
 //
 //  Created by Ben Guo on 3/16/19.

@@ -205,6 +205,17 @@ static NSDictionary<NSNumber *, NSString *> *_typeToString;
     return [[mapping allKeysForObject:string] firstObject];
 }
 
+- (NSString *)description {
+    NSArray *props = @[
+                       // Object
+                       [NSString stringWithFormat:@"%@: %p", NSStringFromClass([self class]), self],
+
+                       // Details (alphabetical)
+                       [NSString stringWithFormat:@"jsonObject = %@", [self jsonObject]],
+                       ];
+    return [NSString stringWithFormat:@"<%@>", [props componentsJoinedByString:@"; "]];
+}
+
 
 
 @end

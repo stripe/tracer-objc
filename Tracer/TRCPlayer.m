@@ -65,7 +65,9 @@ withFixtureProvider:(nullable id<TRCFixtureProvider>)fixtureProvider
 
     void (^cleanup)(void) = ^void() {
         // clear retained objects
-        [self.traceIdToObjectArgs removeObjectForKey:traceId];
+        if (traceId != nil) {
+            [self.traceIdToObjectArgs removeObjectForKey:traceId];
+        }
     };
 
     NSTimeInterval longestDelay = 0;

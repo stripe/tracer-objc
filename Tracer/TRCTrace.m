@@ -80,6 +80,17 @@ NS_ASSUME_NONNULL_BEGIN
     return [jsonString dataUsingEncoding:NSUTF8StringEncoding];
 }
 
+- (NSString *)description {
+    NSArray *props = @[
+                       // Object
+                       [NSString stringWithFormat:@"%@: %p", NSStringFromClass([self class]), self],
+
+                       // Details (alphabetical)
+                       [NSString stringWithFormat:@"jsonObject = %@", [self jsonObject]],
+                       ];
+    return [NSString stringWithFormat:@"<%@>", [props componentsJoinedByString:@"; "]];
+}
+
 @end
 
 NS_ASSUME_NONNULL_END

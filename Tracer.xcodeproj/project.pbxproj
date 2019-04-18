@@ -21,6 +21,7 @@
 		C10CCD3B222CE08500F6E604 /* TRCType.h in Headers */ = {isa = PBXBuildFile; fileRef = C10CCD3A222CE08500F6E604 /* TRCType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C10CCD3D222CE13000F6E604 /* TRCValue.h in Headers */ = {isa = PBXBuildFile; fileRef = C10CCD3C222CE13000F6E604 /* TRCValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C1570DE122683245000F3D04 /* TRCFixtureProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = C1570DE022683245000F3D04 /* TRCFixtureProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C1570DE3226837B9000F3D04 /* FixtureProviderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1570DE2226837B9000F3D04 /* FixtureProviderTests.m */; };
 		C184DC3C222CA06A005F7C5D /* TRCCall+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = C184DC3B222CA06A005F7C5D /* TRCCall+Private.h */; };
 		C1A51A9A223E18AF009C5F81 /* RetVoidMultiArgTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A51A99223E18AF009C5F81 /* RetVoidMultiArgTests.m */; };
 		C1A51A9C223E1932009C5F81 /* ErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A51A9B223E1932009C5F81 /* ErrorTests.m */; };
@@ -64,6 +65,7 @@
 		C10CCD3A222CE08500F6E604 /* TRCType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRCType.h; sourceTree = "<group>"; };
 		C10CCD3C222CE13000F6E604 /* TRCValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRCValue.h; sourceTree = "<group>"; };
 		C1570DE022683245000F3D04 /* TRCFixtureProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRCFixtureProvider.h; sourceTree = "<group>"; };
+		C1570DE2226837B9000F3D04 /* FixtureProviderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FixtureProviderTests.m; sourceTree = "<group>"; };
 		C184DC3B222CA06A005F7C5D /* TRCCall+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TRCCall+Private.h"; sourceTree = "<group>"; };
 		C1A51A99223E18AF009C5F81 /* RetVoidMultiArgTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RetVoidMultiArgTests.m; sourceTree = "<group>"; };
 		C1A51A9B223E1932009C5F81 /* ErrorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ErrorTests.m; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				C10CCD38222CDF1100F6E604 /* RetValueTests.m */,
 				C1A51A99223E18AF009C5F81 /* RetVoidMultiArgTests.m */,
 				C1A51A9B223E1932009C5F81 /* ErrorTests.m */,
+				C1570DE2226837B9000F3D04 /* FixtureProviderTests.m */,
 				C1D7ABE5222104670040808A /* TRCTestTarget.h */,
 				C106B3472221445300504CF9 /* TRCTestTarget.m */,
 				C1D7ABCF222102E30040808A /* Info.plist */,
@@ -329,6 +332,7 @@
 			files = (
 				C106B3482221445300504CF9 /* TRCTestTarget.m in Sources */,
 				C1D7ABCE222102E30040808A /* RetVoidSingleArgTests.m in Sources */,
+				C1570DE3226837B9000F3D04 /* FixtureProviderTests.m in Sources */,
 				C10CCD39222CDF1100F6E604 /* RetValueTests.m in Sources */,
 				C106B353222144F800504CF9 /* TRCDispatchFunctions.m in Sources */,
 				C1A51A9A223E18AF009C5F81 /* RetVoidMultiArgTests.m in Sources */,
