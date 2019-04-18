@@ -14,5 +14,6 @@
 #import "TRCTrace.h"
 #import "TRCType.h"
 #import "TRCValue.h"
+#import "TRCErrors.h"
 
 

@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
  Completes with nil if playback completed successfully, or nil if playback
  failed.
  */
-+ (void)playTrace:(TRCTrace *)trace
+- (void)playTrace:(TRCTrace *)trace
          onTarget:(id)target
        completion:(TRCErrorCompletionBlock)completion;
 

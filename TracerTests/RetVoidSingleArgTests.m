@@ -58,7 +58,8 @@
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
                                 XCTAssertNotNil(trace);
                                 XCTAssertNil(recError);
-                                [TRCPlayer playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
+                                TRCPlayer *player = [TRCPlayer new];
+                                [player playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
                                     XCTAssertNil(playError);
                                     [exp fulfill];
                                 }];
@@ -108,7 +109,8 @@
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
                                 XCTAssertNotNil(trace);
                                 XCTAssertNil(recError);
-                                [TRCPlayer playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
+                                TRCPlayer *player = [TRCPlayer new];
+                                [player playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
                                     XCTAssertNil(playError);
                                     [exp fulfill];
                                 }];
@@ -176,7 +178,8 @@
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
                                 XCTAssertNotNil(trace);
                                 XCTAssertNil(recError);
-                                [TRCPlayer playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
+                                TRCPlayer *player = [TRCPlayer new];
+                                [player playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
                                     XCTAssertNil(playError);
                                     [exp fulfill];
                                 }];
@@ -211,7 +214,8 @@
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
                                 XCTAssertNotNil(trace);
                                 XCTAssertNil(recError);
-                                [TRCPlayer playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
+                                TRCPlayer *player = [TRCPlayer new];
+                                [player playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
                                     XCTAssertNil(playError);
                                     [exp fulfill];
                                 }];
@@ -270,7 +274,8 @@
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
                                 XCTAssertNotNil(trace);
                                 XCTAssertNil(recError);
-                                [TRCPlayer playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
+                                TRCPlayer *player = [TRCPlayer new];
+                                [player playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
                                     XCTAssertNil(playError);
                                     [exp fulfill];
                                 }];

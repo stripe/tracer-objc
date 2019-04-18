@@ -27,21 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation TRCPlayer
 
-static TRCPlayer *_shared = nil;
-
 // example: creating a mock subclass
 //    NSString *className = trace[@"class"];
 //    Class mockClass = objc_allocateClassPair(NSClassFromString(className), "TraceClassMock", 0);
 //    objc_registerClassPair(mockClass);
 //    self.mock = [[mockClass alloc] init];
-
-+ (instancetype)shared {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _shared = [[TRCPlayer alloc] init];
-    });
-    return _shared;
-}
 
 - (instancetype)init {
     self = [super init];
@@ -58,10 +48,18 @@ static TRCPlayer *_shared = nil;
 
     NSString *traceId = [trace internalId];
 
+    void (^cleanup)() = ^void() {
+        // clear retained objects
+        [self.traceIdToObjectArgs removeObjectForKey:traceId];
+    };
+
     NSTimeInterval longestDelay = 0;
     BOOL stopPlaying = NO;
+    NSError *stopPlayingError = nil;
     for (TRCCall *call in trace.calls) {
-        if (stopPlaying) { break; }
+        if (stopPlaying) {
+            break;
+        }
 
         SEL aSelector = NSSelectorFromString(call.method);
         NSMethodSignature *signature = [target methodSignatureForSelector:aSelector];
@@ -73,8 +71,6 @@ static TRCPlayer *_shared = nil;
         longestDelay = MAX(longestDelay, delay);
 
         for (NSUInteger i = 0; i < [call.arguments count]; i++) {
-            if (stopPlaying) { break; }
-
             TRCValue *arg = call.arguments[i];
             // indices 0 and 1 indicate the hidden arguments self and _cmd
             NSUInteger index = i + 2;
@@ -86,18 +82,16 @@ static TRCPlayer *_shared = nil;
                     switch (objectType) {
                         case TRCObjectTypeNotAnObject: {
                             NSString *message = [NSString stringWithFormat:@"Invalid argument in trace: %@", arg.jsonObject];
-                            NSError *error = [TRCErrors buildError:TRCErrorPlaybackFailedUnexpectedError
+                             stopPlayingError = [TRCErrors buildError:TRCErrorPlaybackFailedUnexpectedError
                                                               call:call
                                                            message:message];
-                            completion(error);
                             stopPlaying = YES;
                         } break;
                         case TRCObjectTypeUnknownObject: {
                             NSString *message = [NSString stringWithFormat:@"Can't play argument containing unknown object: %@", arg.objectClass];
-                            NSError *error = [TRCErrors buildError:TRCErrorPlaybackFailedUnknownObject
+                            stopPlayingError = [TRCErrors buildError:TRCErrorPlaybackFailedUnknownObject
                                                               call:call
                                                            message:message];
-                            completion(error);
                             stopPlaying = YES;
                         } break;
                         case TRCObjectTypeJsonObject: break;
@@ -205,31 +199,24 @@ static TRCPlayer *_shared = nil;
                 case TRCTypeUnknown: {
                     NSString *typeString = [TRCValue stringFromType:type];
                     NSString *message = [NSString stringWithFormat:@"Can't play argument containing unsupported type: %@", typeString];
-                    NSError *error = [TRCErrors buildError:TRCErrorPlaybackFailedUnsupportedType
+                    stopPlayingError = [TRCErrors buildError:TRCErrorPlaybackFailedUnsupportedType
                                                       call:call
                                                    message:message];
-                    completion(error);
                     stopPlaying = YES;
                 }
             }
         }
 
-        trcDispatchToMainAfter(delay, ^{
-            [invocation invoke];
-        });
+        if (!stopPlaying) {
+            trcDispatchToMainAfter(delay, ^{
+                [invocation invoke];
+            });
+        }
     }
-    trcDispatchToMainAfter(longestDelay + 1, ^{
-        completion(nil);
-
-        // clear retained objects
-        [self.traceIdToObjectArgs removeObjectForKey:traceId];
+    trcDispatchToMainAfter(longestDelay, ^{
+        completion(stopPlayingError);
+        cleanup();
     });
-}
-
-+ (void)playTrace:(TRCTrace *)trace
-         onTarget:(id)target
-       completion:(TRCErrorCompletionBlock)completion {
-    [[TRCPlayer shared] playTrace:trace onTarget:target completion:completion];
 }
 
 @end

@@ -14,9 +14,31 @@ FOUNDATION_EXPORT NSString * const TRCErrorDomain;
 FOUNDATION_EXPORT NSString * const TRCErrorKeyCall;
 
 typedef NS_ERROR_ENUM(TRCErrorDomain, TRCError) {
-    TRCErrorPlaybackFailedUnexpectedError,
+    /**
+     Recording failed because the JSON representation of the trace is invalid.
+     */
+    TRCErrorRecordingFailedInvalidTraceJson,
+    /**
+     Recording failed because serializing the JSON trace to a string failed.
+     */
+    TRCErrorRecordingFailedTraceJsonSerializationError,
+    /**
+     Recording failed for an unexpected reason.
+     */
+    TRCErrorRecordingFailedUnexpectedError,
+    /**
+     Playback failed because the object is unknown.
+     TODO: docs on using a fixture provider
+     */
     TRCErrorPlaybackFailedUnknownObject,
+    /**
+     Playback failed because the object type is unsupported.
+     */
     TRCErrorPlaybackFailedUnsupportedType,
+    /**
+     Playback failed for an unexpected reason.
+     */
+    TRCErrorPlaybackFailedUnexpectedError,
 };
 
 NS_ASSUME_NONNULL_END

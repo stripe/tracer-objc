@@ -151,4 +151,8 @@
     NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
+- (void)ret_void__args_cgsize:(CGSize)s {
+    NSLog(@"%@", NSStringFromCGSize(s));
+}
+
 @end

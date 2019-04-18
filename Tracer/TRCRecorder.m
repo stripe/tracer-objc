@@ -15,6 +15,7 @@
 #import "TRCCall.h"
 #import "TRCTrace+Private.h"
 #import "NSDate+Tracer.h"
+#import "TRCErrors+Private.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -122,35 +123,38 @@ NS_ASSUME_NONNULL_BEGIN
     dispatch_async(self.tracesQueue, ^{
         TRCTrace *trace = self.keyToTrace[key];
         if (trace != nil) {
-            NSError *jsonWritingError;
-            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:trace.jsonObject
-                                                           options:(NSJSONWritingOptions)NSJSONWritingPrettyPrinted
-                                                             error:&jsonWritingError];
-            if (jsonWritingError != nil) {
-                NSLog(@"Failed to write trace json: %@", jsonWritingError);
+            if (![NSJSONSerialization isValidJSONObject:trace.jsonObject]) {
+                NSError *invalidJsonError = [TRCErrors buildError:TRCErrorRecordingFailedInvalidTraceJson];
+                completion(nil, invalidJsonError);
             }
             else {
-                NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-                if (jsonString == nil) {
-                    NSLog(@"Failed to decode trace json data");
+                NSError *jsonWritingError;
+                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:trace.jsonObject
+                                                                   options:(NSJSONWritingOptions)NSJSONWritingPrettyPrinted
+                                                                     error:&jsonWritingError];
+                if (jsonWritingError != nil) {
+                    completion(nil, jsonWritingError);
                 }
                 else {
-                    NSString *header = @"-----BEGIN TRACE JSON-----";
-                    NSString *footer = @"-----END TRACE JSON-----";
-                    NSArray *lines = @[
-                                         @"\n",
-                                         header,
-                                         @"\n",
-                                         jsonString,
-                                         @"\n",
-                                         footer,
-                                         @"\n",
-                                         ];
-                    NSString *message = [lines componentsJoinedByString:@""];
-                    NSLog(@"%@", message);
+                    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                    if (jsonString == nil) {
+                        NSError *serializationError = [TRCErrors buildError:TRCErrorRecordingFailedTraceJsonSerializationError];
+                        completion(nil, serializationError);
+                    }
+                    else {
+                        NSString *header = @"-----BEGIN TRACE JSON-----";
+                        NSString *footer = @"-----END TRACE JSON-----";
+                        NSArray *lines = @[
+                                           header,
+                                           jsonString,
+                                           footer,
+                                           ];
+                        NSString *message = [lines componentsJoinedByString:@"\n"];
+                        NSLog(@"%@", message);
+                    }
+                    completion(trace, nil);
                 }
             }
-            completion(trace, nil);
         }
         else {
             // TODO actual error

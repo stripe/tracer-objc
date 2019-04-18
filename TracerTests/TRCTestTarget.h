@@ -6,7 +6,7 @@
 //  Copyright © 2019 tracer. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  Not supported
@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // unsupported
 - (void)ret_void__args_object:(NSObject *)o;
+- (void)ret_void__args_cgsize:(CGSize)s;
 
 @end
 

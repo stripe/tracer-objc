@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TRCErrors: NSError
 
 + (NSError *)buildError:(TRCError)errorCode call:(TRCCall *)call message:(NSString *)message;
++ (NSError *)buildError:(TRCError)errorCode;
 
 @end
 

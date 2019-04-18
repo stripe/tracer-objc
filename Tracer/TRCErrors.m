@@ -16,6 +16,34 @@ NSString *const TRCErrorKeyCall = @"com.tracer:Call";
 
 @implementation TRCErrors
 
++ (NSString *)stringFromErrorCode:(TRCError)code {
+    switch (code) {
+        case TRCErrorRecordingFailedInvalidTraceJson:
+            return @"Recording failed because the JSON representation of the trace is invalid.";
+        case TRCErrorRecordingFailedTraceJsonSerializationError:
+            return @"Recording failed because serializing the JSON trace to a string failed.";
+        case TRCErrorRecordingFailedUnexpectedError:
+            return @"Recording failed for an unexpected reason.";
+        case TRCErrorPlaybackFailedUnknownObject:
+            return @"Playback failed because the object is unknown.";
+        case TRCErrorPlaybackFailedUnsupportedType:
+            return @"Playback failed because the object type is unsupported.";
+        case TRCErrorPlaybackFailedUnexpectedError:
+            return @"Playback failed for an unexpected reason.";
+    }
+}
+
++ (NSError *)buildError:(TRCError)errorCode {
+    NSString *message = [self stringFromErrorCode:errorCode];
+    NSDictionary *userInfo = @{
+                               NSLocalizedDescriptionKey: message,
+                               };
+    NSError *error = [NSError errorWithDomain:TRCErrorDomain
+                                         code:errorCode
+                                     userInfo:userInfo];
+    return error;
+}
+
 + (NSError *)buildError:(TRCError)errorCode call:(TRCCall *)call message:(NSString *)message {
     NSDictionary *userInfo = @{
                                NSLocalizedDescriptionKey: message,
