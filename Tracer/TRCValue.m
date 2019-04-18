@@ -34,7 +34,6 @@ static NSDictionary<NSNumber *, NSString *> *_typeToString;
         BOOL isObject = (type == TRCTypeObject);
         if (isObject) {
             NSString *classString = NSStringFromClass([boxedArgument class]);
-            // clean up internal types for json objects
             // NSString
             if ([classString containsString:@"NSCFConstantString"] ||
                 [classString containsString:@"NSCFString"]) {
@@ -54,23 +53,26 @@ static NSDictionary<NSNumber *, NSString *> *_typeToString;
                 _objectType = TRCObjectTypeJsonObject;
                 _objectValue = boxedArgument;
             }
-            // NSDictionary
-            else if ([classString containsString:@"NSSingleEntryDictionary"] ||
-                     [classString containsString:@"NSDictionary"]) {
-                classString = @"NSDictionary";
-                _objectType = TRCObjectTypeJsonObject;
-                _objectValue = boxedArgument;
-            }
-            // NSArray
-            else if ([classString containsString:@"NSSingleObjectArray"] ||
-                     [classString containsString:@"NSArray"]) {
-                classString = @"NSArray";
-                _objectType = TRCObjectTypeJsonObject;
-                _objectValue = boxedArgument;
-            }
+            // Valid JSON object
             else if ([NSJSONSerialization isValidJSONObject:boxedArgument]) {
                 _objectType = TRCObjectTypeJsonObject;
                 _objectValue = boxedArgument;
+            }
+            // NSDictionary, not valid JSON
+            else if ([classString containsString:@"NSSingleEntryDictionary"] ||
+                     [classString containsString:@"NSDictionary"]) {
+                classString = @"NSDictionary";
+                _objectType = TRCObjectTypeUnknownDictionary;
+                // TODO: surface unknown types within dict
+                _objectValue = [boxedArgument description];
+            }
+            // NSArray, not valid JSON
+            else if ([classString containsString:@"NSSingleObjectArray"] ||
+                     [classString containsString:@"NSArray"]) {
+                classString = @"NSArray";
+                _objectType = TRCObjectTypeUnknownArray;
+                // TODO: surface unknown types within array
+                _objectValue = [boxedArgument description];
             }
             else {
                 _objectType = TRCObjectTypeUnknownObject;
@@ -103,6 +105,10 @@ static NSDictionary<NSNumber *, NSString *> *_typeToString;
             return @"unknown_object";
         case TRCObjectTypeJsonObject:
             return @"json_object";
+        case TRCObjectTypeUnknownArray:
+            return @"unknown_array";
+        case TRCObjectTypeUnknownDictionary:
+            return @"unknown_dictionary";
     }
 }
 

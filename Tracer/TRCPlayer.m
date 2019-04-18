@@ -105,7 +105,10 @@ withFixtureProvider:(nullable id<TRCFixtureProvider>)fixtureProvider
                                                            message:message];
                             stopPlaying = YES;
                         } break;
-                        case TRCObjectTypeUnknownObject: {
+                        case TRCObjectTypeUnknownObject:
+                        case TRCObjectTypeUnknownArray:
+                        case TRCObjectTypeUnknownDictionary:
+                        {
                             if (fixtureProvider != nil) {
                                 __nullable id fixture = [fixtureProvider player:self didRequestFixtureForValue:arg];
                                 if (fixture == nil) {

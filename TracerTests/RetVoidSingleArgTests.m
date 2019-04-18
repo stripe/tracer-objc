@@ -52,9 +52,6 @@
                             [t ret_void__args_string:@"string"];
                         }),
                         (^{
-                            [t ret_void__args_int:100 string:@"string"];
-                        }),
-                        (^{
                             [recorder stopRecording:t protocol:@protocol(TRCTestProtocol) completion:^(TRCTrace * _Nullable trace, NSError * _Nullable recError) {
                                 XCTAssertNotNil(trace);
                                 XCTAssertNil(recError);

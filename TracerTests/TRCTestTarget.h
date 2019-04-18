@@ -8,23 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-/**
- Not supported
- - non-protocol methods
- - private methods
- - primitive arguments
- - class methods
-
- steipete/aspects doesn't support hooking class methods.
- possible alternative: https://github.com/Assuner-Lee/Stinger
- */
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TRCCustomObject : NSObject
-@property (nonatomic, strong) NSString *value;
-@end
+@class TRCCustomObject;
 
+/**
+ Unit tests are intentionally mock-free, for simplicity.
+ All method implementations assert on hardcoded expected values.
+ */
 @protocol TRCTestProtocol <NSObject>
 - (void)ret_void__args_none;
 - (void)ret_void__args_int:(int)i;
@@ -56,6 +47,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TRCTestTarget : NSObject <TRCTestProtocol>
 
+@end
+
+@interface TRCCustomObject : NSObject
+@property (nonatomic, strong) NSString *value;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -94,15 +94,25 @@
 }
 
 - (id)player:(TRCPlayer *)player didRequestFixtureForValue:(TRCValue *)value {
-    if ([value.objectClass isEqualToString:NSStringFromClass([TRCCustomObject class])]) {
+    NSString *customClassString = NSStringFromClass([TRCCustomObject class]);
+    // single fixture
+    if ([value.objectClass isEqualToString:customClassString]) {
         TRCCustomObject *fixture = [TRCCustomObject new];
         fixture.value = @"one";
         return fixture;
     }
-    else {
-        NSLog(@"%@", value);
-        return nil;
+    // fixture array
+    else if (value.objectType == TRCObjectTypeUnknownArray &&
+             [((NSString *)value.objectValue) containsString:customClassString]) {
+        TRCCustomObject *one = [TRCCustomObject new];
+        one.value = @"one";
+        TRCCustomObject *two = [TRCCustomObject new];
+        two.value = @"two";
+        TRCCustomObject *three = [TRCCustomObject new];
+        three.value = @"three";
+        return @[one, two, three];
     }
+    return nil;
 }
 
 @end

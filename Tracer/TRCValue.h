@@ -13,20 +13,34 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ A trace value.
+ A call's arguments are represented as an array of TRCValues.
+ */
+NS_SWIFT_NAME(TraceValue)
 @interface TRCValue : NSObject <TRCJsonEncodable>
 
+/**
+ The value's type.
+ */
 @property (atomic, readonly) TRCType type;
+
+/**
+ The value's object type.
+ */
 @property (atomic, readonly) TRCObjectType objectType;
 
 /**
- The argument's class. Nil if the argument is a primitive.
+ The value's class.
+ If the value has type Primitive, this is nil.
  */
 @property (atomic, nullable, readonly) NSString *objectClass;
 
 /**
- The argument's value.
- If the argument has type Primitive, this is the boxed value.
- If the argument has type UnknownObject, this is nil.
+ The value's object value.
+ If the value has type Primitive, this is the boxed value.
+ If the value has type UnknownObject, UnknownArray, or UnknownDictionary,
+ this is the String returned by the object's `description` selector.
  */
 @property (atomic, nullable, readonly) id objectValue;
 

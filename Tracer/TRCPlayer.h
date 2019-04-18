@@ -16,12 +16,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ Trace player
+ */
+NS_SWIFT_NAME(TracePlayer)
 @interface TRCPlayer : NSObject
 
 /**
  Plays a trace by performing recorded invocations on the main queue.
- Completes with nil if playback completed successfully, or nil if playback
- failed.
+ If playback fails, completes with an error.
+ If playback succeeds, completes with nil.
  */
 - (void)playTrace:(TRCTrace *)trace
          onTarget:(id)target
@@ -31,8 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
  Plays a trace by performing recorded invocations on the main queue.
  If an unknown object is encountered in the recorded trace, the player asks
  the fixture provider for a fixture.
- Completes with nil if playback completed successfully, or nil if playback
- failed.
+ If playback fails, completes with an error.
+ If playback succeeds, completes with nil.
  */
 - (void)playTrace:(TRCTrace *)trace
          onTarget:(id)target

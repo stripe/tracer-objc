@@ -38,5 +38,7 @@ typedef NS_ENUM(NSInteger, TRCType) {
 typedef NS_ENUM(NSUInteger, TRCObjectType) {
     TRCObjectTypeNotAnObject,
     TRCObjectTypeJsonObject,
+    TRCObjectTypeUnknownArray,
+    TRCObjectTypeUnknownDictionary,
     TRCObjectTypeUnknownObject,
 };

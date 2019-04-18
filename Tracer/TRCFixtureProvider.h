@@ -10,6 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ Fixture provider for a trace player.
+ */
+NS_SWIFT_NAME(FixtureProvider)
 @protocol TRCFixtureProvider <NSObject>
 
 /**

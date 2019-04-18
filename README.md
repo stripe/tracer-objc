@@ -2,7 +2,7 @@
 
 Tracer lets you record the behavior of arbitrary objects and play it back.
 
-Let's say you have a legacy dependency that calls your code. The interface is well-defined, but fairly complex (e.g. behavior varies depending on external input). You've developed a mental model for this complex behavior, and your code handles different behaviors well, but you have a hard time sharing your intuitive understanding of the system with collaborators, and your test coverage is low. 
+Let's say you have a legacy dependency that calls your code. The interface is well-defined, but fairly complex (e.g. behavior varies depending on external input). You've developed a mental model for this complex behavior, and your code handles different behaviors well, but you have a hard time sharing your intuitive understanding of the system with collaborators, and your test coverage is low.
 
 Logging, UI automation, HTTP-focused record & playback systems, and manual QA can all help in a situation like this, but it felt like there was a missing tool.
 
@@ -61,11 +61,3 @@ NSString *result = [thing someMethod:-100];
     // playback complete
 }];
 ```
-
-
-## TODO
-- [ ] automatically detect and trace completion blocks
-- [ ] detect when json encoding method is available for non-json object
-- [ ] add interface for injecting fixtures for non-json objects
-- [ ] how often does this work with swift
-- [ ] more exhaustive tests
