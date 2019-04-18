@@ -2,7 +2,7 @@
 
 Tracer lets you record & playback the behavior of arbitrary objects in Objective-C. (This may also be useful in Swift, but ymmv).
 
-Let's say you have a dependency in your code, `ThatThing`. You call `ThatThing`, it calls you back, and behavior varies depending on input. Testing this code is hard.
+Let's say you have a dependency in your code, `ThatThing`. You call `ThatThing`, it calls you back, and behavior varies depending on input. Testing complex async behavior is hard, especially if you don't control the source of behavior.
 
 ```objective-c
 @protocol ThatInterface <NSObject>
@@ -17,7 +17,7 @@ Let's say you have a dependency in your code, `ThatThing`. You call `ThatThing`,
 @end
 ```
 
-Tracer lets you record the behavior of this object as a trace:
+Tracer lets you record the behavior of `ThatThing` as a trace:
 
 ```objective-c
 ThatThing *thing = [ThatThing new];
@@ -31,7 +31,7 @@ NSString *result = [thing someCommand:-100];
 
 After recording completes, Tracer prints the trace to the console as JSON, which you can save to a file:
 
-```json
+```txt
 2019-04-17 23:01:22.689124-0700 xctest[62038:4377601] -----BEGIN TRACE JSON-----
 {
   "start_ms" : 1551678464427,
@@ -60,7 +60,7 @@ After recording completes, Tracer prints the trace to the console as JSON, which
 -----END TRACE JSON-----
 ```
 
-In your tests, instead of painstakingly mocking the behavior of `ThatThing`, you can simply playback a recorded trace:
+In your tests, instead of mocking the complex async behavior of `ThatThing`, you can playback a recorded trace:
 
 ```objective-c
 ThatThing *thing = [ThatThing new];
