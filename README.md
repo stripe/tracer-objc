@@ -1,6 +1,6 @@
 # Tracer 
 
-Tracer is an _experimental_ testing tool that lets you record & play back the behavior of arbitrary objects in Objective-C.
+Tracer is an experimental testing tool that lets you record & play back the behavior of arbitrary objects in Objective-C.
 
 Let's say you have a dependency in your code, `ThatThing`. You call `ThatThing`, it calls you back, and behavior varies depending on user input or environmental factors. 
 
