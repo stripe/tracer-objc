@@ -36,6 +36,10 @@ typedef NS_ERROR_ENUM(TRCErrorDomain, TRCError) {
      */
     TRCErrorPlaybackFailedUnsupportedType,
     /**
+     Playback failed because the fixture provider return nil for a requested value.
+     */
+    TRCErrorPlaybackFailedFixtureProviderReturnedNil,
+    /**
      Playback failed for an unexpected reason.
      */
     TRCErrorPlaybackFailedUnexpectedError,

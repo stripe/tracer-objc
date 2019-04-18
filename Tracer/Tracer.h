@@ -15,5 +15,6 @@
 #import "TRCType.h"
 #import "TRCValue.h"
 #import "TRCErrors.h"
+#import "TRCFixtureProvider.h"
 
 

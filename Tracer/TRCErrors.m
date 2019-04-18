@@ -28,6 +28,8 @@ NSString *const TRCErrorKeyCall = @"com.tracer:Call";
             return @"Playback failed because the object is unknown.";
         case TRCErrorPlaybackFailedUnsupportedType:
             return @"Playback failed because the object type is unsupported.";
+        case TRCErrorPlaybackFailedFixtureProviderReturnedNil:
+            return @"Playback failed because the fixture provider return nil for a requested value.";
         case TRCErrorPlaybackFailedUnexpectedError:
             return @"Playback failed for an unexpected reason.";
     }

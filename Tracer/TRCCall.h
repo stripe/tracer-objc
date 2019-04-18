@@ -21,19 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (atomic, readonly) NSUInteger millis;
 @property (atomic, readonly) TRCValue *returnValue;
 
-/**
- might be able to consolidate some of these arguments
-
- @param selector     selector reference, before hooking
- @param invocation   invocation, from TRCAspects
- @param arguments    arguments, built from method sig and invocation
- @param millis       timestamp for method call
- */
-- (instancetype)initWithSelector:(SEL)selector
-                      invocation:(NSInvocation *)invocation
-                         arguments:(NSArray<TRCValue*>*)arguments
-                            millis:(NSUInteger)millis;
-
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 

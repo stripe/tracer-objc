@@ -16,6 +16,7 @@
 #import "TRCDispatchFunctions.h"
 #import "TRCNotNil.h"
 #import "TRCErrors+Private.h"
+#import "TRCFixtureProvider.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -26,12 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @implementation TRCPlayer
-
-// example: creating a mock subclass
-//    NSString *className = trace[@"class"];
-//    Class mockClass = objc_allocateClassPair(NSClassFromString(className), "TraceClassMock", 0);
-//    objc_registerClassPair(mockClass);
-//    self.mock = [[mockClass alloc] init];
 
 - (instancetype)init {
     self = [super init];
@@ -44,11 +39,31 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)playTrace:(TRCTrace *)trace
          onTarget:(id)target
        completion:(TRCErrorCompletionBlock)completion {
+    [self _playTrace:trace
+           onTarget:target
+withFixtureProvider:nil
+         completion:completion];
+}
+
+- (void)playTrace:(TRCTrace *)trace
+          onTarget:(id)target
+withFixtureProvider:(id<TRCFixtureProvider>)fixtureProvider
+        completion:(TRCErrorCompletionBlock)completion {
+    [self _playTrace:trace
+            onTarget:target
+ withFixtureProvider:fixtureProvider
+          completion:completion];
+}
+
+- (void)_playTrace:(TRCTrace *)trace
+         onTarget:(id)target
+withFixtureProvider:(nullable id<TRCFixtureProvider>)fixtureProvider
+       completion:(TRCErrorCompletionBlock)completion {
     // TODO: validate target against trace
 
     NSString *traceId = [trace internalId];
 
-    void (^cleanup)() = ^void() {
+    void (^cleanup)(void) = ^void() {
         // clear retained objects
         [self.traceIdToObjectArgs removeObjectForKey:traceId];
     };
@@ -79,6 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
             TRCType type = arg.type;
             switch (type) {
                 case TRCTypeObject: {
+                    id invocationArgument = nil;
                     switch (objectType) {
                         case TRCObjectTypeNotAnObject: {
                             NSString *message = [NSString stringWithFormat:@"Invalid argument in trace: %@", arg.jsonObject];
@@ -88,11 +104,23 @@ NS_ASSUME_NONNULL_BEGIN
                             stopPlaying = YES;
                         } break;
                         case TRCObjectTypeUnknownObject: {
-                            NSString *message = [NSString stringWithFormat:@"Can't play argument containing unknown object: %@", arg.objectClass];
-                            stopPlayingError = [TRCErrors buildError:TRCErrorPlaybackFailedUnknownObject
-                                                              call:call
-                                                           message:message];
-                            stopPlaying = YES;
+                            if (fixtureProvider != nil) {
+                                __nullable id fixture = [fixtureProvider player:self didRequestFixtureForValue:arg];
+                                if (fixture == nil) {
+                                    stopPlayingError = [TRCErrors buildError:TRCErrorPlaybackFailedFixtureProviderReturnedNil];
+                                    stopPlaying = YES;
+                                }
+                                else {
+                                    invocationArgument = fixture;
+                                }
+                            }
+                            else {
+                                NSString *message = [NSString stringWithFormat:@"Can't play argument containing unknown object: %@", arg.objectClass];
+                                stopPlayingError = [TRCErrors buildError:TRCErrorPlaybackFailedUnknownObject
+                                                                    call:call
+                                                                 message:message];
+                                stopPlaying = YES;
+                            }
                         } break;
                         case TRCObjectTypeJsonObject: break;
                     }
@@ -102,10 +130,12 @@ NS_ASSUME_NONNULL_BEGIN
                     if (argIdToArg == nil) {
                         argIdToArg = [NSMutableDictionary new];
                     }
-                    id object = (NSObject *)objectValue;
-                    argIdToArg[argId] = object;
+                    if (invocationArgument == nil) {
+                        invocationArgument = (NSObject *)objectValue;
+                    }
+                    argIdToArg[argId] = invocationArgument;
                     self.traceIdToObjectArgs[traceId] = argIdToArg;
-                    [invocation setArgument:&object atIndex:index];
+                    [invocation setArgument:&invocationArgument atIndex:index];
                 } break;
                 case TRCTypeInt: {
                     int value;

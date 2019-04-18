@@ -12,7 +12,7 @@
 
 #import "TRCValue+Private.h"
 #import "TRCAspects.h"
-#import "TRCCall.h"
+#import "TRCCall+Private.h"
 #import "TRCTrace+Private.h"
 #import "NSDate+Tracer.h"
 #import "TRCErrors+Private.h"
