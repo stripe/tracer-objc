@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
     return [json copy];
 }
 
-+ (NSData *)dataFromJSONFile:(NSString *)name {
++ (nullable NSData *)dataFromJSONFile:(NSString *)name {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *path = [bundle pathForResource:name ofType:@"json"];
     if (!path) {
