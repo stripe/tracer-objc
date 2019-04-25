@@ -66,6 +66,8 @@ NS_ASSUME_NONNULL_BEGIN
         [methodSigs addObject:sig];
     }
 
+    NSLog(@"TRACER: method count %@", @(methodCount));
+    NSLog(@"TRACER: hooking selectors %@", methodSelectors);
     // hook selectors to record calls
     for (NSUInteger i = 0; i < [methodSelectors count]; i++) {
         NSValue *selValue = methodSelectors[i];
