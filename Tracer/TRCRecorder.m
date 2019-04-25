@@ -102,6 +102,7 @@ NS_ASSUME_NONNULL_BEGIN
                                                    invocation:info.originalInvocation
                                                       arguments:[args copy]
                                                          millis:ms];
+            NSLog(@"TRACER: call %@", call);
             dispatch_async(self.tracesQueue, ^{
                 TRCTrace *trace = self.keyToTrace[key];
                 if (trace == nil) {
@@ -168,7 +169,7 @@ NS_ASSUME_NONNULL_BEGIN
             }
         }
         else {
-            NSLog(@"keyToTrace: %@", self.keyToTrace);
+            NSLog(@"TRACER keyToTrace: %@", self.keyToTrace);
             NSError *error = [TRCErrors buildError:TRCErrorRecordingFailedUnexpectedError];
             completion(nil, error);
         }
