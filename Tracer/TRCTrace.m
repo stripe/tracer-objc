@@ -22,11 +22,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation TRCTrace
 
-+ (nullable instancetype)loadFromJSONFile:(NSString *)filename {
-    NSData *data = [self dataFromJSONFile:filename];
++ (nullable instancetype)loadFromJSONFile:(NSString *)filename bundle:(nonnull NSBundle *)bundle {
+    NSData *data = [self dataFromJSONFile:filename bundle:bundle];
+    NSDictionary *json;
     if (data != nil) {
-        return [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingOptions)kNilOptions error:nil];
+        json = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingOptions)kNilOptions error:nil];
     }
+    if (json != nil) {
+        return [self decodedObjectFromJson:json];
+    }
+    return nil;
+}
+
++ (nullable instancetype)decodedObjectFromJson:(nullable NSDictionary *)json {
     return nil;
 }
 
@@ -65,8 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
     return [json copy];
 }
 
-+ (nullable NSData *)dataFromJSONFile:(NSString *)name {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
++ (nullable NSData *)dataFromJSONFile:(NSString *)name bundle:(NSBundle *)bundle {
     NSString *path = [bundle pathForResource:name ofType:@"json"];
     if (!path) {
         return nil;
@@ -77,7 +84,17 @@ NS_ASSUME_NONNULL_BEGIN
     if (!jsonString) {
         return nil;
     }
-    return [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+
+    // Strip all lines that begin with `//`
+    NSMutableArray *jsonLines = [[NSMutableArray alloc] init];
+
+    for (NSString *line in [jsonString componentsSeparatedByString:@"\n"]) {
+        if (![line hasPrefix:@"//"]) {
+            [jsonLines addObject:line];
+        }
+    }
+
+    return [[jsonLines componentsJoinedByString:@"\n"] dataUsingEncoding:NSUTF8StringEncoding];
 }
 
 - (NSString *)description {

@@ -17,11 +17,18 @@
 
 @implementation LoadFromFileTests
 
+- (void)testLoadFromJSONFile {
+    NSBundle *testBundle = [NSBundle bundleForClass:[self class]];
+    TRCTrace *trace = [TRCTrace loadFromJSONFile:@"trace_bt_scan_connect" bundle:testBundle];
+    XCTAssertNotNil(trace);
+}
+
 - (void)testPlaybackFromFile {
     XCTestExpectation *exp = [self expectationWithDescription:@"done"];
     TRCTestTarget *t = [[TRCTestTarget alloc] init];
     TRCPlayer *player = [TRCPlayer new];
-    TRCTrace *trace = [TRCTrace loadFromJSONFile:@"saved_trace"];
+    NSBundle *testBundle = [NSBundle bundleForClass:[self class]];
+    TRCTrace *trace = [TRCTrace loadFromJSONFile:@"saved_trace" bundle:testBundle];
     [player playTrace:trace onTarget:t completion:^(NSError * _Nullable playError) {
         XCTAssertNil(playError);
         [exp fulfill];

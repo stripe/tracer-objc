@@ -1,6 +1,6 @@
 //
 //  TRCNotNil.h
-//  StripeTerminal
+//  Tracer
 //
 //  Created by Ben Guo on 1/11/18.
 //  Copyright © 2018 Stripe. All rights reserved.

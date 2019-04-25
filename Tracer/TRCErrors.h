@@ -15,7 +15,7 @@ FOUNDATION_EXPORT NSString * const TRCErrorDomain;
 
 /**
  Use this enum to access userInfo keys for NSError objects under the
- SCPErrorDomain domain.
+ TRCErrorDomain domain.
  */
 NS_SWIFT_NAME(ErrorKey)
 typedef NSString *const TRCErrorKey NS_STRING_ENUM;
@@ -26,7 +26,7 @@ typedef NSString *const TRCErrorKey NS_STRING_ENUM;
 FOUNDATION_EXPORT TRCErrorKey const TRCErrorKeyCall;
 
 /**
- Possible error codes for NSError objects under the SCPErrorDomain domain.
+ Possible error codes for NSError objects under the TRCErrorDomain domain.
  */
 typedef NS_ERROR_ENUM(TRCErrorDomain, TRCError) {
 

@@ -10,6 +10,7 @@
 #import "TRCPlayer.h"
 #import "TRCCall.h"
 #import "TRCBlocks.h"
+#import "TRCJsonDecodable.h"
 #import "TRCJsonEncodable.h"
 #import "TRCTrace.h"
 #import "TRCType.h"

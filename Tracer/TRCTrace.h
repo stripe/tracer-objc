@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "TRCJsonDecodable.h"
 #import "TRCJsonEncodable.h"
 
 @class TRCCall;
@@ -18,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  A trace. A trace is a timeseries of calls.
  */
 NS_SWIFT_NAME(Trace)
-@interface TRCTrace : NSObject <TRCJsonEncodable>
+@interface TRCTrace : NSObject <TRCJsonEncodable, TRCJsonDecodable>
 
 /**
  The recorded calls.
@@ -31,9 +32,10 @@ NS_SWIFT_NAME(Trace)
 @property (atomic, readonly) NSString *protocol;
 
 /**
- Loads a trace from a file.
+ Loads a trace from a file in the given bundle.
  */
-+ (nullable instancetype)loadFromJSONFile:(NSString *)filename;
++ (nullable instancetype)loadFromJSONFile:(NSString *)filename
+                                   bundle:(NSBundle *)bundle;
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;

@@ -20,6 +20,14 @@
 		C10CCD39222CDF1100F6E604 /* RetValueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C10CCD38222CDF1100F6E604 /* RetValueTests.m */; };
 		C10CCD3B222CE08500F6E604 /* TRCType.h in Headers */ = {isa = PBXBuildFile; fileRef = C10CCD3A222CE08500F6E604 /* TRCType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C10CCD3D222CE13000F6E604 /* TRCValue.h in Headers */ = {isa = PBXBuildFile; fileRef = C10CCD3C222CE13000F6E604 /* TRCValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C118071422722A790048BB83 /* trace_bt_scan_connect.json in Resources */ = {isa = PBXBuildFile; fileRef = C118071322722A790048BB83 /* trace_bt_scan_connect.json */; };
+		C118071622722D980048BB83 /* TRCJsonDecodable.h in Headers */ = {isa = PBXBuildFile; fileRef = C118071522722D980048BB83 /* TRCJsonDecodable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C118071822722EC30048BB83 /* NSDictionary+TracerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C118071722722EC30048BB83 /* NSDictionary+TracerTests.m */; };
+		C118071B22722EE60048BB83 /* NSDictionary+Tracer.h in Headers */ = {isa = PBXBuildFile; fileRef = C118071922722EE50048BB83 /* NSDictionary+Tracer.h */; };
+		C118071C22722EE60048BB83 /* NSDictionary+Tracer.m in Sources */ = {isa = PBXBuildFile; fileRef = C118071A22722EE60048BB83 /* NSDictionary+Tracer.m */; };
+		C118071F2272308C0048BB83 /* NSArray+Tracer.h in Headers */ = {isa = PBXBuildFile; fileRef = C118071D2272308C0048BB83 /* NSArray+Tracer.h */; };
+		C11807202272308C0048BB83 /* NSArray+Tracer.m in Sources */ = {isa = PBXBuildFile; fileRef = C118071E2272308C0048BB83 /* NSArray+Tracer.m */; };
+		C1180722227230940048BB83 /* NSArray+TracerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1180721227230940048BB83 /* NSArray+TracerTests.m */; };
 		C1570DE122683245000F3D04 /* TRCFixtureProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = C1570DE022683245000F3D04 /* TRCFixtureProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C1570DE3226837B9000F3D04 /* FixtureProviderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1570DE2226837B9000F3D04 /* FixtureProviderTests.m */; };
 		C1570DE522684756000F3D04 /* LoadFromFileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1570DE422684756000F3D04 /* LoadFromFileTests.m */; };
@@ -66,6 +74,14 @@
 		C10CCD38222CDF1100F6E604 /* RetValueTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RetValueTests.m; sourceTree = "<group>"; };
 		C10CCD3A222CE08500F6E604 /* TRCType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRCType.h; sourceTree = "<group>"; };
 		C10CCD3C222CE13000F6E604 /* TRCValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRCValue.h; sourceTree = "<group>"; };
+		C118071322722A790048BB83 /* trace_bt_scan_connect.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = trace_bt_scan_connect.json; sourceTree = "<group>"; };
+		C118071522722D980048BB83 /* TRCJsonDecodable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRCJsonDecodable.h; sourceTree = "<group>"; };
+		C118071722722EC30048BB83 /* NSDictionary+TracerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+TracerTests.m"; sourceTree = "<group>"; };
+		C118071922722EE50048BB83 /* NSDictionary+Tracer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Tracer.h"; sourceTree = "<group>"; };
+		C118071A22722EE60048BB83 /* NSDictionary+Tracer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Tracer.m"; sourceTree = "<group>"; };
+		C118071D2272308C0048BB83 /* NSArray+Tracer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Tracer.h"; sourceTree = "<group>"; };
+		C118071E2272308C0048BB83 /* NSArray+Tracer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Tracer.m"; sourceTree = "<group>"; };
+		C1180721227230940048BB83 /* NSArray+TracerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+TracerTests.m"; sourceTree = "<group>"; };
 		C1570DE022683245000F3D04 /* TRCFixtureProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRCFixtureProvider.h; sourceTree = "<group>"; };
 		C1570DE2226837B9000F3D04 /* FixtureProviderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FixtureProviderTests.m; sourceTree = "<group>"; };
 		C1570DE422684756000F3D04 /* LoadFromFileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadFromFileTests.m; sourceTree = "<group>"; };
@@ -132,6 +148,10 @@
 				C1D7ABEC222114300040808A /* NSDate+Tracer.m */,
 				C106B34F222144EC00504CF9 /* TRCDispatchFunctions.h */,
 				C106B350222144EC00504CF9 /* TRCDispatchFunctions.m */,
+				C118071922722EE50048BB83 /* NSDictionary+Tracer.h */,
+				C118071A22722EE60048BB83 /* NSDictionary+Tracer.m */,
+				C118071D2272308C0048BB83 /* NSArray+Tracer.h */,
+				C118071E2272308C0048BB83 /* NSArray+Tracer.m */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -160,6 +180,7 @@
 				C1D7ABC2222102E30040808A /* Tracer.h */,
 				C106B33E2221207300504CF9 /* TRCBlocks.h */,
 				C106B33C22211F7A00504CF9 /* TRCJsonEncodable.h */,
+				C118071522722D980048BB83 /* TRCJsonDecodable.h */,
 				C1D7ABD9222103050040808A /* TRCRecorder.h */,
 				C1D7ABDA222103050040808A /* TRCRecorder.m */,
 				C1570DE022683245000F3D04 /* TRCFixtureProvider.h */,
@@ -191,7 +212,10 @@
 				C1570DE422684756000F3D04 /* LoadFromFileTests.m */,
 				C1D7ABE5222104670040808A /* TRCTestTarget.h */,
 				C106B3472221445300504CF9 /* TRCTestTarget.m */,
+				C118071722722EC30048BB83 /* NSDictionary+TracerTests.m */,
+				C1180721227230940048BB83 /* NSArray+TracerTests.m */,
 				C1570DE622684A00000F3D04 /* saved_trace.json */,
+				C118071322722A790048BB83 /* trace_bt_scan_connect.json */,
 				C1D7ABCF222102E30040808A /* Info.plist */,
 			);
 			path = TracerTests;
@@ -207,6 +231,7 @@
 				C106B33F2221207300504CF9 /* TRCBlocks.h in Headers */,
 				C1D7ABF522211CE50040808A /* TRCTrace.h in Headers */,
 				C10CCD3D222CE13000F6E604 /* TRCValue.h in Headers */,
+				C118071622722D980048BB83 /* TRCJsonDecodable.h in Headers */,
 				C10CCD3B222CE08500F6E604 /* TRCType.h in Headers */,
 				C1D7ABDB222103050040808A /* TRCRecorder.h in Headers */,
 				C1570DE122683245000F3D04 /* TRCFixtureProvider.h in Headers */,
@@ -217,6 +242,8 @@
 				C1D7ABE4222104080040808A /* TRCAspects.h in Headers */,
 				C1D7ABD0222102E30040808A /* Tracer.h in Headers */,
 				C1A51A9F223E218B009C5F81 /* TRCErrors.h in Headers */,
+				C118071B22722EE60048BB83 /* NSDictionary+Tracer.h in Headers */,
+				C118071F2272308C0048BB83 /* NSArray+Tracer.h in Headers */,
 				C106B34A2221446800504CF9 /* TRCTestTarget.h in Headers */,
 				C106B33D22211F7B00504CF9 /* TRCJsonEncodable.h in Headers */,
 				C1D7ABED222114300040808A /* NSDate+Tracer.h in Headers */,
@@ -310,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1570DE722684A01000F3D04 /* saved_trace.json in Resources */,
+				C118071422722A790048BB83 /* trace_bt_scan_connect.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,9 +355,11 @@
 				C1D7ABDC222103050040808A /* TRCRecorder.m in Sources */,
 				C1D7ABE3222104080040808A /* TRCAspects.m in Sources */,
 				C1A51AA0223E218B009C5F81 /* TRCErrors.m in Sources */,
+				C11807202272308C0048BB83 /* NSArray+Tracer.m in Sources */,
 				C106B344222126A100504CF9 /* TRCPlayer.m in Sources */,
 				C1D7ABEE222114300040808A /* NSDate+Tracer.m in Sources */,
 				C1B89DEA22251D3A00A9A73D /* TRCValue.m in Sources */,
+				C118071C22722EE60048BB83 /* NSDictionary+Tracer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,10 +367,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C118071822722EC30048BB83 /* NSDictionary+TracerTests.m in Sources */,
 				C106B3482221445300504CF9 /* TRCTestTarget.m in Sources */,
 				C1D7ABCE222102E30040808A /* RetVoidSingleArgTests.m in Sources */,
 				C1570DE3226837B9000F3D04 /* FixtureProviderTests.m in Sources */,
 				C10CCD39222CDF1100F6E604 /* RetValueTests.m in Sources */,
+				C1180722227230940048BB83 /* NSArray+TracerTests.m in Sources */,
 				C106B353222144F800504CF9 /* TRCDispatchFunctions.m in Sources */,
 				C1570DE522684756000F3D04 /* LoadFromFileTests.m in Sources */,
 				C1A51A9A223E18AF009C5F81 /* RetVoidMultiArgTests.m in Sources */,
