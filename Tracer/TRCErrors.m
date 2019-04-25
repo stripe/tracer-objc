@@ -24,6 +24,8 @@ NSString *const TRCErrorKeyCall = @"com.tracer:Call";
             return @"Recording failed because serializing the JSON trace to a string failed.";
         case TRCErrorRecordingFailedUnexpectedError:
             return @"Recording failed for an unexpected reason.";
+        case TRCErrorRecordingFailedTraceNotFound:
+            return @"Recording failed because no active trace was found matching the given input.";
         case TRCErrorPlaybackFailedUnknownObject:
             return @"Playback failed because the object is unknown.";
         case TRCErrorPlaybackFailedUnsupportedType:
@@ -32,6 +34,8 @@ NSString *const TRCErrorKeyCall = @"com.tracer:Call";
             return @"Playback failed because the fixture provider return nil for a requested value.";
         case TRCErrorPlaybackFailedUnexpectedError:
             return @"Playback failed for an unexpected reason.";
+        case TRCErrorPlaybackFailedNilTrace:
+            return @"Playback failed because the trace is nil.";
     }
 }
 

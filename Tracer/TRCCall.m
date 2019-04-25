@@ -172,7 +172,7 @@ NS_ASSUME_NONNULL_BEGIN
         default: break;
     }
     TRCValue *value = [[TRCValue alloc] initWithTypeEncoding:encodingString
-                                               boxedArgument:returnValue];
+                                               boxedArgument:returnValue ?: @(0)];
     return value;
 }
 

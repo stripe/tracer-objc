@@ -60,6 +60,11 @@ withFixtureProvider:(id<TRCFixtureProvider>)fixtureProvider
 withFixtureProvider:(nullable id<TRCFixtureProvider>)fixtureProvider
        completion:(TRCErrorCompletionBlock)completion {
     // TODO: validate target against trace
+    if (trace == nil) {
+        NSError *error = [TRCErrors buildError:TRCErrorPlaybackFailedNilTrace];
+        completion(error);
+        return;
+    }
 
     NSString *traceId = [trace internalId];
 

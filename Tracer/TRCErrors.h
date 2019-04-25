@@ -29,6 +29,7 @@ FOUNDATION_EXPORT TRCErrorKey const TRCErrorKeyCall;
  Possible error codes for NSError objects under the SCPErrorDomain domain.
  */
 typedef NS_ERROR_ENUM(TRCErrorDomain, TRCError) {
+
     /**
      Recording failed for an unexpected reason.
      */
@@ -41,6 +42,11 @@ typedef NS_ERROR_ENUM(TRCErrorDomain, TRCError) {
      Recording failed because serializing the JSON trace to a string failed.
      */
     TRCErrorRecordingFailedTraceJsonSerializationError = 1002,
+    /**
+     Recording failed because no active trace was found matching the given
+     input.
+     */
+    TRCErrorRecordingFailedTraceNotFound = 1003,
 
     /**
      Playback failed for an unexpected reason.
@@ -59,6 +65,11 @@ typedef NS_ERROR_ENUM(TRCErrorDomain, TRCError) {
      Playback failed because the fixture provider return nil for a requested value.
      */
     TRCErrorPlaybackFailedFixtureProviderReturnedNil = 2003,
+    /**
+     Playback failed because the trace is nil.
+     */
+    TRCErrorPlaybackFailedNilTrace = 2004,
+
 } NS_SWIFT_NAME(ErrorCode);
 
 NS_ASSUME_NONNULL_END

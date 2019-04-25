@@ -157,8 +157,7 @@ NS_ASSUME_NONNULL_BEGIN
             }
         }
         else {
-            // TODO actual error
-            NSError *error = [NSError errorWithDomain:@"tracer" code:0 userInfo:nil];
+            NSError *error = [TRCErrors buildError:TRCErrorRecordingFailedUnexpectedError];
             completion(nil, error);
         }
         [self.keyToTrace removeObjectForKey:key];
