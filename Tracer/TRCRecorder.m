@@ -123,10 +123,13 @@ NS_ASSUME_NONNULL_BEGIN
     dispatch_async(self.tracesQueue, ^{
         // load trace
         TRCTrace *trace;
-        if ([[self.keyToTrace allValues] count] == 1) {
-            trace = [[self.keyToTrace allValues] firstObject];
+        if ([[self.keyToTrace allKeys] count] == 1) {
+            NSLog(@"TRACER: one key");
+            NSString *firstKey = [[self.keyToTrace allKeys] firstObject];
+            trace = self.keyToTrace[firstKey];
         }
         else {
+            NSLog(@"TRACER: key %@", key);
             trace = self.keyToTrace[key];
         }
 
@@ -165,6 +168,7 @@ NS_ASSUME_NONNULL_BEGIN
             }
         }
         else {
+            NSLog(@"keyToTrace: %@", self.keyToTrace);
             NSError *error = [TRCErrors buildError:TRCErrorRecordingFailedUnexpectedError];
             completion(nil, error);
         }
