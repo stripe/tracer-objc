@@ -67,7 +67,6 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     NSLog(@"TRACER: method count %@", @(methodCount));
-    NSLog(@"TRACER: hooking selectors %@", methodSelectors);
     // hook selectors to record calls
     for (NSUInteger i = 0; i < [methodSelectors count]; i++) {
         NSValue *selValue = methodSelectors[i];
@@ -88,6 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
 
         SEL sel = (SEL)selValue.pointerValue;
         Class klass = [source class];
+        NSLog(@"TRACER: hooking selector %@", NSStringFromSelector(sel));
         [klass trc_aspect_hookSelector:sel withOptions:TRCAspectPositionAfter usingBlock:^(id<TRCAspectInfo> info){
             NSUInteger ms = [[NSDate date] trc_millisSinceDate:start];
 
