@@ -121,7 +121,15 @@ NS_ASSUME_NONNULL_BEGIN
            completion:(TRCTraceCompletionBlock)completion {
     NSString *key = [self buildKeyWithSource:source protocol:protocol];
     dispatch_async(self.tracesQueue, ^{
-        TRCTrace *trace = self.keyToTrace[key];
+        // load trace
+        TRCTrace *trace;
+        if ([[self.keyToTrace allValues] count] == 1) {
+            trace = [[self.keyToTrace allValues] firstObject];
+        }
+        else {
+            trace = self.keyToTrace[key];
+        }
+
         if (trace != nil) {
             if (![NSJSONSerialization isValidJSONObject:trace.jsonObject]) {
                 NSError *invalidJsonError = [TRCErrors buildError:TRCErrorRecordingFailedInvalidTraceJson];
