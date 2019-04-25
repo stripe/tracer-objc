@@ -10,6 +10,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "NSDictionary+Tracer.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TRCValue ()
@@ -24,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation TRCValue
 
 static NSDictionary<NSNumber *, NSString *> *_typeToString;
+static NSDictionary<NSNumber *, NSString *> *_objectTypeToString;
 
 - (instancetype)initWithTypeEncoding:(NSString *)encoding
                        boxedArgument:(id)boxedArgument {
@@ -87,29 +90,45 @@ static NSDictionary<NSNumber *, NSString *> *_typeToString;
     return self;
 }
 
++ (nullable instancetype)decodedObjectFromJson:(nullable NSDictionary *)json {
+    // precheck
+    if (!json) {
+        return nil;
+    }
+    NSDictionary *dict = [json trc_dictionaryByRemovingNulls];
+    NSString *object = [dict trc_stringForKey:@"trace_object"];
+    if (![object isEqualToString:@"value"]) {
+        return nil;
+    }
+
+    // props
+    NSString *rawType = [json trc_stringForKey:@"type"];
+    NSString *rawObjectType = [json trc_stringForKey:@"object_type"];
+    NSString *classString = [json trc_stringForKey:@"object_class"];
+    NSNumber *boxedType = [[self class] typeFromString:rawType];
+    NSNumber *boxedObjectType = [[self class] objectTypeFromString:rawObjectType];
+    id objectValue = [json objectForKey:@"object_value"];
+    if (!boxedType || !boxedObjectType) {
+        return nil;
+    }
+
+    // assemble
+    TRCValue *decoded = [TRCValue new];
+    decoded.type = [boxedType unsignedIntegerValue];
+    decoded.objectType = [boxedObjectType unsignedIntegerValue];
+    decoded.objectClass = classString;
+    decoded.objectValue = objectValue;
+    return decoded;
+}
+
 - (NSObject *)jsonObject {
     NSMutableDictionary *json = [NSMutableDictionary new];
-    json[@"id"] = @"value";
+    json[@"trace_object"] = @"value";
     json[@"type"] = [[self class] stringFromType:self.type];
     json[@"object_type"] = [[self class] stringFromObjectType:self.objectType];
     json[@"object_class"] = self.objectClass;
     json[@"object_value"] = self.objectValue;
     return [json copy];
-}
-
-+ (NSString *)stringFromObjectType:(TRCObjectType)type {
-    switch (type) {
-        case TRCObjectTypeNotAnObject:
-            return @"not_an_object";
-        case TRCObjectTypeUnknownObject:
-            return @"unknown_object";
-        case TRCObjectTypeJsonObject:
-            return @"json_object";
-        case TRCObjectTypeUnknownArray:
-            return @"unknown_array";
-        case TRCObjectTypeUnknownDictionary:
-            return @"unknown_dictionary";
-    }
 }
 
 /**
@@ -208,6 +227,30 @@ static NSDictionary<NSNumber *, NSString *> *_typeToString;
 
 + (nullable NSNumber *)typeFromString:(NSString *)string {
     NSDictionary<NSNumber *, NSString *>*mapping = [self typeToString];
+    return [[mapping allKeysForObject:string] firstObject];
+}
+
++ (NSDictionary<NSNumber *, NSString *>*)objectTypeToString {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _objectTypeToString = @{
+                          @(TRCObjectTypeNotAnObject): @"not_an_object",
+                          @(TRCObjectTypeUnknownObject): @"unknown_object",
+                          @(TRCObjectTypeJsonObject): @"json_object",
+                          @(TRCObjectTypeUnknownArray): @"unknown_array",
+                          @(TRCObjectTypeUnknownDictionary): @"unknown_dictionary",
+                          };
+    });
+    return _objectTypeToString;
+}
+
++ (nullable NSString *)stringFromObjectType:(TRCObjectType)type {
+    NSDictionary<NSNumber *, NSString *>*mapping = [self objectTypeToString];
+    return mapping[@(type)];
+}
+
++ (nullable NSNumber *)objectTypeFromString:(NSString *)string {
+    NSDictionary<NSNumber *, NSString *>*mapping = [self objectTypeToString];
     return [[mapping allKeysForObject:string] firstObject];
 }
 

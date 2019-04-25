@@ -1,15 +1,15 @@
 {
   "protocol" : "SCPBBDeviceControllerProxy",
-  "id" : "trace",
+  "trace_object" : "trace",
   "start_ms" : 4294967295,
   "calls" : [
     {
       "method" : "startBTScan:scanTimeout:",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
         {
           "type" : "object",
-          "id" : "value",
+          "trace_object" : "value",
           "object_type" : "json_object",
           "object_value" : [
             "CHB20",
@@ -19,192 +19,192 @@
         },
         {
           "type" : "int",
-          "id" : "value",
+          "trace_object" : "value",
           "object_value" : 0,
           "object_type" : "not_an_object"
         }
       ],
       "start_ms" : 118,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "isDebugLogEnabled",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 119,
       "return_value" : {
         "type" : "char",
-        "id" : "value",
+        "trace_object" : "value",
         "object_value" : 0,
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "isDebugLogEnabled",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 271,
       "return_value" : {
         "type" : "char",
-        "id" : "value",
+        "trace_object" : "value",
         "object_value" : 0,
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "isDebugLogEnabled",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 272,
       "return_value" : {
         "type" : "char",
-        "id" : "value",
+        "trace_object" : "value",
         "object_value" : 0,
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "isDebugLogEnabled",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 293,
       "return_value" : {
         "type" : "char",
-        "id" : "value",
+        "trace_object" : "value",
         "object_value" : 0,
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "isDebugLogEnabled",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 316,
       "return_value" : {
         "type" : "char",
-        "id" : "value",
+        "trace_object" : "value",
         "object_value" : 0,
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "isDebugLogEnabled",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 324,
       "return_value" : {
         "type" : "char",
-        "id" : "value",
+        "trace_object" : "value",
         "object_value" : 0,
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "isDebugLogEnabled",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 355,
       "return_value" : {
         "type" : "char",
-        "id" : "value",
+        "trace_object" : "value",
         "object_value" : 0,
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "isDebugLogEnabled",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 564,
       "return_value" : {
         "type" : "char",
-        "id" : "value",
+        "trace_object" : "value",
         "object_value" : 0,
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "isDebugLogEnabled",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 565,
       "return_value" : {
         "type" : "char",
-        "id" : "value",
+        "trace_object" : "value",
         "object_value" : 0,
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "stopBTScan",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 2296,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "isDebugLogEnabled",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 2296,
       "return_value" : {
         "type" : "char",
-        "id" : "value",
+        "trace_object" : "value",
         "object_value" : 0,
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "isDebugLogEnabled",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 2297,
       "return_value" : {
         "type" : "char",
-        "id" : "value",
+        "trace_object" : "value",
         "object_value" : 0,
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "connectBTWithUUID:",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
         {
           "type" : "object",
-          "id" : "value",
+          "trace_object" : "value",
           "object_type" : "json_object",
           "object_value" : "513D55EF-1996-A592-E3EF-B29A734EAE41",
           "object_class" : "NSString"
@@ -212,104 +212,104 @@
       ],
       "start_ms" : 2336,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "isDebugLogEnabled",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 2336,
       "return_value" : {
         "type" : "char",
-        "id" : "value",
+        "trace_object" : "value",
         "object_value" : 0,
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "isDebugLogEnabled",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 3186,
       "return_value" : {
         "type" : "char",
-        "id" : "value",
+        "trace_object" : "value",
         "object_value" : 0,
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "isDebugLogEnabled",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 3186,
       "return_value" : {
         "type" : "char",
-        "id" : "value",
+        "trace_object" : "value",
         "object_value" : 0,
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "getDeviceInfo",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 3220,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "isDebugLogEnabled",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 3221,
       "return_value" : {
         "type" : "char",
-        "id" : "value",
+        "trace_object" : "value",
         "object_value" : 0,
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "isDebugLogEnabled",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 3625,
       "return_value" : {
         "type" : "char",
-        "id" : "value",
+        "trace_object" : "value",
         "object_value" : 0,
         "object_type" : "not_an_object"
       }
     },
     {
       "method" : "isDebugLogEnabled",
-      "id" : "value",
+      "trace_object" : "call",
       "arguments" : [
 
       ],
       "start_ms" : 3626,
       "return_value" : {
         "type" : "char",
-        "id" : "value",
+        "trace_object" : "value",
         "object_value" : 0,
         "object_type" : "not_an_object"
       }

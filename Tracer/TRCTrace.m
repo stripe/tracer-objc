@@ -9,6 +9,7 @@
 #import "TRCTrace+Private.h"
 #import "TRCCall.h"
 #import "NSDate+Tracer.h"
+#import "NSDictionary+Tracer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation TRCTrace
 
-+ (nullable instancetype)loadFromJSONFile:(NSString *)filename bundle:(nonnull NSBundle *)bundle {
++ (nullable instancetype)loadFromJsonFile:(NSString *)filename bundle:(nonnull NSBundle *)bundle {
     NSData *data = [self dataFromJSONFile:filename bundle:bundle];
     NSDictionary *json;
     if (data != nil) {
@@ -35,7 +36,38 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (nullable instancetype)decodedObjectFromJson:(nullable NSDictionary *)json {
-    return nil;
+    // precheck
+    if (!json) {
+        return nil;
+    }
+    NSDictionary *dict = [json trc_dictionaryByRemovingNulls];
+    NSString *object = [dict trc_stringForKey:@"trace_object"];
+    if (![object isEqualToString:@"trace"]) {
+        return nil;
+    }
+
+    // props
+    NSString *protocol = [dict trc_stringForKey:@"protocol"];
+    NSNumber *startMs = [dict trc_numberForKey:@"start_ms"];
+    NSArray *rawCalls = [dict trc_arrayForKey:@"calls"];
+    if (!protocol || !startMs || !rawCalls) {
+        return nil;
+    }
+
+    NSMutableArray *calls = [NSMutableArray new];
+    for (NSDictionary *rawCall in rawCalls) {
+        TRCCall *call = [TRCCall decodedObjectFromJson:rawCall];
+        if (call != nil) {
+            [calls addObject:call];
+        }
+    }
+
+    // assemble
+    TRCTrace *decoded = [TRCTrace new];
+    decoded.protocol = protocol;
+    decoded.start = [NSDate dateWithTimeIntervalSince1970:[startMs unsignedIntegerValue]];
+    decoded.calls = [calls copy];
+    return decoded;
 }
 
 - (instancetype)initWithProtocol:(Protocol *)protocol {
@@ -62,7 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSObject *)jsonObject {
     NSMutableDictionary *json = [NSMutableDictionary new];
-    json[@"id"] = @"trace";
+    json[@"trace_object"] = @"trace";
     json[@"protocol"] = self.protocol;
     json[@"start_ms"] = @([self startMillis]);
     NSMutableArray *calls = [NSMutableArray new];

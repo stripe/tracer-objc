@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "TRCJsonDecodable.h"
 #import "TRCJsonEncodable.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -18,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  A trace call.
  */
 NS_SWIFT_NAME(TraceCall)
-@interface TRCCall : NSObject <TRCJsonEncodable>
+@interface TRCCall : NSObject <TRCJsonEncodable, TRCJsonDecodable>
 
 /**
  The method, as a string.
@@ -41,7 +42,6 @@ NS_SWIFT_NAME(TraceCall)
 @property (atomic, readonly) TRCValue *returnValue;
 
 - (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)new NS_UNAVAILABLE;
 
 @end
 

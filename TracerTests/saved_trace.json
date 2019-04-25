@@ -1,17 +1,17 @@
 {
   "start_ms" : 1555567078880,
-  "id" : "trace",
+  "trace_object" : "trace",
   "protocol" : "TRCTestProtocol",
   "calls" : [
     {
       "arguments" : [
 
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_none",
       "start_ms" : 104,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -19,17 +19,17 @@
     {
       "arguments" : [
         {
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "int",
           "object_type" : "not_an_object",
           "object_value" : -100
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_int:",
       "start_ms" : 204,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -37,17 +37,17 @@
     {
       "arguments" : [
         {
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "unsigned_int",
           "object_type" : "not_an_object",
           "object_value" : 100
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_uint:",
       "start_ms" : 305,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -55,17 +55,17 @@
     {
       "arguments" : [
         {
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "float",
           "object_type" : "not_an_object",
           "object_value" : -123.5
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_float:",
       "start_ms" : 404,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -73,17 +73,17 @@
     {
       "arguments" : [
         {
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "bool",
           "object_type" : "not_an_object",
           "object_value" : true
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_bool:",
       "start_ms" : 504,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -92,17 +92,17 @@
       "arguments" : [
         {
           "object_class" : "NSNumber",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : -100
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_boxed_int:",
       "start_ms" : 605,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -111,17 +111,17 @@
       "arguments" : [
         {
           "object_class" : "NSNumber",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : -123.5
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_boxed_float:",
       "start_ms" : 704,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -130,17 +130,17 @@
       "arguments" : [
         {
           "object_class" : "NSNumber",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : 100
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_boxed_uint:",
       "start_ms" : 807,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -149,17 +149,17 @@
       "arguments" : [
         {
           "object_class" : "NSNumber",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : true
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_boxed_bool:",
       "start_ms" : 906,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -168,17 +168,17 @@
       "arguments" : [
         {
           "object_class" : "NSString",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : "string"
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_string:",
       "start_ms" : 1004,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -186,24 +186,24 @@
     {
       "arguments" : [
         {
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "int",
           "object_type" : "not_an_object",
           "object_value" : 100
         },
         {
           "object_class" : "NSString",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : "string"
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_int:string:",
       "start_ms" : 1107,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -212,17 +212,17 @@
       "arguments" : [
         {
           "object_class" : "NSNumber",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : -100
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_boxed_int:",
       "start_ms" : 1204,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -231,17 +231,17 @@
       "arguments" : [
         {
           "object_class" : "NSNumber",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : 100
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_boxed_uint:",
       "start_ms" : 1306,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -250,17 +250,17 @@
       "arguments" : [
         {
           "object_class" : "NSNumber",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : true
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_boxed_bool:",
       "start_ms" : 1404,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -269,17 +269,17 @@
       "arguments" : [
         {
           "object_class" : "NSString",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : "string"
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_string:",
       "start_ms" : 1506,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -288,7 +288,7 @@
       "arguments" : [
         {
           "object_class" : "__NSSingleObjectArrayI",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : [
@@ -296,11 +296,11 @@
           ]
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_array_single:",
       "start_ms" : 1604,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -309,7 +309,7 @@
       "arguments" : [
         {
           "object_class" : "__NSArrayI",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : [
@@ -323,11 +323,11 @@
           ]
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_array_multi:",
       "start_ms" : 1704,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -336,17 +336,17 @@
       "arguments" : [
         {
           "object_class" : "NSNumber",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : -100
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_boxed_int:",
       "start_ms" : 1804,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -355,17 +355,17 @@
       "arguments" : [
         {
           "object_class" : "NSNumber",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : 100
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_boxed_uint:",
       "start_ms" : 1906,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -374,17 +374,17 @@
       "arguments" : [
         {
           "object_class" : "NSNumber",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : -123.5
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_boxed_float:",
       "start_ms" : 2006,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -393,17 +393,17 @@
       "arguments" : [
         {
           "object_class" : "NSNumber",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : true
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_boxed_bool:",
       "start_ms" : 2106,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -412,17 +412,17 @@
       "arguments" : [
         {
           "object_class" : "NSString",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : "string"
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_string:",
       "start_ms" : 2205,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -431,7 +431,7 @@
       "arguments" : [
         {
           "object_class" : "__NSSingleEntryDictionaryI",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : {
@@ -439,11 +439,11 @@
           }
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_dict_single:",
       "start_ms" : 2304,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -452,7 +452,7 @@
       "arguments" : [
         {
           "object_class" : "__NSSingleObjectArrayI",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : [
@@ -460,11 +460,11 @@
           ]
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_array_single:",
       "start_ms" : 2405,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -473,7 +473,7 @@
       "arguments" : [
         {
           "object_class" : "__NSArrayI",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : [
@@ -487,11 +487,11 @@
           ]
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_array_multi:",
       "start_ms" : 2504,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -500,7 +500,7 @@
       "arguments" : [
         {
           "object_class" : "__NSSingleEntryDictionaryI",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : {
@@ -508,11 +508,11 @@
           }
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_dict_single:",
       "start_ms" : 2605,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -521,7 +521,7 @@
       "arguments" : [
         {
           "object_class" : "__NSSingleEntryDictionaryI",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : {
@@ -529,11 +529,11 @@
           }
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_dict_single:",
       "start_ms" : 2705,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -542,7 +542,7 @@
       "arguments" : [
         {
           "object_class" : "__NSDictionaryM",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : {
@@ -550,11 +550,11 @@
           }
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_dict_single:",
       "start_ms" : 2806,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }
@@ -563,7 +563,7 @@
       "arguments" : [
         {
           "object_class" : "__NSDictionaryI",
-          "id" : "value",
+          "trace_object" : "value",
           "type" : "object",
           "object_type" : "json_object",
           "object_value" : {
@@ -580,11 +580,11 @@
           }
         }
       ],
-      "id" : "value",
+      "trace_object" : "call",
       "method" : "ret_void__args_dict_multi:",
       "start_ms" : 2907,
       "return_value" : {
-        "id" : "value",
+        "trace_object" : "value",
         "type" : "void",
         "object_type" : "not_an_object"
       }

@@ -18,8 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray *)trc_arrayByRemovingNulls;
 
-- (NSArray *)trc_arrayBySanitizingStringValues;
-
 @end
 
 NS_ASSUME_NONNULL_END

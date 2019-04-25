@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "TRCJsonDecodable.h"
 #import "TRCJsonEncodable.h"
 #import "TRCType.h"
 
@@ -18,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  A call's arguments are represented as an array of TRCValues.
  */
 NS_SWIFT_NAME(TraceValue)
-@interface TRCValue : NSObject <TRCJsonEncodable>
+@interface TRCValue : NSObject <TRCJsonEncodable, TRCJsonDecodable>
 
 /**
  The value's type.
@@ -43,6 +44,8 @@ NS_SWIFT_NAME(TraceValue)
  this is the String returned by the object's `description` selector.
  */
 @property (atomic, nullable, readonly) id objectValue;
+
+- (instancetype)init NS_UNAVAILABLE;
 
 @end
 

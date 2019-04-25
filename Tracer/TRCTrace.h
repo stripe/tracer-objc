@@ -34,11 +34,10 @@ NS_SWIFT_NAME(Trace)
 /**
  Loads a trace from a file in the given bundle.
  */
-+ (nullable instancetype)loadFromJSONFile:(NSString *)filename
++ (nullable instancetype)loadFromJsonFile:(NSString *)filename
                                    bundle:(NSBundle *)bundle;
 
 - (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)new NS_UNAVAILABLE;
 
 @end
 
