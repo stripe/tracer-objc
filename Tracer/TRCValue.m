@@ -66,7 +66,7 @@ static NSDictionary<NSNumber *, NSString *> *_objectTypeToString;
                      [classString containsString:@"NSDictionary"]) {
                 classString = @"NSDictionary";
                 _objectType = TRCObjectTypeUnknownDictionary;
-                // TODO: surface unknown types within dict
+                // TODO: we can do better than description
                 _objectValue = [boxedArgument description];
             }
             // NSArray, not valid JSON
@@ -74,11 +74,13 @@ static NSDictionary<NSNumber *, NSString *> *_objectTypeToString;
                      [classString containsString:@"NSArray"]) {
                 classString = @"NSArray";
                 _objectType = TRCObjectTypeUnknownArray;
-                // TODO: surface unknown types within array
+                // TODO: we can do better than description
                 _objectValue = [boxedArgument description];
             }
             else {
                 _objectType = TRCObjectTypeUnknownObject;
+                // TODO: we can do better than description
+                _objectValue = [boxedArgument description];
             }
             _objectClass = classString;
         }

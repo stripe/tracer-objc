@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Unit tests are intentionally mock-free, for simplicity.
  All method implementations assert on hardcoded expected values.
+
+ TODO: investigate why optional protocol methods don't get hooked
  */
 @protocol TRCTestProtocol <NSObject>
 - (void)ret_void__args_none;

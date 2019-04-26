@@ -19,12 +19,21 @@ NS_SWIFT_NAME(TraceRecorder)
 @interface TRCRecorder : NSObject
 
 /**
+ Defaults to false. Tracer is experimental, and still work-in-progress.
+ */
+@property (nonatomic, assign) BOOL debugModeEnabled;
+
+/**
  Starts recording a protocol on a source.
  */
 - (void)startRecording:(id)source protocol:(Protocol *)protocol;
 
 /**
  Stops recording a protocol on a source.
+
+ Note that optional protocol methods aren't currently supported, and will not
+ be recorded.
+
  If recording fails, completes with an error.
  If recording succeeds, completes with nil.
  */

@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (self) {
         _tracesQueue = dispatch_queue_create("com.tracer.tracerecorder.traces", DISPATCH_QUEUE_SERIAL);
         _keyToTrace = [NSMutableDictionary new];
+        _debugModeEnabled = NO;
     }
     return self;
 }
@@ -66,7 +67,10 @@ NS_ASSUME_NONNULL_BEGIN
         [methodSigs addObject:sig];
     }
 
-    NSLog(@"TRACER: method count %@", @(methodCount));
+    if (self.debugModeEnabled) {
+        NSLog(@"TRACER DEBUG: hooking %lu methods", (unsigned long)methodCount);
+    }
+
     // hook selectors to record calls
     for (NSUInteger i = 0; i < [methodSelectors count]; i++) {
         NSValue *selValue = methodSelectors[i];
@@ -87,7 +91,7 @@ NS_ASSUME_NONNULL_BEGIN
 
         SEL sel = (SEL)selValue.pointerValue;
         Class klass = [source class];
-        NSLog(@"TRACER: hooking selector %@", NSStringFromSelector(sel));
+        NSLog(@"TRACER DEBUG: hooking selector %@", NSStringFromSelector(sel));
         [klass trc_aspect_hookSelector:sel withOptions:TRCAspectPositionAfter usingBlock:^(id<TRCAspectInfo> info){
             NSUInteger ms = [[NSDate date] trc_millisSinceDate:start];
 
@@ -104,7 +108,7 @@ NS_ASSUME_NONNULL_BEGIN
                                                    invocation:info.originalInvocation
                                                       arguments:[args copy]
                                                          millis:ms];
-            NSLog(@"TRACER: call %@", call);
+            NSLog(@"TRACER DEBUG: recording call %@", call);
             dispatch_async(self.tracesQueue, ^{
                 TRCTrace *trace = self.keyToTrace[key];
                 if (trace == nil) {
@@ -127,12 +131,10 @@ NS_ASSUME_NONNULL_BEGIN
         // load trace
         TRCTrace *trace;
         if ([[self.keyToTrace allKeys] count] == 1) {
-            NSLog(@"TRACER: one key");
             NSString *firstKey = [[self.keyToTrace allKeys] firstObject];
             trace = self.keyToTrace[firstKey];
         }
         else {
-            NSLog(@"TRACER: key %@", key);
             trace = self.keyToTrace[key];
         }
 
@@ -171,7 +173,7 @@ NS_ASSUME_NONNULL_BEGIN
             }
         }
         else {
-            NSLog(@"TRACER keyToTrace: %@", self.keyToTrace);
+            NSLog(@"TRACER DEBUG: couldn't find trace %@", self.keyToTrace);
             NSError *error = [TRCErrors buildError:TRCErrorRecordingFailedUnexpectedError];
             completion(nil, error);
         }
