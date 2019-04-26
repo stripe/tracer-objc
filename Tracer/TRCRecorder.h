@@ -19,6 +19,11 @@ NS_SWIFT_NAME(TraceRecorder)
 @interface TRCRecorder : NSObject
 
 /**
+ Returns the shared (singleton) Recorder instance.
+ */
+@property (class, nonatomic, readonly) TRCRecorder *shared;
+
+/**
  Defaults to false. Tracer is experimental, and still work-in-progress.
  */
 @property (nonatomic, assign) BOOL debugModeEnabled;

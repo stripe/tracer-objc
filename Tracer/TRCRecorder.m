@@ -28,6 +28,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation TRCRecorder
 
+static TRCRecorder * __nullable _shared = nil;
+
++ (instancetype)shared {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _shared = [TRCRecorder new];
+    });
+    return _shared;
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
