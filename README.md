@@ -78,5 +78,6 @@ TRCTrace *trace = [TRCTrace loadFromJSONFile:@"saved_trace"];
 - You must provide a protocol to scope recording
 - Optional protocol methods won't be recorded
 - Naive introspection when recording unknown object types (Tracer simply records the object's `description`)
+- Playback is always on the main thread
 
 
