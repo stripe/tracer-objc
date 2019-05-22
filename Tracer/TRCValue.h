@@ -41,7 +41,7 @@ NS_SWIFT_NAME(TraceValue)
  The value's object value.
  If the value has type Primitive, this is the boxed value.
  If the value has type UnknownObject, UnknownArray, or UnknownDictionary,
- this is the String returned by the object's `description` selector.
+ this is the Dictionary representation of the object.
  */
 @property (atomic, nullable, readonly) id objectValue;
 

@@ -36,53 +36,7 @@ static NSDictionary<NSNumber *, NSString *> *_objectTypeToString;
         _type = type;
         BOOL isObject = (type == TRCTypeObject);
         if (isObject) {
-            NSString *classString = NSStringFromClass([boxedArgument class]);
-            // NSString
-            if ([classString containsString:@"NSCFConstantString"] ||
-                [classString containsString:@"NSCFString"]) {
-                classString = @"NSString";
-                _objectType = TRCObjectTypeJsonObject;
-                _objectValue = boxedArgument;
-            }
-            // NSNumber
-            else if ([classString containsString:@"NSCFNumber"]) {
-                classString = @"NSNumber";
-                _objectType = TRCObjectTypeJsonObject;
-                _objectValue = boxedArgument;
-            }
-            // Boxed Bool
-            else if ([classString containsString:@"NSCFBoolean"]) {
-                classString = @"NSNumber";
-                _objectType = TRCObjectTypeJsonObject;
-                _objectValue = boxedArgument;
-            }
-            // Valid JSON object
-            else if ([NSJSONSerialization isValidJSONObject:boxedArgument]) {
-                _objectType = TRCObjectTypeJsonObject;
-                _objectValue = boxedArgument;
-            }
-            // NSDictionary, not valid JSON
-            else if ([classString containsString:@"NSSingleEntryDictionary"] ||
-                     [classString containsString:@"NSDictionary"]) {
-                classString = @"NSDictionary";
-                _objectType = TRCObjectTypeUnknownDictionary;
-                // TODO: we can do better than description
-                _objectValue = [boxedArgument description];
-            }
-            // NSArray, not valid JSON
-            else if ([classString containsString:@"NSSingleObjectArray"] ||
-                     [classString containsString:@"NSArray"]) {
-                classString = @"NSArray";
-                _objectType = TRCObjectTypeUnknownArray;
-                // TODO: we can do better than description
-                _objectValue = [boxedArgument description];
-            }
-            else {
-                _objectType = TRCObjectTypeUnknownObject;
-                // TODO: we can do better than description
-                _objectValue = [boxedArgument description];
-            }
-            _objectClass = classString;
+            return [[self class] buildWithObject:boxedArgument];
         }
         else {
             _objectType = TRCObjectTypeNotAnObject;
@@ -90,6 +44,59 @@ static NSDictionary<NSNumber *, NSString *> *_objectTypeToString;
         }
     }
     return self;
+}
+
++ (id)buildWithObject:(id)object {
+    TRCValue *instance = [TRCValue new];
+    instance.type = TRCTypeObject;
+    NSString *classString = NSStringFromClass([object class]);
+    // NSString
+    if ([classString containsString:@"NSCFConstantString"] ||
+        [classString containsString:@"NSCFString"]) {
+        classString = @"NSString";
+        instance.objectType = TRCObjectTypeJsonObject;
+        instance.objectValue = object;
+    }
+    // NSNumber
+    else if ([classString containsString:@"NSCFNumber"]) {
+        classString = @"NSNumber";
+        instance.objectType = TRCObjectTypeJsonObject;
+        instance.objectValue = object;
+    }
+    // Boxed Bool
+    else if ([classString containsString:@"NSCFBoolean"]) {
+        classString = @"NSNumber";
+        instance.objectType = TRCObjectTypeJsonObject;
+        instance.objectValue = object;
+    }
+    // Valid JSON object
+    else if ([NSJSONSerialization isValidJSONObject:object]) {
+        instance.objectType = TRCObjectTypeJsonObject;
+        instance.objectValue = object;
+    }
+    // NSDictionary, not valid JSON
+    else if ([classString containsString:@"NSSingleEntryDictionary"] ||
+             [classString containsString:@"NSDictionary"]) {
+        classString = @"NSDictionary";
+        instance.objectType = TRCObjectTypeUnknownDictionary;
+        // TODO: we can do better than description
+        instance.objectValue = [object description];
+    }
+    // NSArray, not valid JSON
+    else if ([classString containsString:@"NSSingleObjectArray"] ||
+             [classString containsString:@"NSArray"]) {
+        classString = @"NSArray";
+        instance.objectType = TRCObjectTypeUnknownArray;
+        // TODO: we can do better than description
+        instance.objectValue = [object description];
+    }
+    else {
+        instance.objectType = TRCObjectTypeUnknownObject;
+        // TODO: we can do better than description
+        instance.objectValue = [object description];
+    }
+    instance.objectClass = classString;
+    return instance;
 }
 
 + (nullable instancetype)decodedObjectFromJson:(nullable NSDictionary *)json {
