@@ -9,8 +9,10 @@
 #import "TRCValue.h"
 
 #import <UIKit/UIKit.h>
+#import <objc/runtime.h>
 
 #import "NSDictionary+Tracer.h"
+#import "TRCCall+Private.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -92,8 +94,35 @@ static NSDictionary<NSNumber *, NSString *> *_objectTypeToString;
     }
     else {
         instance.objectType = TRCObjectTypeUnknownObject;
-        // TODO: we can do better than description
-        instance.objectValue = [object description];
+        NSMutableDictionary *objectValue = [NSMutableDictionary new];
+
+        unsigned int methodCount = 0;
+        Method *methodList = class_copyMethodList([object class], &methodCount);
+        for (NSUInteger i = 0; i < methodCount; i++) {
+            struct objc_method_description *methodDescription = method_getDescription(methodList[i]);
+            NSValue *selValue = [NSValue valueWithPointer:methodDescription->name];
+            NSMethodSignature *sig = [NSMethodSignature signatureWithObjCTypes:methodDescription->types];
+            NSString *encodingString = [NSString stringWithUTF8String:sig.methodReturnType];
+            // args 0 and 1 are the hidden arguments self and _cmd
+            if (sig.numberOfArguments == 2) {
+                SEL sel = (SEL)selValue.pointerValue;
+                NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
+                [invocation setSelector:sel];
+                [invocation setTarget:object];
+                [invocation invoke];
+
+                NSString *selString = NSStringFromSelector(sel);
+                TRCType type = [[self class] typeWithEncoding:encodingString];
+
+                BOOL isObject = (type == TRCTypeObject);
+                if (isObject) {
+                    __unsafe_unretained id returnValue;
+                    [invocation getReturnValue:&returnValue];
+                    objectValue[selString] = returnValue;
+                }
+            }
+        }
+        instance.objectValue = [objectValue copy];
     }
     instance.objectClass = classString;
     return instance;

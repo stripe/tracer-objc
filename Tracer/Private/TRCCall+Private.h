@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TRCCall (Private)
 
++ (TRCValue *)buildReturnValue:(NSInvocation *)inv;
+
 /**
  Internal id used to reference the call
  */

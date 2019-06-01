@@ -32,6 +32,7 @@
 		C1570DE3226837B9000F3D04 /* FixtureProviderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1570DE2226837B9000F3D04 /* FixtureProviderTests.m */; };
 		C1570DE522684756000F3D04 /* LoadFromFileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1570DE422684756000F3D04 /* LoadFromFileTests.m */; };
 		C1570DE722684A01000F3D04 /* saved_trace.json in Resources */ = {isa = PBXBuildFile; fileRef = C1570DE622684A00000F3D04 /* saved_trace.json */; };
+		C15B8FB622A315EE001580AC /* TRCValueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C15B8FB522A315EE001580AC /* TRCValueTests.m */; };
 		C184DC3C222CA06A005F7C5D /* TRCCall+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = C184DC3B222CA06A005F7C5D /* TRCCall+Private.h */; };
 		C1A51A9A223E18AF009C5F81 /* RetVoidMultiArgTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A51A99223E18AF009C5F81 /* RetVoidMultiArgTests.m */; };
 		C1A51A9C223E1932009C5F81 /* ErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A51A9B223E1932009C5F81 /* ErrorTests.m */; };
@@ -86,6 +87,7 @@
 		C1570DE2226837B9000F3D04 /* FixtureProviderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FixtureProviderTests.m; sourceTree = "<group>"; };
 		C1570DE422684756000F3D04 /* LoadFromFileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadFromFileTests.m; sourceTree = "<group>"; };
 		C1570DE622684A00000F3D04 /* saved_trace.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = saved_trace.json; sourceTree = "<group>"; };
+		C15B8FB522A315EE001580AC /* TRCValueTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TRCValueTests.m; sourceTree = "<group>"; };
 		C184DC3B222CA06A005F7C5D /* TRCCall+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TRCCall+Private.h"; sourceTree = "<group>"; };
 		C1A51A99223E18AF009C5F81 /* RetVoidMultiArgTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RetVoidMultiArgTests.m; sourceTree = "<group>"; };
 		C1A51A9B223E1932009C5F81 /* ErrorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ErrorTests.m; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				C106B3472221445300504CF9 /* TRCTestTarget.m */,
 				C118071722722EC30048BB83 /* NSDictionary+TracerTests.m */,
 				C1180721227230940048BB83 /* NSArray+TracerTests.m */,
+				C15B8FB522A315EE001580AC /* TRCValueTests.m */,
 				C1570DE622684A00000F3D04 /* saved_trace.json */,
 				C118071322722A790048BB83 /* trace_bt_scan_connect.json */,
 				C1D7ABCF222102E30040808A /* Info.plist */,
@@ -377,6 +380,7 @@
 				C1570DE522684756000F3D04 /* LoadFromFileTests.m in Sources */,
 				C1A51A9A223E18AF009C5F81 /* RetVoidMultiArgTests.m in Sources */,
 				C1A51A9C223E1932009C5F81 /* ErrorTests.m in Sources */,
+				C15B8FB622A315EE001580AC /* TRCValueTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
