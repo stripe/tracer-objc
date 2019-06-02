@@ -48,7 +48,7 @@ static NSDictionary<NSNumber *, NSString *> *_objectTypeToString;
     return self;
 }
 
-+ (id)buildWithObject:(id)object {
++ (instancetype)buildWithObject:(id)object {
     TRCValue *instance = [TRCValue new];
     instance.type = TRCTypeObject;
     NSString *classString = NSStringFromClass([object class]);
@@ -126,6 +126,128 @@ static NSDictionary<NSNumber *, NSString *> *_objectTypeToString;
     }
     instance.objectClass = classString;
     return instance;
+}
+
++ (nullable id)getNonObjectReturnValue:(NSInvocation *)invocation {
+    return nil;
+}
+
++ (instancetype)buildWithInvocationReturnValue:(NSInvocation *)invocation {
+    NSMethodSignature *sig = invocation.methodSignature;
+    NSString *encodingString = [NSString stringWithUTF8String:sig.methodReturnType];
+    TRCType returnType = [TRCValue typeWithEncoding:encodingString];
+
+    __unsafe_unretained id returnValue;
+    switch (returnType) {
+        case TRCTypeChar: {
+            char value;
+            [invocation getReturnValue:&value];
+            returnValue = @(value);
+        } break;
+        case TRCTypeInt:  {
+            int value;
+            [invocation getReturnValue:&value];
+            returnValue = @(value);
+        } break;
+        case TRCTypeShort:  {
+            short value;
+            [invocation getReturnValue:&value];
+            returnValue = @(value);
+        } break;
+        case TRCTypeLong:  {
+            long value;
+            [invocation getReturnValue:&value];
+            returnValue = @(value);
+        } break;
+        case TRCTypeLongLong:  {
+            long long value;
+            [invocation getReturnValue:&value];
+            returnValue = @(value);
+        } break;
+        case TRCTypeUnsignedChar:  {
+            unsigned char value;
+            [invocation getReturnValue:&value];
+            returnValue = @(value);
+        } break;
+        case TRCTypeUnsignedInt:  {
+            unsigned int value;
+            [invocation getReturnValue:&value];
+            returnValue = @(value);
+        } break;
+        case TRCTypeUnsignedShort:  {
+            unsigned short value;
+            [invocation getReturnValue:&value];
+            returnValue = @(value);
+        } break;
+        case TRCTypeUnsignedLong:  {
+            unsigned long value;
+            [invocation getReturnValue:&value];
+            returnValue = @(value);
+        } break;
+        case TRCTypeUnsignedLongLong:  {
+            unsigned long long value;
+            [invocation getReturnValue:&value];
+            returnValue = @(value);
+        } break;
+        case TRCTypeFloat:  {
+            float value;
+            [invocation getReturnValue:&value];
+            returnValue = @(value);
+        } break;
+        case TRCTypeDouble:  {
+            double value;
+            [invocation getReturnValue:&value];
+            returnValue = @(value);
+        } break;
+        case TRCTypeBool: {
+            BOOL value;
+            [invocation getReturnValue:&value];
+            returnValue = @(value);
+        } break;
+        case TRCTypeCharacterString: {
+            const char *value;
+            [invocation getReturnValue:&value];
+            returnValue = [NSString stringWithUTF8String:value];
+        } break;
+        case TRCTypeCGPoint: {
+            CGPoint value;
+            [invocation getReturnValue:&value];
+            returnValue = [NSValue valueWithCGPoint:value];
+        } break;
+        case TRCTypeCGSize: {
+            CGSize value;
+            [invocation getReturnValue:&value];
+            returnValue = [NSValue valueWithCGSize:value];
+        } break;
+        case TRCTypeCGRect: {
+            CGRect value;
+            [invocation getReturnValue:&value];
+            returnValue = [NSValue valueWithCGRect:value];
+        } break;
+        case TRCTypeUIEdgeInsets: {
+            UIEdgeInsets value;
+            [invocation getReturnValue:&value];
+            returnValue = [NSValue valueWithUIEdgeInsets:value];
+        } break;
+        case TRCTypeSEL: {
+            SEL sel;
+            [invocation getReturnValue:&sel];
+            returnValue = [NSValue valueWithPointer:sel];
+        } break;
+        case TRCTypeIMP: {
+            IMP imp;
+            [invocation getReturnValue:&imp];
+            returnValue = [NSValue valueWithPointer:imp];
+        } break;
+        case TRCTypeObject:
+        case TRCTypeClass:
+            [invocation getReturnValue:&returnValue];
+            break;
+        default: break;
+    }
+    TRCValue *value = [[TRCValue alloc] initWithTypeEncoding:encodingString
+                                               boxedArgument:returnValue ?: @(0)];
+    return value;
 }
 
 + (nullable instancetype)decodedObjectFromJson:(nullable NSDictionary *)json {
