@@ -128,17 +128,13 @@ static NSDictionary<NSNumber *, NSString *> *_objectTypeToString;
     return instance;
 }
 
-+ (nullable id)getNonObjectReturnValue:(NSInvocation *)invocation {
-    return nil;
-}
-
 + (instancetype)buildWithInvocationReturnValue:(NSInvocation *)invocation {
     NSMethodSignature *sig = invocation.methodSignature;
     NSString *encodingString = [NSString stringWithUTF8String:sig.methodReturnType];
-    TRCType returnType = [TRCValue typeWithEncoding:encodingString];
+    TRCType type = [TRCValue typeWithEncoding:encodingString];
 
     __unsafe_unretained id returnValue;
-    switch (returnType) {
+    switch (type) {
         case TRCTypeChar: {
             char value;
             [invocation getReturnValue:&value];
@@ -245,8 +241,16 @@ static NSDictionary<NSNumber *, NSString *> *_objectTypeToString;
             break;
         default: break;
     }
-    TRCValue *value = [[TRCValue alloc] initWithTypeEncoding:encodingString
-                                               boxedArgument:returnValue ?: @(0)];
+    TRCValue *value = [TRCValue new];
+    value.type = type;
+    BOOL isObject = (type == TRCTypeObject);
+    if (isObject) {
+        return [self buildWithObject:returnValue];
+    }
+    else {
+        value.objectType = TRCObjectTypeNotAnObject;
+        value.objectValue = returnValue;
+    }
     return value;
 }
 
