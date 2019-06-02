@@ -50,7 +50,7 @@
     XCTAssertEqual(value.objectType, TRCObjectTypeUnknownObject);
     XCTAssertEqualObjects(value.objectClass, NSStringFromClass([UnknownObject class]));
     NSLog(@"%@", value.objectValue);
-    XCTAssertEqual([[value.objectValue keys] count], 4);
+    XCTAssertEqual([[value.objectValue allKeys] count], 4);
 }
 
 - (void)testBuildWithInvalidJSONDictionary {

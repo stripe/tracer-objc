@@ -48,6 +48,26 @@ static NSDictionary<NSNumber *, NSString *> *_objectTypeToString;
     return self;
 }
 
++ (BOOL)isUnknownObject:(id)object {
+    NSArray *knownObjectClasses = @[
+                                    @"NSCFConstantString",
+                                    @"NSCFString",
+                                    @"NSCFNumber",
+                                    @"NSCFBoolean",
+                                    @"NSSingleEntryDictionary",
+                                    @"NSDictionary",
+                                    @"NSSingleObjectArray",
+                                    @"NSArray",
+                                    ];
+    NSString *classString = NSStringFromClass([object class]);
+    for (NSString *knownClass in knownObjectClasses) {
+        if ([classString containsString:knownClass]) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
 + (instancetype)buildWithObject:(id)object {
     TRCValue *instance = [TRCValue new];
     instance.type = TRCTypeObject;
@@ -118,7 +138,10 @@ static NSDictionary<NSNumber *, NSString *> *_objectTypeToString;
                 if (isObject) {
                     __unsafe_unretained id returnValue;
                     [invocation getReturnValue:&returnValue];
-                    objectValue[selString] = returnValue;
+                    BOOL isUnknownObject = [self isUnknownObject:returnValue];
+                    if (!isUnknownObject) {
+                        objectValue[selString] = returnValue;
+                    }
                 }
             }
         }
