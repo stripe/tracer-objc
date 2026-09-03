@@ -7,13 +7,7 @@ Tracer is an experimental testing tool that lets you record & play back the beha
 Swift Package Manager:
 
 ```swift
-.package(url: "https://github.com/stripe/tracer-objc.git", from: "0.1.0")
-```
-
-CocoaPods:
-
-```ruby
-pod 'tracer-objc'
+.package(url: "https://github.com/stripe/tracer-objc.git", from: "0.3.0")
 ```
 
 Let's say you have a dependency in your code, `ThatThing`. You call `ThatThing`, it calls you back, and behavior varies depending on user input or environmental factors. 
