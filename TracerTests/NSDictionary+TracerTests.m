@@ -220,7 +220,21 @@
                            @"b": @"not a url"
                            };
     XCTAssertEqualObjects([dict trc_urlForKey:@"a"], [NSURL URLWithString:@"https://example.com"]);
-    XCTAssertNil([dict trc_urlForKey:@"b"]);
+
+    // `trc_urlForKey:` is a thin wrapper over `NSURL URLWithString:`, which does
+    // not reject junk: any string without illegal characters has always parsed
+    // as a *relative* URL (e.g. @"notaurl" was never nil). As of iOS 17 /
+    // macOS 14, Foundation replaced the CFURL parser with an RFC 3986 one that
+    // additionally percent-encodes illegal characters rather than bailing out,
+    // so @"not a url" now parses to the relative URL @"not%20a%20url" instead of
+    // returning nil. The switch is gated on the SDK the binary is linked
+    // against, so it took effect here on the first build with a newer SDK.
+    //
+    // Assert the property that holds under both parsers: a string that isn't an
+    // absolute URL never yields one. Callers that need an absolute URL must
+    // check for a scheme themselves.
+    XCTAssertNil([dict trc_urlForKey:@"b"].scheme);
+
     XCTAssertNil([dict trc_urlForKey:@"c"]);
 }
 
