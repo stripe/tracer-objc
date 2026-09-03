@@ -1,0 +1,19 @@
+// Hand-written because SPM's generated umbrella-header layout rejects the
+// `Private` directory sitting next to `Tracer.h`. Private headers are excluded
+// from the module so they stay out of the public API and remain textually
+// importable from the library's own sources and from tests.
+module Tracer {
+    umbrella header "Tracer.h"
+    export *
+
+    exclude header "Private/NSArray+Tracer.h"
+    exclude header "Private/NSDate+Tracer.h"
+    exclude header "Private/NSDictionary+Tracer.h"
+    exclude header "Private/TRCAspects.h"
+    exclude header "Private/TRCCall+Private.h"
+    exclude header "Private/TRCDispatchFunctions.h"
+    exclude header "Private/TRCErrors+Private.h"
+    exclude header "Private/TRCNotNil.h"
+    exclude header "Private/TRCTrace+Private.h"
+    exclude header "Private/TRCValue+Private.h"
+}
