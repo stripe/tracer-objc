@@ -43,6 +43,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable NSString *)trc_stringForKey:(NSString *)key;
 
+/**
+ Returns `[NSURL URLWithString:]` for the string at `key`, or nil if there's no
+ string there. This does not validate the URL: junk strings parse as relative
+ URLs rather than returning nil, and since iOS 17 / macOS 14 Foundation's RFC
+ 3986 parser percent-encodes illegal characters instead of bailing out (@"not a
+ url" -> @"not%20a%20url"). Check `scheme` if you need an absolute URL.
+ */
 - (nullable NSURL *)trc_urlForKey:(NSString *)key;
 
 @end
